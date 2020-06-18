@@ -1,0 +1,16 @@
+{% block content%}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<h1> <strong> SUBJECTS  </strong></h1>
+ <a href="{% url 'create-subject' %}"><button class="btn btn-primary btn-sm">Add subject</button> </a>
+{% for subject in subjects %}
+
+<h3> {{subject.title}}  </h3> 
+
+<p>{{subject.slug }}</p>
+<a href="{% url 'subject-delete' subject.id%}"> <button class="btn btn-outline-danger btn-sm">Delete</button> </a> 
+<a href="{% url 'subject-update' subject.id%}"> <button class="btn btn-outline-info btn-sm">Update</button> </a>
+
+{% endfor %}
+
+{% endblock %}

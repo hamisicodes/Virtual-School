@@ -39,4 +39,4 @@ def profile(request):
     else:
         user_form = UserUpdateForm(instance=request.user)
         profile_form = ProfileUpdateForm(instance=request.user.profile)
-    return render(request, 'users/profile.html', {'u_form': user_form, 'p_form': profile_form})    
+    return render(request, 'content_management/subject.html', {'u_form': user_form, 'p_form': profile_form})    
