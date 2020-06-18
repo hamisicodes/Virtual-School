@@ -20,4 +20,4 @@ def studentLogin(request):
     return render(request,'registration/login.html')
 
 def dashboard(request):
-    return render(request, 'dashboard.html')
+    return render(request, 'students/dashboard.html')
