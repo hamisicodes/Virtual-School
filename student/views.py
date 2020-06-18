@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from .forms import StudentRegistrationForm
+from .models import StudentProfile
 
 def student_register(request):
     if request.method == 'POST':
@@ -14,3 +15,10 @@ def student_register(request):
     else:
         form = StudentRegistrationForm()
     return render(request, 'student/register.html',{'form':form})
+
+def student_profile(request):
+    profile = StudentProfile.objects.get_or_create(user=request.user)
+    context = {
+        'profile':profile
+    }
+    return render(request, 'student/profile.html', context)
