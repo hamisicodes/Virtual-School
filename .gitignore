@@ -1,2 +1,4 @@
 ck.env
 venv
+.env
+virtual/

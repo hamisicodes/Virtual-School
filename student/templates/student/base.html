@@ -1,0 +1,52 @@
+{% load bootstrap3 %}
+{% load static%}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <link rel="icon" type="favicon.png" href="" />
+  {% if title %}
+  <title>Virtual school - {{title}}</title>
+  {% else %}
+  <title>virtual school </title>
+  {% endif %}
+
+  {% block styles %}
+  {% bootstrap_css %}
+  <link rel="stylesheet" href="{% static 'css/main.css' %}">
+  {% endblock %}
+
+
+  <link href="https://fonts.googleapis.com/css2?family=Metal+Mania&display=swap" rel="stylesheet">
+
+
+
+
+</head>
+
+<body>
+  {% include "student/navbar.html" %}
+  <div></div>
+  {% block content %}
+
+  {%endblock%}
+  {% include "student/footer.html" %}
+  {% block scripts %}
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  {% bootstrap_javascript %}
+  {% endblock %}
+  </div>
+
+  <!-- display any other content  -->
+
+  <!-- <div class="col-md-2" style="padding-top:15px; background-color: #49c5b6; text-align:center"> -->
+   
+  </div>
+
+
+
+</body>
+
+</html>

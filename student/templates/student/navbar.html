@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Comfortaa" rel="stylesheet">
+</head>
+
+<body>
+    <div id="navbar" class="container-fluid" style="border-bottom: 1px solid rgb(231, 230, 230); background-color: aliceblue;">
+        <div class="row">
+
+            <div class="col-md-8"
+                style=" padding-top:5px;text-align:center;font-family: 'Comfortaa', cursive; letter-spacing:2px;">
+                <div class="row">
+                    <div class="col-md-10">
+                        <a class="navbar-brand navbar-right" href="{% url 'index' %}"
+                            style="font-size:large;  color:green; "><strong>VIRTUAL SCHOOL APPLICATION.</strong></a>
+                    </div>
+
+                    <!-- added about-->
+
+                    <div class="navbar-header navlinks"   style="margin-right: auto;" >
+                        <a href="{% url 'about' %}">About: </a>
+                    </div>
+
+                    <!-- added contacts -->
+                    <div class="navbar-header navlinks">
+                        <a href="{% url 'contact' %}">contacts: </a>
+                    </div>
+
+                    <div class="col-md-2" style="padding-top:10px;">
+                        <div class="row">
+                            <div class="col-md-6" style="padding-top:5px;">
+                                <a href=""
+                                    style="font-size:13px; color:pink; text-decoration: none;">{{ user.username }}</a>
+                            </div>
+                            <div class="col-md-6">
+                                {% if user.is_authenticated %}
+                                <div class="dropdown">
+                                    <a class="btn btn dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false"><span
+                                            style="cursor:pointer">&#9776;</span>
+                                    </a>
+                                    <div class="dropdown-menu" style="width:300px;">
+                                        <a class="dropdown-item" href="{%url 'profile'%}">Profile</a>
+                                        <div class="dropdown-divider"></div>
+
+
+                                        <a class="dropdown-item" href="/logout">Logout <img
+                                                style="width: 20px; float: right;"
+                                                src="https://image.flaticon.com/icons/png/512/126/126467.png"
+                                                alt=""></a>
+                                    </div>
+                                </div>
+                            </div>
+                            {% else %}
+
+                            <a class='btn btn-default' href="/accounts/login/?next=/">Login</a>
+
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+
+</html>

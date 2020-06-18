@@ -33,7 +33,7 @@ def profile(request):
             messages.success(
                 request, ('your profile was successfully updated!'))
             return redirect('profile')
-        else:
+        else: 
             messages.error(
                 request, ('There was an error updating your profile'))
     else:
