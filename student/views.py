@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
-from .forms import StudentRegistrationForm
+from .forms import StudentRegistrationForm, StudentProfileUpdateForm, UserUpdateForm
 from .models import StudentProfile
 
 def student_register(request):
@@ -18,7 +18,12 @@ def student_register(request):
 
 def student_profile(request):
     profile = StudentProfile.objects.get_or_create(user=request.user)
+    user_form= UserUpdateForm()
+    profile_form = StudentProfileUpdateForm()
+
     context = {
-        'profile':profile
+        'user_form':user_form,
+        'profile_form':profile_form,
+        'profile':profile,
     }
     return render(request, 'student/profile.html', context)
