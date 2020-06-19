@@ -109,7 +109,7 @@
                     <p class="modules">{{course.module}}</p>
                     <p class="reviews">0 reviews</p>
                 </div>
-                <a href='{% url "module_list %}'>Modules</a>
+                <a href="{% url 'module_list' course.id %}">Modules</a>
     
             </div>
             {% endfor %}
