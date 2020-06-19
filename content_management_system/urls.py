@@ -1,7 +1,7 @@
 from django.urls import path,include
 from . import views
 from .views import CourseCreateView,CourseUpdateView,CourseDeleteView
-from .views import CreateSubject,SubjectView,SubjectDelete,UpdateSubject,SubjectDetail,CourseDelete,UpdateCourse
+from .views import CreateSubject,SubjectView,SubjectDelete,UpdateSubject,SubjectDetail
 from django.contrib.auth import views as auth_views
 # from .models import Course
 
@@ -24,6 +24,7 @@ urlpatterns=[
   path('subject/<int:pk>/update', UpdateSubject.as_view(template_name = 'content_management/subject_update.html'), name = 'subject-update'),
   path('subject/<int:pk>/delete',SubjectDelete.as_view(), name = 'subject-delete'),
   path('subject/<int:pk>/', SubjectDetail.as_view(), name = 'subject-detail'),
+
 
 
 

@@ -105,6 +105,14 @@ class CourseDeleteView(OwnerCourseMixin, DeleteView, PermissionRequiredMixin):
     #         return True
     #     return False
 
+class CreateSubject(LoginRequiredMixin,CreateView):
+    model = Subject
+    fields = ['title','slug']
+    
+
+    def form_valid(self,form):
+        form.instance.username = self.request.user
+        return super().form_valid(form)
 
 
 class SubjectView(ListView):
