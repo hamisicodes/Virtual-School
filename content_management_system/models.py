@@ -33,6 +33,7 @@ class Course(models.Model):
     overview =models.TextField(max_length=100,default=1)
     students = models.ManyToManyField(User, related_name='students_to_course')
     slug = models.SlugField(max_length=200, unique=True)
+    # module = models.ForeignKey(Module, on_delete=models.SET_NULL, null=True)
 
     class Meta:
         ordering = ('-created',)
@@ -44,30 +45,32 @@ class Course(models.Model):
         return reverse('manage_courses_list')
 
 
-# class Module(models.Model):
-#     course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='modules')
-#     title = models.CharField(max_length=200)
-#     description = models.TextField(blank=True)
-#     order = OrderField(blank=True, for_fields=['course'])
+class Module(models.Model):
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='modules')
+    title = models.CharField(max_length=200)
+    description = models.TextField(blank=True)
+    # order = OrderField(blank=True, for_fields=['course'])
 
-#     class Meta:
-#         ordering = ['order']
+    # class Meta:
+    #     ordering = ['order']
 
-#     def __str__(self):
-#         return '{}. {}'.format(self.order, self.title)
+    def __str__(self):
+        return '{}. {}'.format(self.order, self.title)
 
 
-# class Content(models.Model):
-#     module = models.ForeignKey(Module, on_delete=models.CASCADE, related_name='contents')
-#     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE, limit_choices_to={
-#         'model__in':('text', 'video', 'image', 'file')
-#     })
-#     object_id = models.PositiveIntegerField()
-#     item = GenericForeignKey('content_type', 'object_id')
-#     order = OrderField(blank=True, for_fields=['module'])
+class Content(models.Model):
+    module = models.ForeignKey(Module, on_delete=models.CASCADE, related_name='contents')
+    # content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE, limit_choices_to={
+    #     'model__in':('text', 'video', 'image', 'file')
+    # })
+    object_id = models.PositiveIntegerField()
+    # item = GenericForeignKey('content_type', 'object_id')
+    # order = OrderField(blank=True, for_fields=['module'])
 
-#     class Meta:
-#         ordering = ['order']
+    # class Meta:
+    #     ordering = ['order']
+    def __str__(self):
+        return '{}'.format(self.object_id)
 
 
 # class ItemBase(models.Model):
