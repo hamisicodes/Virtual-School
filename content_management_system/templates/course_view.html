@@ -1,0 +1,29 @@
+ 
+{% block content%}
+<div class="mop">
+<h1> <strong>COURSES  </strong></h1>
+<a href="{% url 'create-course' %}"><button class="btn btn-primary btn-sm">Add course</button> </a>
+{% for course in courses %}
+
+<h3> {{course.course_name}}  </h3>
+<h3> {{course.subject}}  </h3>
+<p> {{course.overview}}  </p> 
+
+<small class="text-info">last_created:{{course.date_created}}</small>
+
+
+<p>{{course.slug }}</p>
+<a href="{% url 'course-delete' course.id%}"> <button class="btn btn-outline-danger btn-sm">Delete</button> </a> 
+<a href="{% url 'course-update' course.id%}"> <button class="btn btn-outline-info btn-sm">Update</button> </a>
+
+{% endfor %}
+</div>
+
+<style>
+    .mop {
+        background: #77A1D3;  /* fallback for old browsers */
+        background: -webkit-linear-gradient(to right, #E684AE, #79CBCA, #77A1D3);  /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(to right, #E684AE, #79CBCA, #77A1D3); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    }
+</style>
+{% endblock %}

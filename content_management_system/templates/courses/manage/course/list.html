@@ -1,0 +1,33 @@
+
+
+{% block title %}My courses{% endblock %}
+
+{% block content %}
+    <h1 style="font-size: 40px;">My courses</h1>
+
+    <div class="module">
+        {% for course in object_list %}
+            <div class="course-info">
+                <h3>{{ course.title }}</h3>
+                <p>
+                    <a href="{% url "course_edit" course.id %}">Edit</a>
+                    <a href="{% url "course_delete" course.id %}">Delete</a>
+                    
+                </p>
+            </div>
+        {% empty %}
+            <p>You haven't created any courses yet.</p>
+        {% endfor %}
+            <p>
+                <a href="{% url "course_create" %}" class="button">Create new course</a>
+            </p>
+    </div>
+<style>
+    .module {
+        background: #77A1D3;  /* fallback for old browsers */
+        background: -webkit-linear-gradient(to right, #E684AE, #79CBCA, #77A1D3);  /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(to right, #E684AE, #79CBCA, #77A1D3); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        font-size: 20px;
+    }
+</style>
+{% endblock %}
