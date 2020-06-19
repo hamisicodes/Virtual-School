@@ -1,0 +1,21 @@
+{% block content %}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<div class="container">
+    <form method="POST" class="col-6 no-padding" enctype="multipart/form-data">
+        {% csrf_token %}
+        <fieldset class="form-group white-important">
+            Do you really want to delete
+        </fieldset>
+        <h3 class="bg-steel p-2"
+           style="border: 1px solid white; border-radius: 4px; word-wrap: break-word;">
+           {{ course.course_title }}
+        </h3>
+        <p> {{ course.course_slug }}</p>
+        <p>{{course.overview}}</p>
+        <div class="form-group">
+            <button class="btn btn-outline-primary" type="submit">Yes</button>
+        </div>
+    </form>
+</div>
+{% endblock content %}
