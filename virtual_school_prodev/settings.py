@@ -42,6 +42,9 @@ INSTALLED_APPS = [
     'users',
     'student',
     'crispy_forms',
+    'bootstrap3',
+    'content_management_system',
+    
     
 ]
 
