@@ -12,7 +12,6 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 
 class Subject(models.Model):
-
     title = models.CharField(max_length =160,null = True)
     slug = models.SlugField(max_length=40)
     user= models.ForeignKey(User,on_delete=models.CASCADE,null = True)
@@ -55,7 +54,7 @@ class Module(models.Model):
     #     ordering = ['order']
 
     def __str__(self):
-        return '{}. {}'.format(self.order, self.title)
+        return '{}'.format(self.title)
 
 
 class Content(models.Model):

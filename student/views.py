@@ -5,7 +5,7 @@ from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
 from .forms import StudentRegistrationForm, StudentProfileUpdateForm, UserUpdateForm
 from .models import StudentProfile
-
+from content_management_system.models import Course, Module
 def student_register(request):
     if request.method == 'POST':
         form = StudentRegistrationForm(request.POST)
@@ -55,4 +55,8 @@ def studentLogin(request):
     return render(request,'registration/login.html')
 
 def dashboard(request):
-    return render(request, 'student/dashboard.html')
+    modules = Course.objects.all()
+    context = {
+        "modules":modules
+    }
+    return render(request, 'student/dashboard.html', context)

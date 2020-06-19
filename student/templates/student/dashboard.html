@@ -100,17 +100,19 @@
     <div class="container">
         <h3 class="coursesection-title">ALL COURSES</h3>
         <div class="row">
+            {% for course in courses %}
             <div class="col-md-2">
                 <img src="{% static 'photos/course.jpg' %}" alt="" height="180" width="180">
 
                 <div class="course-details">
-                    <p class="name">coursename</p>
-                    <p class="modules">0 modules</p>
+                    <p class="name">{{course.course_name}}</p>
+                    <p class="modules">{{course.module}}</p>
                     <p class="reviews">0 reviews</p>
                 </div>
+                <a href='{% url "module_list %}'>Modules</a>
     
             </div>
-        
+            {% endfor %}
             <div class="col-md-2">
                 <img src="{% static 'photos/course.jpg' %}" alt="" height="180" width="180">
                 <div class="course-details">
