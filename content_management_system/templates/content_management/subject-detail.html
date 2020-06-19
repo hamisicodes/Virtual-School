@@ -41,8 +41,8 @@ integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw
                         <img class="rounded-circle mr-2" style="width: 40px; height: 40px;"
                             src="{{ comment.username.profile.profile_image.url }}">
 
-                        <p style="font-size: 10px;">{{ course.course_title }} , {{ course.date_posted | date:"M d,Y " }}
-                            <br> <span> {{ course.course_slug }} </span></p><br>
+                        <p style="font-size: 10px;">{{ course.course_name }} , {{ course.created | date:"M d,Y " }}
+                            <br> <span> {{ course.slug }} </span></p><br>
 
                         <p>{{course.overview}}</p>
                       <a href="{% url 'course-delete' course.id%}">  <button class="btn btn-outline-danger btn-sm">Delete</button> </a> 

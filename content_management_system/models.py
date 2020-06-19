@@ -13,9 +13,6 @@ from django.urls import reverse
 
 class Subject(models.Model):
 
-
-
-    
     title = models.CharField(max_length =160,null = True)
     slug = models.SlugField(max_length=40)
     user= models.ForeignKey(User,on_delete=models.CASCADE,null = True)

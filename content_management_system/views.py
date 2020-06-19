@@ -10,6 +10,7 @@ from django.views.generic import (
     CreateView, UpdateView, DeleteView
     )
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin,PermissionRequiredMixin
+from . forms import CourseForm
 
 # Create your views here.
 
@@ -153,7 +154,7 @@ class SubjectDetail(DetailView):
     
     def get_context_data(self, **kwargs):
         data = super().get_context_data(**kwargs)
-        courses_connected = Course.objects.filter(subjects=self.get_object()).order_by('-date_posted')
+        courses_connected = Course.objects.filter(subject=self.get_object()).order_by('-created')
         data['courses'] = courses_connected
         data['form'] = CourseForm(instance=self.request.user)
         return data
