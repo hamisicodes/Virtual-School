@@ -56,8 +56,10 @@ def studentLogin(request):
 
 def dashboard(request):
     courses = Course.objects.all()
+    # modules = Module.objects.filter()
     context = {
-        "courses":courses
+        "courses":courses,
+        # "modules":modules,
     }
     return render(request, 'student/dashboard.html', context)
 

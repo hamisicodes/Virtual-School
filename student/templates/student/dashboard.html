@@ -106,7 +106,7 @@
 
                 <div class="course-details">
                     <p class="name">{{course.course_name}}</p>
-                    <p class="modules">{{course.module}}</p>
+                    <p class="modules">{{modules|count}}</p>
                     <p class="reviews">0 reviews</p>
                 </div>
                 <a href="{% url 'module_list' course.id %}">Modules</a>
