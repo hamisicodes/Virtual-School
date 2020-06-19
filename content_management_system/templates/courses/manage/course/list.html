@@ -8,10 +8,11 @@
     <div class="module">
         {% for course in object_list %}
             <div class="course-info">
-                <h3>{{ course.title }}</h3>
+                <h3>{{ course.course_name }}</h3>
+                <small class="text-info">last_created:{{course.created}}</small>
                 <p>
-                    <a href="{% url "course_edit" course.id %}">Edit</a>
-                    <a href="{% url "course_delete" course.id %}">Delete</a>
+                    <a href="{% url "course_edit" course.id %}"> <button class="btn btn-outline-info btn-sm">Update</button></a>
+                    <a href="{% url "course_delete" course.id %}"><button class="btn btn-outline-danger btn-sm">Delete</button></a>
                     
                 </p>
             </div>

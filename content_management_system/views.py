@@ -16,49 +16,6 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin,P
 # def is_users(course_user, logged_user):
 #     return course_user == logged_user
 
-
-# class CreateCourse(LoginRequiredMixin, CreateView):
-#     model = Course
-#     fields = ['course_name','overview','slug','subject']
-
-#     def form_valid(self, form):
-#         form.instance.user = self.request.user
-#         return super().form_valid(form)
-
-# class CourseView(ListView):
-    
-#     model = Course
-   
-#     template_name = 'course_view.html'
-#     context_object_name = 'course'
-
-# class UpdateCourse(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
-#     model = Course
-#     fields = ['course_name','overview','slug','subject']
-
-#     def form_valid(self, form):
-#         form.instance.user = self.request.user
-#         return super().form_valid(form)
-
-    # def test_func(self):
-    #     course_name = self.get_object()
-    #     if self.request.user == course_name.user:
-    #         return True
-    #     return False
-
-# class DeleteCourse(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
-#     model = Course
-#     sucess_url = '/'
-#     template_name ='delete_course.html'
-#     context_object_name = 'course'
-
-    # def test_func(self):
-    #     post = self.get_object()
-    #     if self.request.user == post.author:
-    #         return True
-    #     return False
-
-
 def home(request):
     subjects = Subjects.objects.all()
     return render(request, 'home.html', {'subjects' : subjects})
@@ -102,6 +59,51 @@ class CourseDeleteView(OwnerCourseMixin, DeleteView, PermissionRequiredMixin):
 
 
 
+
+# def is_users(course_user, logged_user):
+#     return course_user == logged_user
+
+
+# class CreateCourse(LoginRequiredMixin, CreateView):
+#     model = Course
+#     fields = ['course_name','overview','slug','subject']
+
+#     def form_valid(self, form):
+#         form.instance.user = self.request.user
+#         return super().form_valid(form)
+
+# class CourseView(ListView):
+    
+#     model = Course
+   
+#     template_name = 'course_view.html'
+#     context_object_name = 'course'
+
+# class UpdateCourse(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+#     model = Course
+#     fields = ['course_name','overview','slug','subject']
+
+#     def form_valid(self, form):
+#         form.instance.user = self.request.user
+#         return super().form_valid(form)
+
+    # def test_func(self):
+    #     course_name = self.get_object()
+    #     if self.request.user == course_name.user:
+    #         return True
+    #     return False
+
+# class DeleteCourse(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+#     model = Course
+#     sucess_url = '/'
+#     template_name ='delete_course.html'
+#     context_object_name = 'course'
+
+    # def test_func(self):
+    #     post = self.get_object()
+    #     if self.request.user == post.author:
+    #         return True
+    #     return False
 
 
 
