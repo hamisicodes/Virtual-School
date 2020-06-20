@@ -1,8 +1,8 @@
 from django.db import models
 # from users.models import UserProfile
 from django.contrib.auth.models import User
-# from django.contrib.contenttypes.models import ContentType
-# from django.contrib.contenttypes.fields import GenericForeignKey
+from django.contrib.contenttypes.models import ContentType
+from django.contrib.contenttypes.fields import GenericForeignKey
 # from .fields import OrderField
 from django.urls import reverse
 from datetime import datetime
@@ -59,10 +59,13 @@ class Module(models.Model):
 
 class Content(models.Model):
     module = models.ForeignKey(Module, on_delete=models.CASCADE, related_name='contents')
+    document = models.FileField(null=True)
+    video = models.FileField(null=True)
+    link = models.URLField()
     # content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE, limit_choices_to={
     #     'model__in':('text', 'video', 'image', 'file')
     # })
-    object_id = models.PositiveIntegerField()
+    # object_id = models.PositiveIntegerField()
     # item = GenericForeignKey('content_type', 'object_id')
     # order = OrderField(blank=True, for_fields=['module'])
 

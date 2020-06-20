@@ -89,26 +89,28 @@
                 <a href="{% url 'subject_courses' subject.id %}"><p>{{subject.title}}</p></a>
                 {% endfor %}
             </div>
+
+
         </div>
     </div>
 
     <div class="container">
-        <h3 class="coursesection-title">ALL Modules</h3>
+        <h3 class="coursesection-title">ALL COURSES</h3>
         <div class="row">
-            {% for module in modules %}
+            {% for course in subject_courses %}
             <div class="col-md-2">
                 <img src="{% static 'photos/course.jpg' %}" alt="" height="180" width="180">
 
                 <div class="course-details">
-                    <p class="name">{{module.title}}</p>
-                    <p class="modules">{{module.description}}</p>
+                    <p class="name">{{course.course_name}}</p>
+                    <p class="modules">{{modules}}</p>
                     <p class="reviews">0 reviews</p>
                 </div>
-                
+                <a href="{% url 'module_list' course.id %}">Modules</a>
     
             </div>
             {% endfor %}
         </div>
-    </div>
+        </div>
     </body>
 </html>

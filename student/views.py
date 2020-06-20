@@ -5,7 +5,7 @@ from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
 from .forms import StudentRegistrationForm, StudentProfileUpdateForm, UserUpdateForm
 from .models import StudentProfile
-from content_management_system.models import Course, Module
+from content_management_system.models import Course, Module, Subject
 def student_register(request):
     if request.method == 'POST':
         form = StudentRegistrationForm(request.POST)
@@ -56,16 +56,30 @@ def studentLogin(request):
 
 def dashboard(request):
     courses = Course.objects.all()
-    # modules = Module.objects.filter()
+    subjects = Subject.objects.all()
+    # subject_courses = Course.objects.filter(subject=pk)
     context = {
         "courses":courses,
-        # "modules":modules,
+        "subjects":subjects,
+        # "subject_courses":subject_courses
     }
     return render(request, 'student/dashboard.html', context)
 
 def module_list(request, pk):
+    subjects = Subject.objects.all()
     modules = Module.objects.filter(course=pk)
     context = {
+        'subjects':subjects,
         'modules':modules
     }
     return render(request, 'student/modules.html', context)
+
+def subject_courses(request, pk):
+    subjects = Subject.objects.all()
+    subject_courses = Course.objects.filter(subject=pk)
+    context = {
+        'subjects':subjects,
+        'subject_courses':subject_courses
+        # 'modules':modules
+    }
+    return render(request, 'student/subject_courses.html', context)

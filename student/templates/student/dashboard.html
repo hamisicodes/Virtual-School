@@ -85,12 +85,9 @@
             <p style="font-size: 18px; font-weight: bold;">SUBJECTS</p>
             <div class="all-subjects">
                 <p>All</p> 
-                <p>Science</p>
-                <p>Engineering</p>
-                <p>Technology</p>
-                <p>Arts</p>
-                <p>Mathematics</p>
-                <p>Agriculture</p>
+                {% for subject in subjects %}
+                <a href="{% url 'subject_courses' subject.id %}"><p>{{subject.title}}</p></a>
+                {% endfor %}
             </div>
 
 
@@ -106,7 +103,7 @@
 
                 <div class="course-details">
                     <p class="name">{{course.course_name}}</p>
-                    <p class="modules">{{modules|count}}</p>
+                    <p class="modules">{{modules}}</p>
                     <p class="reviews">0 reviews</p>
                 </div>
                 <a href="{% url 'module_list' course.id %}">Modules</a>
