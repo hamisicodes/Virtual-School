@@ -21,14 +21,16 @@
 
                     <!-- added about-->
 
-                    <div class="navbar-header navlinks"   style="margin-right: auto;" >
-                        <a href="{% url 'about' %}">About: </a>
-                    </div>
+                    
+                   
 
-                    <!-- added contacts -->
-                    <div class="navbar-header navlinks">
-                        <a href="{% url 'contact' %}">contacts: </a>
-                    </div>
+                    <div class="nav">
+                        <p><a href="#home">Home</a></p>
+                        <p><a href="#contacts">Contacts</a></p>
+                        <p><a href="#about">About Us</a></p>
+                      </div>
+
+                   
 
                     <div class="col-md-2" style="padding-top:10px;">
                         <div class="row">
@@ -57,7 +59,7 @@
                             </div>
                             {% else %}
 
-                            <a class='btn btn-default' href="/accounts/login/?next=/">Login</a>
+                            <a class='btn btn-default' href="/accounts/login/?next=/">Register here</a>
 
                             {% endif %}
                         </div>
