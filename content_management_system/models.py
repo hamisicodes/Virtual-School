@@ -6,6 +6,8 @@ from django.contrib.auth.models import User
 # from .fields import OrderField
 from django.urls import reverse
 
+
+
 class Subject(models.Model):
 
     
@@ -20,7 +22,6 @@ class Subject(models.Model):
     def get_absolute_url(self):
         return reverse ('subjects-list')
 
-
 class Course(models.Model):
     course_name = models.CharField(unique=True, max_length=20)
     created = models.DateTimeField(auto_now_add=True)
@@ -30,6 +31,8 @@ class Course(models.Model):
     students = models.ManyToManyField(User, related_name='students_to_course')
     slug = models.SlugField(max_length=200, unique=True)
 
+    objects = models.Manager()
+
     class Meta:
         ordering = ('-created',)
 
@@ -38,6 +41,7 @@ class Course(models.Model):
     
     def get_absolute_url(self):
         return reverse('manage_courses_list')
+
 
 
 # class Module(models.Model):

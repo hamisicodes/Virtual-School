@@ -5,6 +5,17 @@ from .forms import *
 from .models import *
 # Create your views here.
 
+
+
+def subjects_and_their_courses(request):
+    data={}
+    courses= Courses.object.all()
+    subjects = Subjects.objects.all()
+    for sub in subjects:
+        data[sub] = [c for c in courses if c.subject==sub]
+    return JsonResponse(data)
+
+    
 def register(request):
     if request.method == 'POST':
         form = UserRegisterForm(request.POST)

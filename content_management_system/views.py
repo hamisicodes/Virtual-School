@@ -20,6 +20,9 @@ def home(request):
     subjects = Subjects.objects.all()
     return render(request, 'home.html', {'subjects' : subjects})
 
+
+
+
 class OwnerMixin(object):
     def get_queryset(self):
         qs = super(OwnerMixin, self).get_queryset()

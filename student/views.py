@@ -5,6 +5,20 @@ from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
 from .forms import StudentRegistrationForm, StudentProfileUpdateForm, UserUpdateForm
 from .models import StudentProfile
+from django.http import JsonResponse 
+import json
+from content_management_system.models import Course,Subject
+
+
+def subjects_and_their_courses(request):
+    data={}
+    courses= Course.objects.all()
+    subjects = Subject.objects.all()
+
+    for sub in subjects:
+        print(sub)
+    return JsonResponse(data)
+
 
 def student_register(request):
     if request.method == 'POST':
