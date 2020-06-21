@@ -16,7 +16,7 @@ def subjects_and_their_courses(request):
     subjects = Subject.objects.all()
 
     for sub in subjects:
-        print(sub)
+        data[str(sub)]=[c for c in courses if Subject ==sub]
     return JsonResponse(data)
 
 
