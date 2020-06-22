@@ -1,3 +1,9 @@
+
+
+$('.carousel').carousel({
+  interval: 3000
+})
+
 //First jQuery
 $(document).ready(function () {
   $(".image1").click(function () {
@@ -23,12 +29,20 @@ $(document).ready(function () {
 
 
 
-//Js function
- function nameOfUser(submit){
-  
-    var name = $("input#name").val();
-    var email =$("input#email").val();
 
-    alert("Hey " + name + ",Thanks for reaching to us.We have recieved your message .");
+
+
+
+  //sending message function
+  $(document).ready(function () {
+
+  $('form#contactForm').submit(function (event) {
     event.preventDefault();
-  };
+    var name = $('#name').val();
+    var pass = $('#email').val();
+    var mess = $('#mess').val();
+    alert("Hi " + name + ",  We have received your message and We will  be getting in touch with you shortly. Thank you for contacting us.");
+});
+
+
+});
