@@ -64,10 +64,10 @@
           
           <!-- Title -->
           <h4 class="card-title">{{subject.title}} </h4>
-
+          {% if subject.username == user %}
           <a href="{% url 'subjects-list' subject.id%}"> <i class="fas fa-trash" style="color: red;" id = "message" onclick="swal()"></i> </a>
           <a href="{% url 'subject-update' subject.id%}"> <i class="fas fa-edit" style="color: purple;"></i> </a>
-         
+          {%endif%}
          
           <!-- Text -->
           
