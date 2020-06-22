@@ -11,7 +11,10 @@ from django.views.generic import (
     )
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin,PermissionRequiredMixin
 from . forms import CourseForm
+from django.contrib import messages
 
+def is_users(subject_username, logged_user):
+    return subject_username == logged_user
 # Create your views here.
 
 # def is_users(course_user, logged_user):
@@ -108,7 +111,7 @@ class CourseDeleteView(OwnerCourseMixin, DeleteView, PermissionRequiredMixin):
 
 class CreateSubject(LoginRequiredMixin,CreateView):
     model = Subject
-    fields = ['title','slug']
+    fields = ['title']
     
 
     def form_valid(self,form):
@@ -119,7 +122,6 @@ class CreateSubject(LoginRequiredMixin,CreateView):
 class SubjectView(ListView):
     
     model = Subject
-   
     template_name = 'content_management/subject.html'
     context_object_name = 'subjects'
 
@@ -135,7 +137,7 @@ class SubjectDelete(LoginRequiredMixin, DeleteView):
 
 class UpdateSubject(LoginRequiredMixin,UpdateView):
     model = Subject
-    fields = ['title','slug']
+    fields = ['title']
     def test_func(self):
         subject = self.get_object()
         if self.request.username == subject.user:
@@ -170,5 +172,15 @@ class SubjectDetail(DetailView):
 
         return self.get(self, request, *args, **kwargs)
 
+def search_results(request):
+    if 'title' in request.GET and request.GET["title"]:
+        search_term = request.GET.get("title")
+        searched_titles = Subject.search_by_title(search_term)
+        message = f"{search_term}"
 
+        return render(request, 'content_management/search.html',{"message":message,"titles": searched_titles})
+
+    else:
+        message = "You haven't searched for any term"
+        return render(request, 'content_management/search.html',{"message":message})
 

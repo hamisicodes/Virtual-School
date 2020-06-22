@@ -15,7 +15,7 @@ class Subject(models.Model):
 
     title = models.CharField(max_length =160,null = True)
     slug = models.SlugField(max_length=40)
-    user= models.ForeignKey(User,on_delete=models.CASCADE,null = True)
+    username= models.ForeignKey(User,on_delete=models.CASCADE,null = True)
    
 
     def __str__(self):
@@ -23,6 +23,11 @@ class Subject(models.Model):
 
     def get_absolute_url(self):
         return reverse ('subjects-list')
+
+    @classmethod
+    def search_by_title(cls,search_term):
+        titles = cls.objects.filter(title__icontains=search_term)
+        return titles
 
 
 class Course(models.Model):
