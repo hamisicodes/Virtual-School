@@ -64,7 +64,7 @@ class ContentBase(models.Model):
     class Meta:
         abstract = True
     def render(self):
-        return render_to_string('courses/content/{}.html'.format(self._meta.model_name), {'item': self})
+        return render_to_string('student/{}.html'.format(self._meta.model_name), {'item': self})
     def str(self):
         return self.title
 class Text(ContentBase):
