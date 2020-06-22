@@ -18,10 +18,11 @@ class Subject(models.Model):
    
     class Meta:
         ordering = ('title',)
-    def str(self):
+    def __str__(self):
         return self.title
     def get_absolute_url(self):
         return reverse ('subjects-list')
+
 class Course(models.Model):
     course_name = models.CharField(unique=True, max_length=20)
     created = models.DateTimeField(auto_now_add=True)
@@ -32,7 +33,7 @@ class Course(models.Model):
     slug = models.SlugField(max_length=200, unique=True)
     class Meta:
         ordering = ('-created',)
-    def str(self):
+    def __str__(self):
         return self.course_name
    
     def get_absolute_url(self):
@@ -44,8 +45,8 @@ class Module(models.Model):
     # order = OrderField(blank=True, for_fields=['course'])
     # class Meta:
     #     ordering = ['order']
-    def str(self):
-        return '{}. {}'.format(self.order, self.title)
+    def __str__(self):
+        return '{}'.format(self.title)
 class Content(models.Model):
     module = models.ForeignKey(Module, on_delete=models.CASCADE, related_name='contents')
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE, limit_choices_to={
@@ -65,7 +66,7 @@ class ContentBase(models.Model):
         abstract = True
     def render(self):
         return render_to_string('courses/content/{}.html'.format(self._meta.model_name), {'item': self})
-    def str(self):
+    def __str__(self):
         return self.title
 class Text(ContentBase):
     content = models.TextField()

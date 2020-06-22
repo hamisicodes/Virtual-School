@@ -6,6 +6,10 @@ from django.contrib import messages
 from .forms import StudentRegistrationForm, StudentProfileUpdateForm, UserUpdateForm
 from .models import StudentProfile
 from content_management_system.models import Course, Module, Subject
+
+def landing_page(request):
+      return render(request, 'student/landing_page.html')
+
 def student_register(request):
     if request.method == 'POST':
         form = StudentRegistrationForm(request.POST)
@@ -48,6 +52,7 @@ def studentLogin(request):
 
         if user is not None:
             login(request,user)
+            return redirect('dashboard')
             
         else:
             return render(request,'registration/login.html')
@@ -75,11 +80,25 @@ def module_list(request, pk):
     return render(request, 'student/modules.html', context)
 
 def subject_courses(request, pk):
+    subject = Subject.objects.get(pk = pk)
     subjects = Subject.objects.all()
-    subject_courses = Course.objects.filter(subject=pk)
+    subject_courses = Course.objects.filter(subject=subject)
+    
     context = {
         'subjects':subjects,
+        'subject':subject,
         'subject_courses':subject_courses
         # 'modules':modules
     }
     return render(request, 'student/subject_courses.html', context)
+
+def my_courses(request):
+    courses = Course.objects.all()
+    subjects = Subject.objects.all()
+    # subject_courses = Course.objects.filter(subject=pk)
+    context = {
+        "courses":courses,
+        "subjects":subjects,
+        # "subject_courses":subject_courses
+    }
+    return render(request, 'student/my_courses.html', context)
