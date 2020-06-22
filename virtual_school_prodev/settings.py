@@ -38,12 +38,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'bootstrap4',
     'users',
     'student',
+    'bootstrap4',
     'crispy_forms',
     'bootstrap3',
     'content_management_system',
+    'embed_video',
+
     
     
 ]
