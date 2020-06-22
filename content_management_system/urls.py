@@ -27,7 +27,7 @@ urlpatterns=[
   path('subject/<int:pk>/', SubjectDetail.as_view(), name = 'subject-detail'),
   path('content/<int:id>/delete', views.ContentDeleteView.as_view(), name='module_content_delete'),
   path('module/<int:module_id>/', views.ModuleContentListView.as_view(), name='module_content_list'),
-  path('subject/<int:subject>/', views.CourseListView.as_view(), name='course_list_subject'),
+  path('subject/<subject>/', views.CourseListView.as_view(), name='course_list_subject'),
   path('<int:slug>/', views.CourseDetailView.as_view(), name='course_detail'),
   path('module/<int:module_id>/content/<model_name>/create/',
     views.ContentCreateUpdateView.as_view(),

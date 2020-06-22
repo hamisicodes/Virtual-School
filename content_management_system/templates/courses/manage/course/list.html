@@ -14,9 +14,9 @@
                 <p>
                     <a href="{% url "course_edit" course.id %}"> <button class="btn btn-outline-info btn-sm">Update</button></a>
                     <a href="{% url "course_delete" course.id %}"><button class="btn btn-outline-danger btn-sm">Delete</button></a>
-                    <a href="{% url 'course_module_update' course.id %}">Edit modules</a>
+                    <a href="{% url 'course_module_update' course.id %}"><button type="button" class="btn btn btn-success">Edit modules</button></a>
                     {% if course.modules.count > 0 %}
-                      <a href="{% url 'module_content_list' course.modules.first.id %}">Manage content</a>
+                      <a href="{% url 'module_content_list' course.modules.first.id %}"><button class="btn btn-outline-info btn-sm">Manage Content</button></a>
                     {% endif %}
                     
                 </p>
@@ -38,9 +38,9 @@
         /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
-        background: #77A1D3;  /* fallback for old browsers */
-        background: -webkit-linear-gradient(to right, #E684AE, #79CBCA, #77A1D3);  /* Chrome 10-25, Safari 5.1-6 */
-        background: linear-gradient(to right, #E684AE, #79CBCA, #77A1D3); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        background: #FF512F;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #F09819, #FF512F);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #F09819, #FF512F); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
     }
     .mango {

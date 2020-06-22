@@ -9,8 +9,8 @@ Module {{ module.order|add:1 }}: {{ module.title }}
 
 {% block content %}
     {% with course=module.course %}
-    <h1>Course "{{ course.course_name }}"</h1>
     <div class="contents">
+    <h1>Course "{{ course.course_name }}"</h1>
     <h3>Modules</h3>
     <ul id="modules">
         {% for m in course.modules.all %}
@@ -27,8 +27,7 @@ Module {{ module.order|add:1 }}: {{ module.title }}
         <li>No modules yet.</li>
         {% endfor %}
     </ul>
-    <p><a href="{% url 'course_module_update' course.id %}">Edit
-        modules</a></p>
+    <p><a href="{% url 'course_module_update' course.id %}"><button type="button" class="btn btn btn-success">Edit modules</button></a></p>
     </div>
     <div class="module">
         <h2>Module {{ module.order|add:1 }}: {{ module.title }}</h2>
@@ -64,14 +63,17 @@ Module {{ module.order|add:1 }}: {{ module.title }}
 <style>
  .module {
     background: #FF4E50;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #F9D423, #FF4E50);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #F9D423, #FF4E50); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  
+    background: -webkit-linear-gradient(to right, #F9D423, #FF4E50);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #F9D423, #FF4E50); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  padding: 10px;
+  margin: 30px;
  }
  .contents {
     background: #FF4E50;  /* fallback for old browsers */
 background: -webkit-linear-gradient(to right, #F9D423, #FF4E50);  /* Chrome 10-25, Safari 5.1-6 */
 background: linear-gradient(to right, #F9D423, #FF4E50); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  margin: 30px;
+  padding: 10px;
 
  }
 </style>
