@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'student',
     'bootstrap4',
     'crispy_forms',
-    'bootstrap3',
     'content_management_system',
     'embed_video',
 
@@ -137,7 +136,7 @@ STATICFILES_DIRS = [
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static/media')
 
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
 
 
 # EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
@@ -149,4 +148,4 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 # EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 
 
-CRISPY_TEMPLATE_PACK = 'bootstrap3'
+

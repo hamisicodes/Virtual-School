@@ -28,6 +28,11 @@ class Subject(models.Model):
     def get_absolute_url(self):
         return reverse ('subjects-list')
 
+    @classmethod
+    def search_by_title(cls,search_term):
+        titles = cls.objects.filter(title__icontains=search_term)
+        return titles
+
 
 class Course(models.Model):
     course_name = models.CharField(unique=True, max_length=20)

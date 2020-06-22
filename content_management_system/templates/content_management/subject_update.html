@@ -1,28 +1,62 @@
+{% extends 'content_management/base.html' %}
 {% load crispy_forms_tags%}
 {% block content%}
-
+{% load static %}
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css?family=Dancing+Script&display=swap" rel="stylesheet">
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+<<<<<<< HEAD
 integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
    <div class="row">
     <img src="../../../static/images/4787_-_Working_in_Office-512.webp" style="width:350px; height:200px;">
+=======
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Vast+Shadow&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{%static 'css/dashboard.css'%}">
+
+  
+<div id="mySidebar" class="sidebar" style="text-align: center;">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"></a>
+  <a href="http://" style="color: lightcoral; margin-top: -60px;margin-bottom: 35px;margin-right: 20px;"> <span style="color: red; font-size: 30px; font-family: 'Vast Shadow'; ">VS </span> </a>
+  <a href="#" style="color: black;margin-right: 20px;"> <i class="fas fa-user-circle" style="color: white;"> </i> <br><span style="font-size: 16px;">Profile</span><br> </a>
+  <a href="#" style="color: black;margin-right: 20px; "> <i class="fas fa-graduation-cap" style="color: purple"></i><br><span style="font-size: 16px;">Subjects</span> </a>
+  <a href="#" style="color: black;margin-right: 20px;"> <i class="fas fa-book" style="color: white;"> </i> <br> <span style="font-size: 16px;">Assignments</span><br> </a>
+  <a href="{% url 'create-subject' %}" style="color: black;margin-right: 20px;"> <i class="fas fa-upload"style="color: white;"> </i> <br> <span style="font-size: 16px;">Upload Subject</span><br> </a>
+</div>
+<div id="main">
+  <button class="openbtn" onclick="openNav()" style="background-color: transparent;color: #111; "></button>
+</div>
+
+<img src="{% static 'images/form.jpg' %}" alt="" srcset="" style="height: 250px;width: 250px;margin-bottom: 50px; margin-left: 400px;">
+  <div class="col-lg-10" style="margin-left: -100px;">
+<div class="row" style="margin-left: 400px;">
+  
+>>>>>>> dashboard/subjects
        <div class="col-md-7">
         <div class="d-flex justify-content-center form_container">
 
 
   <form action="" method="POST" enctype="multipart/form-data">
       {% csrf_token %}
-      <fieldset class="form-group">
-        <legend class="border-bottom mb-4">Upload !</legend>
+      <fieldset class="form-group" style="width: 550px;">
+        <legend class="border-bottom mb-4">Update {{subject.title}} !</legend>
           {{form|crispy}}
       </fieldset>
     <div class="form-group">
-        <button class="btn btn-outline-primary" type="submit">Upload</button>
+        <button class="btn  btn-sm" type="submit" style="background-color: purple;color: white;">Update</button>
     </div>
   </form>
 
     </div>
 </div>
   </div>
+<<<<<<< HEAD
 <style>
   .row{
     text-align: center;
@@ -48,3 +82,10 @@ integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw
   }
 </style>
 {% endblock %} 
+=======
+
+{% endblock %}
+<script src="{% static 'js/dashboard.js'%}"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+>>>>>>> dashboard/subjects

@@ -82,7 +82,6 @@ class CreateSubject(LoginRequiredMixin,CreateView):
 class SubjectView(ListView):
     
     model = Subject
-   
     template_name = 'content_management/subject.html'
     context_object_name = 'subjects'
 
@@ -165,6 +164,9 @@ class CourseDetailView(DetailView):
         context['enroll_form'] = CourseEnrollForm(initial={'course': self.object})
         return context
 
+    else:
+        message = "You haven't searched for any term"
+        return render(request, 'content_management/search.html',{"message":message})
 
 class ContentCreateUpdateView(TemplateResponseMixin, View):
     module = None
