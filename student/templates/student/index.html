@@ -7,6 +7,27 @@
 {% block content %}
 {{block.super}}
 
+<div class="container-fluid">
+<ul>
+  <li><a href="#home">Home</a></li>
+  <li><a href="#about">About Us</a></li>
+  <li><a href="#contacts">Contacts</a></li>
+
+  <li class="dropdown">
+    <a href="javascript:void(0)" class="dropbtn">Subjects</a>
+    <div class="dropdown-content">
+      <a href="#">Business</a>
+      <a href="#">Engineering</a>
+      <a href="#">Arts</a>
+      <a href="#">Science</a>
+
+
+    </div>
+  </li>
+</ul>
+</div>
+
+
 
 <div class="container-fluid">
 
@@ -27,19 +48,7 @@
             <div class="col-md-4"></div>
 
           </div>
-          <!-- <div style="text-align:center; font-size: large; padding-top:30px;">
-            <p style="font-family: Arial, Helvetica, sans-serif; color:blueviolet; font-size: x-large; font-weight: bold;"
-              class="blog">WELCOME TO VIRTUAL SCHOOL
-              APPLICATION:</p>
-          </div> -->
-
-          <!-- <div style="text-align:center; font-size: 20px;">
-            <p class=""
-              style="font-family: 'Times New Roman', Times, serif; color:blueviolet; font-size: x-large; font-weight: bold;">
-              THIS IS THE CENTRE FOR EXCELLENCE<br>
-              <strong style="color:blueviolet; font-size: x-large; font-weight: bold;" class="mr-3"> ENROLL FOR A COURSE OF
-                YOUR CHOICE</strong> </p>
-          </div> -->
+          
 
           <div style="height:230px;">
 
@@ -66,7 +75,9 @@
 <br><h1>About Us </h1>
     <div class="row">
 
-      <div class="col-md-4">
+    
+
+      <div class="col-md-4 " class="card card-body bg-primary">
         <h1>School Mission</h1>
         <p>
           To advance knowledge and technological transfer through teaching, training, learning, research, and innovation
@@ -167,7 +178,7 @@
 </div>
 <!-- </div> -->
 
-
+<div class="container-fluid">
 <div id="contacts">  
 <!--contact section-->
 <section class="py-5  bg-warning">
@@ -186,7 +197,7 @@
     <!--end of section title-->
     <div class="row">
       <div class="col-md-6 my-3">
-        <div class="card card-body bg-secondary">
+        <div class="card card-body bg-primary">
           <!--tittle-->
           <div class="card-title text-center text-white">
             <h2 class="text-capitalize">contact us Here</h2>
@@ -224,5 +235,12 @@
   </div>
 </section>
 </div>
+</div>
+
+
+
+
+
+
 
 {% endblock %}

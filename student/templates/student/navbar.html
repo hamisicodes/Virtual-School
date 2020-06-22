@@ -8,7 +8,8 @@
 </head>
 
 <body>
-    <div id="navbar" class="container-fluid" style="border-bottom: 1px solid rgb(231, 230, 230); background-color: aliceblue;">
+    <!-- <div class="container-fluid"> -->
+    <div style=" background-color: aliceblue;">
         <div class="row">
 
             <div class="col-md-8"
@@ -17,27 +18,8 @@
                     <div class="col-md-10">
                         <a class="navbar-brand navbar-right" href="{% url 'index' %}"
 
-                            style="font-size:large;  color:green; "><strong>VIRTUAL SCHOOL APPLICATION.</strong></a>
+                            style="font-size:large;  color:green; "><strong>VIRTUAL SCHOOL</strong></a>
                     </div>
-
-                    
-                    <nav>
-                        <ul>
-                          <li><a href="#home">Home</a></li>
-                          <li><a href="#about">About Us</a></li>
-                          <li><a href="#contacts">Contacts</a></li>
-                          <li><a href="#contacts">Subjects</a></li>
-
-
-                        </ul>
-                      </nav>
-
-
-                
-                   
-
-                   
-
 
                       </div>
 
@@ -70,7 +52,7 @@
                             </div>
                             {% else %}
 
-                            <a class='btn btn-default' href="/accounts/login/?next=/">Register here</a>
+                            <!-- <a class='btn btn-default' href="/accounts/login/?next=/">Register here</a> -->
 
                             {% endif %}
                         </div>
@@ -79,7 +61,7 @@
             </div>
 
         </div>
-    </div>
+    <!-- </div> -->
 </body>
 
 </html>
