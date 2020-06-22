@@ -104,10 +104,18 @@
                     <p class="modules">{{module.description}}</p>
                     <p class="reviews">0 reviews</p>
                 </div>
-                
+                <div class="module">
+                    {% for content in module.contents.all %}
+                    {% with item=content.item %}
+                    <h2>{{ item.title }}</h2>
+                    {{ item.render }}
+                    {% endwith %}
+                    {% endfor %}
+                    </div>
     
             </div>
             {% endfor %}
+
         </div>
     </div>
     </body>
