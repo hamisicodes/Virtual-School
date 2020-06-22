@@ -41,6 +41,9 @@ INSTALLED_APPS = [
     'bootstrap3',
     'student',
 
+
+    
+
     
 ]
 
@@ -78,12 +81,16 @@ WSGI_APPLICATION = 'virtual_school_prodev.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'virtual_school',
+        'USER': 'moringa',
+    'PASSWORD':'Access',
     }
 }
+
 
 
 # Password validation
@@ -130,3 +137,4 @@ STATICFILES_DIRS = [
    os.path.join(BASE_DIR, "static"),
 ]
 
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

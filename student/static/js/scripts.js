@@ -41,7 +41,7 @@ $(document).ready(function () {
     var name = $('#name').val();
     var pass = $('#email').val();
     var mess = $('#mess').val();
-    alert("Hi " + name + ",  We have received your message and We will  be getting in touch with you shortly. Thank you for contacting us.");
+    confirm("Hi " + name + ",  We have received your message and We will  be getting in touch with you shortly. Thank you for contacting us.");
 });
 
 

@@ -5,16 +5,16 @@ from django.urls import path, include
 
 from . import views
 
+
+from .views import  contact_us
+
+
+
 urlpatterns=[
 
     path('', views.index, name='index'),
-    # path(r'^about/',views.about,name='about'),
-    # path(r'^contact/',views.contact,name='contact'),
+    path(r'^contact/',views.contact_us, name='contact'),
+
 
 ]
 
-
-
-##register the MEDIA_ROOT route inorder to serve uploaded images on the development server
-# if settings.DEBUG:
-#     urlpatterns+= static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
