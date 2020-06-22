@@ -6,12 +6,12 @@ integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw
 {% for subject in subjects %}
 <a href="{% url 'subject-detail' subject.id %}"> <h3> {{subject.title}}  </h3> </a>
 
-
-<p>{{subject.slug }}</p>
 {% if subject.owner == user %}
 <a href="{% url 'subject-delete' subject.id%}"> <button class="btn btn-outline-danger btn-sm">Delete</button> </a> 
 <a href="{% url 'subject-update' subject.id%}"> <button class="btn btn-outline-info btn-sm">Update</button> </a>
 {% endif %}
 {% endfor %}
+ </div>
+
 
 {% endblock %}

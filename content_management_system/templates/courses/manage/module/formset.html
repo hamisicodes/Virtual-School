@@ -1,0 +1,47 @@
+ 
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load bootstrap3 %}
+{% load i18n %}
+   {% block title %}
+     {% trans 'Edit' %} "{{ course.course_name }}"
+   {% endblock %}
+   {% block content %}
+   <div class="container-fluid">
+         <h1>Edit "{{ course.course_name }}"</h1>
+         <img src="../../../../../static/images/Front End UI Testing Process.png" style="width:350px; height:200px;">
+         <div class="form modules">
+           <h2>Course modules</h2>
+           <form action="" method="post">
+             {{ formset.as_p }}
+             {{ formset.management_form.as_p }}
+             {% csrf_token %}
+             <input type="submit" class="btn btn-outline-primary" value=" Save modules">
+         </form>
+      </div>
+    </div>
+<style>
+    .container-fluid {
+        text-align: center;
+        /* width: 350px; */
+        margin-top: 20%;
+        margin-bottom: auto;
+        background: #fafafa;
+        /* position: relative; */
+        /* display: center; */
+        /* justify-content: center; */
+        /* flex-direction: column; */
+        padding: 10px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+        border-radius: 15px;
+        margin: 300px;
+        background: #833ab4;
+        background: -webkit-linear-gradient(to top, #7e5f35, #5a9325, #a049da);
+        /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(to top, #c448dd, #d6cc3e, #3a73b4);
+    }
+</style>
+{% endblock %}

@@ -1,10 +1,11 @@
+ 
+{% extends "base.html" %}
 
-
-{% block title %}Delete course{% endblock %}
+{% block title %}{% endblock %}
 
 {% block content %}
+<div class="card">
     <h1>Delete course "{{ object.course_name }}"</h1>
-
     <div class="module">
         <form action="" method="post">
             {% csrf_token %}
@@ -12,4 +13,19 @@
             <input type="submit" class="button" value="Confirm">
         </form>
     </div>
+  </div>
+<style>
+   
+    .card {
+        border-radius: 15px;
+        margin: 150px;
+        margin-top: 3%;
+        background: #77A1D3;  /* fallback for old browsers */
+        background: -webkit-linear-gradient(to right, #E684AE, #79CBCA, #77A1D3);  /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(to right, #E684AE, #79CBCA, #77A1D3); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        font-size: 20px;
+        padding: 10px;
+
+    }
+</style>
 {% endblock %}
