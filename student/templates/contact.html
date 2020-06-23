@@ -1,18 +1,79 @@
- 
+{% load bootstrap3 %}
+{% load static %}
+<!DOCTYPE html>
 <html>
 
-    <body>
-    
-    <h1>Contact Form </h1>
-    
-    <form action="" method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Submit"/>
-    </form>
-    </body>
-    </html>
-    
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Contacr</title>
+    {{form.media}}
+
+    {% block styles %} {% bootstrap_css %}
+    <link rel="stylesheet" href="{% static 'css/main.css' %}"> {% endblock %}
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+
+
+
+            <div class="col-md-4 " >
+                <h1>Contact Form </h1>
+
+
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <input type="submit" value="Submit" />
+
+                </form>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+    {% block scripts %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    {% bootstrap_javascript %} {% endblock %}
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
