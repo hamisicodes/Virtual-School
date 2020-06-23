@@ -1,11 +1,12 @@
-
-
-{% block title %}My courses{% endblock %}
+ 
+{% extends "base.html" %}
+{% load bootstrap4 %}
+{% block title %}{% endblock %}
 
 {% block content %}
     <h1 style="font-size: 40px;">My courses</h1>
-
-    <div class="module">
+   <div class="mango" > 
+    <div class="card">
         {% for course in object_list %}
             <div class="course-info">
                 <h3>{{ course.course_name }}</h3>
@@ -13,6 +14,10 @@
                 <p>
                     <a href="{% url "course_edit" course.id %}"> <button class="btn btn-outline-info btn-sm">Update</button></a>
                     <a href="{% url "course_delete" course.id %}"><button class="btn btn-outline-danger btn-sm">Delete</button></a>
+                    <a href="{% url 'course_module_update' course.id %}"><button type="button" class="btn btn btn-success">Edit modules</button></a>
+                    {% if course.modules.count > 0 %}
+                      <a href="{% url 'module_content_list' course.modules.first.id %}"><button class="btn btn-outline-info btn-sm">Manage Content</button></a>
+                    {% endif %}
                     
                 </p>
             </div>
@@ -20,15 +25,29 @@
             <p>You haven't created any courses yet.</p>
         {% endfor %}
             <p>
-                <a href="{% url "course_create" %}" class="button">Create new course</a>
+                <a href="{% url 'course_create' %}"><button type="button" class="btn btn btn-success">Create Course</button></a>
             </p>
     </div>
+  </div>
 <style>
-    .module {
-        background: #77A1D3;  /* fallback for old browsers */
-        background: -webkit-linear-gradient(to right, #E684AE, #79CBCA, #77A1D3);  /* Chrome 10-25, Safari 5.1-6 */
-        background: linear-gradient(to right, #E684AE, #79CBCA, #77A1D3); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    .card {
         font-size: 20px;
+        margin: 50px;
+        margin-top: 3%;
+        margin-left: auto;
+        /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
+        background: #FF512F;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #F09819, #FF512F);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #F09819, #FF512F); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+    }
+    .mango {
+        background-image: url(../static/images/school.jpg);
+        background-size: cover;
+        margin: 20px;
+        padding: 20px;
     }
 </style>
 {% endblock %}

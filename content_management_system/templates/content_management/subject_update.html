@@ -4,8 +4,10 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
    <div class="row">
+    <img src="../../../static/images/4787_-_Working_in_Office-512.webp" style="width:350px; height:200px;">
        <div class="col-md-7">
-    <div class="content-section">
+        <div class="d-flex justify-content-center form_container">
+
 
   <form action="" method="POST" enctype="multipart/form-data">
       {% csrf_token %}
@@ -21,4 +23,28 @@ integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw
     </div>
 </div>
   </div>
+<style>
+  .row{
+    text-align: center;
+        /* width: 350px; */
+        margin-top: 3%;
+        margin-bottom: auto;
+        background: #fafafa;
+        /* position: relative; */
+        /* display: center; */
+        /* justify-content: center; */
+        /* flex-direction: column; */
+        padding: 20px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+        border-radius: 15px;
+        margin: 80px;
+        background: #833ab4;
+        background: -webkit-linear-gradient(to top, #7e5f35, #5a9325, #a049da);
+        /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(to top, #c448dd, #d6cc3e, #3a73b4);
+  }
+</style>
 {% endblock %} 
