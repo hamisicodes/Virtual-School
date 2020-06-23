@@ -1,3 +1,4 @@
+
 {% block content%}
 {% load static %}
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -43,7 +44,7 @@
   </form>
 </div>
 <div class="row" style="padding-left: 130px; margin: 100px;">
-    {% for subject in subjects %}
+    {% for title in titles %}
     <div class="col-lg -4" style="margin-bottom: 30px;">
     <div class="card" style="height: 200px; width: 200px;">
 
@@ -62,11 +63,10 @@
           <!-- Social shares button -->
           
           <!-- Title -->
-          <h4 class="card-title">{{subject.title}} </h4>
-          {% if subject.username == user %}
-          <a href="{% url 'subjects-list' subject.id%}"> <i class="fas fa-trash" style="color: red;" id = "message" onclick="swal()"></i> </a>
-          <a href="{% url 'subject-update' subject.id%}"> <i class="fas fa-edit" style="color: purple;"></i> </a>
-          {%endif%}
+          <h4 class="card-title">{{title.title}} </h4>
+
+         
+         
          
           <!-- Text -->
           

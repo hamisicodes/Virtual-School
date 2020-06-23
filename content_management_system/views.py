@@ -2,6 +2,14 @@ from django.shortcuts import render, redirect,reverse, get_object_or_404
 from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User
 from django.views.generic.base import TemplateResponseMixin, View
+from .models import Course,Subject
+from django.urls import reverse_lazy
+from django.contrib.auth.decorators import user_passes_test, login_required
+from django.views.generic import (ListView, DetailView,CreateView, UpdateView, DeleteView)
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin,PermissionRequiredMixin
+from . forms import CourseForm
+from django.contrib import messages
+from django.views.generic.base import TemplateResponseMixin, View
 from django.utils.translation import ugettext_lazy as _
 from .models import Course,Subject,Content,Module
 from django.db.models import Count
@@ -11,17 +19,17 @@ from django.utils.decorators import method_decorator
 from django.core.cache import cache
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.urls import reverse_lazy,reverse
-from django.contrib.auth.decorators import user_passes_test, login_required
-from django.views.generic import (
-    ListView, DetailView,
-    CreateView, UpdateView, DeleteView
-    )
-from braces.views import LoginRequiredMixin, PermissionRequiredMixin, \
-                         CsrfExemptMixin, JsonRequestResponseMixin
-from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin,PermissionRequiredMixin
 from .forms import ModuleFormSet, CourseCreateForm
 from django.forms.models import modelform_factory
 from django import forms
+from braces.views import LoginRequiredMixin, PermissionRequiredMixin,CsrfExemptMixin, JsonRequestResponseMixin
+
+
+
+
+
+def is_users(subject_username, logged_user):
+    return subject_username == logged_user
 # Create your views here.
 
 # def is_users(course_user, logged_user):
@@ -43,12 +51,11 @@ class OwnerEditMixin(object):
 
 class OwnerCourseMixin(OwnerMixin, LoginRequiredMixin):
     model = Course
-    # fields = ['subject', 'course_name','overview']
+    fields = ['subject', 'course_name', 'slug', 'overview']
     success_url = reverse_lazy('manage_course_list')
 
 class OwnerCourseEditMixin(OwnerCourseMixin):
-    # fields = ['subject', 'course_name', 'overview']
-    form_class = CourseCreateForm
+    fields = ['subject', 'course_name', 'slug', 'overview']
     success_url = reverse_lazy('manage_course_list')
     template_name = 'courses/manage/course/form.html'
 
@@ -68,7 +75,6 @@ class CourseDeleteView(OwnerCourseMixin, DeleteView, PermissionRequiredMixin):
     success_url = reverse_lazy('manage_course_list')
     permission_required = 'courses.can_delete'
 
-
 class CreateSubject(LoginRequiredMixin,CreateView):
     model = Subject
     fields = ['title']
@@ -82,7 +88,6 @@ class CreateSubject(LoginRequiredMixin,CreateView):
 class SubjectView(ListView):
     
     model = Subject
-   
     template_name = 'content_management/subject.html'
     context_object_name = 'subjects'
 
@@ -133,6 +138,18 @@ class SubjectDetail(DetailView):
 
         return self.get(self, request, *args, **kwargs)
 
+def search_results(request):
+    if 'title' in request.GET and request.GET["title"]:
+        search_term = request.GET.get("title")
+        searched_titles = Subject.search_by_title(search_term)
+        message = f"{search_term}"
+
+        return render(request, 'content_management/search.html',{"message":message,"titles": searched_titles})
+
+    else:
+        message = "You haven't searched for any term"
+        return render(request, 'content_management/search.html',{"message":message})
+
 class CourseModuleUpdateView(TemplateResponseMixin, View):
     template_name = 'courses/manage/module/formset.html'
     course = None
@@ -164,7 +181,7 @@ class CourseDetailView(DetailView):
         context = super(CourseDetailView, self).get_context_data(**kwargs)
         context['enroll_form'] = CourseEnrollForm(initial={'course': self.object})
         return context
-
+      
 
 class ContentCreateUpdateView(TemplateResponseMixin, View):
     module = None

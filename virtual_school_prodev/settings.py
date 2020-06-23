@@ -37,7 +37,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'bootstrap4',
     'users',
     'student',
     'crispy_forms',
@@ -136,16 +135,22 @@ STATICFILES_DIRS = [
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static/media')
 
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
+
+<<<<<<< HEAD
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+=======
 
 # EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
+>>>>>>> 0154feae54341c5534f782e3dfdd765c3869e15a
 # EMAIL_USE_TLS = config('EMAIL_USE_TLS')
 # EMAIL_HOST = config('EMAIL_HOST')
 # EMAIL_PORT = config('EMAIL_PORT')
 # EMAIL_HOST_USER = config('EMAIL_HOST_USER')
 # EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+<<<<<<< HEAD
 
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
@@ -154,3 +159,8 @@ LOGIN_REDIRECT_URL = 'dashboard'
 LOGOUT_URL = 'logout'
 LOGOUT_REDIRECT_URL = 'landing_page'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+=======
+
+
+
+>>>>>>> 0154feae54341c5534f782e3dfdd765c3869e15a
