@@ -20,10 +20,6 @@ class Subject(models.Model):
     
     class Meta:
         ordering = ('title',)
-<<<<<<< HEAD
-=======
-
->>>>>>> 03744f46d84e0122ff9ff5b378a36c21614f1ba2
     def __str__(self):
         return self.title
     def get_absolute_url(self):
@@ -39,15 +35,12 @@ class Course(models.Model):
     slug = models.SlugField(max_length=200, unique=True)
     class Meta:
         ordering = ('-created',)
-<<<<<<< HEAD
-=======
     
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(self.course_name)
         super(Course, self).save(*args, **kwargs)
 
->>>>>>> 03744f46d84e0122ff9ff5b378a36c21614f1ba2
     def __str__(self):
         return self.course_name
    
@@ -63,16 +56,8 @@ class Module(models.Model):
 
     # class Meta:
     #     ordering = ['order']
-<<<<<<< HEAD
     def __str__(self):
         return '{}'.format(self.title)
-=======
-
-    def __str__(self):
-        return '{}. {}'.format(self.order, self.title)
-
-
->>>>>>> 03744f46d84e0122ff9ff5b378a36c21614f1ba2
 class Content(models.Model):
     module = models.ForeignKey(Module, on_delete=models.CASCADE, related_name='contents')
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE, limit_choices_to={
@@ -97,10 +82,6 @@ class ContentBase(models.Model):
 
     def render(self):
         return render_to_string('courses/content/{}.html'.format(self._meta.model_name), {'item': self})
-<<<<<<< HEAD
-=======
-
->>>>>>> 03744f46d84e0122ff9ff5b378a36c21614f1ba2
     def __str__(self):
         return self.title
 
