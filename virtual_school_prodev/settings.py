@@ -25,7 +25,7 @@ SECRET_KEY = '978p81-zj15c-8c4if9orco7#v2uz2ch8rhcu_kni24@0@$7-q'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['heroku.com', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -44,7 +44,9 @@ INSTALLED_APPS = [
     'crispy_forms',
     'bootstrap3',
     'content_management_system',
-    
+    'social_django',
+    'django_extensions',
+    #'social.apps.django_app.default',
     
 ]
 
@@ -56,6 +58,10 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+
+
+    #'social_django.middleware.SocialAuthExpecptionMiddleware',
 ]
 
 ROOT_URLCONF = 'virtual_school_prodev.urls'
@@ -71,6 +77,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                #'social.apps.django_app.context_processors.backends',
+                #'social.apps.django_app.context_processors.login_redirect',
             ],
         },
     },
@@ -148,3 +156,20 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
+
+AUTHENTICATION_BACKENDS = [
+    'social_core.backends.facebook.FacebookOAuth2',
+  
+]
+SOCIAL_AUTH_FACEBOOK_KEY = '901170187056399' # Facebook App ID
+SOCIAL_AUTH_FACEBOOK_SECRET = '98d87e031998c631f09d8255bb12aa45' # Facebook App Secret
+
+#LOGIN_REDIRECT_URL ='/'
+
+#SOCIAL_AUTH_REDIRECT_IS_HTTPS = True
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'hudsonhukish@gmail.com'
+EMAIL_HOST_PASSWORD = '1234kishoyian'
+EMAIL_PORT = 587
