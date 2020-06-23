@@ -1,15 +1,43 @@
  
 {% extends "base.html" %}
-{% load bootstrap3 %}
+{% load static %}
 {% load course %}
+
+
 {% load i18n %}
-{% block title %}
-Module {{ module.order|add:1 }}: {{ module.title }}
-{% endblock %}
+
 
 {% block content %}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css?family=Dancing+Script&display=swap" rel="stylesheet">
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Vast+Shadow&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{%static 'css/dashboard.css'%}">
+
+
+
+<div id="mySidebar" class="sidebar" style="text-align: center;">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"></a>
+    <a href="#" style="color: lightcoral; margin-top: -60px;margin-bottom: 35px;margin-right: 20px;"> <span style="color: red; font-size: 30px; font-family: 'Vast Shadow'; ">VS </span> </a>
+    <a href="{% url 'profile' %}" style="color: black;margin-right: 20px;"> <i class="fas fa-user-circle" style="color: white;"> </i> <br><span style="font-size: 16px;">Profile</span><br> </a>
+    <a href="#" style="color: black;margin-right: 20px; "> <i class="fas fa-graduation-cap" style="color: white"></i><br><span style="font-size: 16px;">Subjects</span> </a>
+    <a href="#" style="color: black;margin-right: 20px;"> <i class="fas fa-book" style="color: white;"> </i> <br> <span style="font-size: 16px;">Assignments</span><br> </a>
+    <a href="{% url 'create-subject' %}" style="color: black;margin-right: 20px;"> <i class="fas fa-upload"style="color: white;"> </i> <br> <span style="font-size: 16px;">Upload Subject</span><br> </a>
+    <a href="{% url 'create-subject' %}" style="color: black;margin-right: 20px;"> <i class="fab fa-readme"style="color: purple;"> </i> <br> <span style="font-size: 16px;">Modules</span><br> </a>
+    
+</div>
+<div id="main">
+    <button class="openbtn" onclick="openNav()" style="background-color: transparent;color: #111; "></button>
+</div>
     {% with course=module.course %}
-    <div class="contents">
+    <div class="contents" style="margin-left: 200px;">
     <h1>Course "{{ course.course_name }}"</h1>
     <h3>Modules</h3>
     <ul id="modules">
@@ -29,7 +57,7 @@ Module {{ module.order|add:1 }}: {{ module.title }}
     </ul>
     <p><a href="{% url 'course_module_update' course.id %}"><button type="button" class="btn btn btn-success">Edit modules</button></a></p>
     </div>
-    <div class="module">
+    <div class="module" style="margin-left: 200px;">
         <h2>Module {{ module.order|add:1 }}: {{ module.title }}</h2>
         <h3>Module contents:</h3>
         <div id="module-contents">
@@ -51,6 +79,7 @@ Module {{ module.order|add:1 }}: {{ module.title }}
     </div>
     <hr>
     <h3>{% trans 'Add new content' %}:</h3>
+    <img src="{% trans 'Image' %}" alt="" srcset="">
     <ul class="content-types">
         <li><a href="{% url 'module_content_create' module.id 'text' %}" class="link">{% trans 'Text' %}</a></li>
         <li><a href="{% url 'module_content_create' module.id 'image'%}" class="link">{% trans 'Image' %}</a></li>
@@ -59,67 +88,7 @@ Module {{ module.order|add:1 }}: {{ module.title }}
     </ul>
     </div>
     {% endwith %}
-  
-<style>
- .module {
-    background: #FF4E50;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #F9D423, #FF4E50);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #F9D423, #FF4E50); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  padding: 10px;
-  margin: 30px;
- }
- .contents {
-    background: #FF4E50;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #F9D423, #FF4E50);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #F9D423, #FF4E50); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  margin: 30px;
-  padding: 10px;
+    return None
 
- }
-</style>
 {% endblock %}
 
-{% block domready %}
-
-    $('#modules').sortable({
-        stop: function(event, ui) {
-
-            modules_order = {};
-            $('#modules').children().each(function(){
-                // update the order field
-                $(this).find('.order').text($(this).index() + 1);
-                // associate the module's id with its order
-                modules_order[$(this).data('id')] = $(this).index();
-            });
-
-            $.ajax({
-                type: 'POST',
-                url: '{% url "module_order" %}',
-                contentType: 'application/json; charset=utf-8',
-                dataType: 'json',
-                data: JSON.stringify(modules_order),
-            });
-
-        }
-    });
-
-    $('#module-contents').sortable({
-        stop: function(event, ui) {
-
-            contents_order = {};
-            $('#module-contents').children().each(function(){
-                // associate the module's id with its order
-                contents_order[$(this).data('id')] = $(this).index();
-            });
-
-            $.ajax({
-                type: 'POST',
-                url: '{% url "content_order" %}',
-                contentType: 'application/json; charset=utf-8',
-                dataType: 'json',
-                data: JSON.stringify(contents_order),
-            });
-
-        }
-    });
-{% endblock %}
