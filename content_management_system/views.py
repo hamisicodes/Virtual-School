@@ -95,7 +95,8 @@ class SubjectDelete(LoginRequiredMixin, DeleteView):
     model = Subject
     template_name = 'content_management/subject-delete.html'
     context_object_name = 'subject'
-    success_url = '/'
+    success_url = reverse_lazy('subjects-list')
+    
     
     def test_func(self):
         return is_users(self.get_object().username, self.request.user)
@@ -250,12 +251,7 @@ class CourseListView(TemplateResponseMixin, View):
     template_name = 'courses/manage/course/list.html'
 
     def get(self, request, subject=None):
-        # subjects = Subject.objects.annotate(total_courses=Count('courses'))
-        # courses = Course.objects.annotate(total_modules=Count('modules'))
-
-        # if subject:
-            # subject = get_object_or_404(Subject, slug=subject)
-            # courses = courses.filter(subject=subject)
+       
         subjects = cache.get('all_subjects')
 
         if not subjects:
@@ -264,8 +260,6 @@ class CourseListView(TemplateResponseMixin, View):
         all_courses = Course.objects.annotate(total_modules=Count('modules', distinct=True))
         page = request.GET.get('page', 1)
 
-        # subjects = Course.objects.annotate(total_modules=Count('courses'))
-        # courses = Course.objects.annotate(total_modules=Count('modules'))
 
         if subject:
             subject = get_object_or_404(Subject, slug=subject)
