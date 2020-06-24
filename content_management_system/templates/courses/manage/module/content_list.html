@@ -2,11 +2,7 @@
 {% extends "base.html" %}
 {% load static %}
 {% load course %}
-
-
 {% load i18n %}
-
-
 {% block content %}
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -27,10 +23,9 @@
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"></a>
     <a href="#" style="color: lightcoral; margin-top: -60px;margin-bottom: 35px;margin-right: 20px;"> <span style="color: red; font-size: 30px; font-family: 'Vast Shadow'; ">VS </span> </a>
     <a href="{% url 'profile' %}" style="color: black;margin-right: 20px;"> <i class="fas fa-user-circle" style="color: white;"> </i> <br><span style="font-size: 16px;">Profile</span><br> </a>
-    <a href="#" style="color: black;margin-right: 20px; "> <i class="fas fa-graduation-cap" style="color: white"></i><br><span style="font-size: 16px;">Subjects</span> </a>
-    <a href="#" style="color: black;margin-right: 20px;"> <i class="fas fa-book" style="color: white;"> </i> <br> <span style="font-size: 16px;">Assignments</span><br> </a>
+    <a href="{% url 'subjects-list' %}" style="color: black;margin-right: 20px; "> <i class="fas fa-graduation-cap" style="color: white"></i><br><span style="font-size: 16px;">Subjects</span> </a>
     <a href="{% url 'create-subject' %}" style="color: black;margin-right: 20px;"> <i class="fas fa-upload"style="color: white;"> </i> <br> <span style="font-size: 16px;">Upload Subject</span><br> </a>
-    <a href="{% url 'create-subject' %}" style="color: black;margin-right: 20px;"> <i class="fab fa-readme"style="color: purple;"> </i> <br> <span style="font-size: 16px;">Modules</span><br> </a>
+ 
     
 </div>
 <div id="main">
@@ -38,25 +33,30 @@
 </div>
     {% with course=module.course %}
     <div class="contents" style="margin-left: 200px;">
-    <h1>Course "{{ course.course_name }}"</h1>
-    <h3>Modules</h3>
-    <ul id="modules">
-        {% for m in course.modules.all %}
-        <li data-id="{{ m.id }}" {% if m == module %}
-        class="selected"{% endif %}>
-        <a href="{% url 'module_content_list' m.id %}">
-            <span>
-                Module <span class="order">{{ m.order|add:1 }}</span>
-            </span>
-            <br>
-            {{ m.title }}
-        </a> </li>
-        {% empty %}
-        <li>No modules yet.</li>
-        {% endfor %}
-    </ul>
-    <p><a href="{% url 'course_module_update' course.id %}"><button type="button" class="btn btn btn-success">Edit modules</button></a></p>
+    <h1>{{ course.course_name }}</h1>
+   
+    <div style=" margin-left: 300px; ">
+        <h3 > Available Modules</h3>
+        <ul id="modules" >
+            {% for m in course.modules.all %}
+            <li data-id="{{ m.id }}" {% if m == module %}
+            class="selected"{% endif %}>
+            <a href="{% url 'module_content_list' m.id %}">
+                <span>
+                    Module <span class="order">{{ m.order|add:1 }}</span>
+                </span>
+                <br>
+                {{ m.title }}
+            </a> </li>
+            {% empty %}
+            <li>No modules yet.</li>
+            {% endfor %}
+        </ul>
+        <p><a href="{% url 'course_module_update' course.id %}"><button type="button" class="btn btn-sm btn-primary">Edit modules</button></a></p>
+        </div>
+
     </div>
+   
     <div class="module" style="margin-left: 200px;">
         <h2>Module {{ module.order|add:1 }}: {{ module.title }}</h2>
         <h3>Module contents:</h3>

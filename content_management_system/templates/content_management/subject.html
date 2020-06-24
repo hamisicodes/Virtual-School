@@ -20,71 +20,70 @@
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"></a>
     <a href="#" style="color: lightcoral; margin-top: -60px;margin-bottom: 35px;margin-right: 20px;"> <span style="color: red; font-size: 30px; font-family: 'Vast Shadow'; ">VS </span> </a>
     <a href="{% url 'profile' %}" style="color: black;margin-right: 20px;"> <i class="fas fa-user-circle" style="color: white;"> </i> <br><span style="font-size: 16px;">Profile</span><br> </a>
-    <a href="#" style="color: black;margin-right: 20px; "> <i class="fas fa-graduation-cap" style="color: purple"></i><br><span style="font-size: 16px;">Subjects</span> </a>
-    <a href="#" style="color: black;margin-right: 20px;"> <i class="fas fa-book" style="color: white;"> </i> <br> <span style="font-size: 16px;">Assignments</span><br> </a>
+    <a href="{% url 'subjects-list' %}" style="color: black;margin-right: 20px; "> <i class="fas fa-graduation-cap" style="color: purple"></i><br><span style="font-size: 16px;">Subjects</span> </a>
+
     <a href="{% url 'create-subject' %}" style="color: black;margin-right: 20px;"> <i class="fas fa-upload"style="color: white;"> </i> <br> <span style="font-size: 16px;">Upload Subject</span><br> </a>
-</div>
+    <a href="{% url 'manage_course_list' %}" style="color: black;margin-right: 20px;"> <i class="fas fa-list-ul" style="color: white;"> </i> <br> <span style="font-size: 16px;"> Courses</span><br> </a>
+    <a href="{% url 'course_create' %}" style="color: black;margin-right: 20px;"> <i class="fas fa-upload"style="color: white;"> </i> <br> <span style="font-size: 16px;">Upload Course</span><br> </a>
+   
+    <a href="{% url 'manage_course_list' %}" style="color: black;margin-right: 20px;"> <i class="fas fa-list-ul" style="color: white;"> </i> <br> <span style="font-size: 16px;"> Courses</span><br> </a>
+  </div>
 <div id="main">
     <button class="openbtn" onclick="openNav()" style="background-color: transparent;color: #111; "></button>
 </div>
-<h3 style="margin-bottom: 50px;padding-left: 250px; margin-top: -60px;">Subjects</h3>
+<h3 style="margin-bottom: 50px;padding-left: 250px; margin-top: -60px;">Hello {{user}} </h3>
 
-<div class="form" style=" text-align: center; margin-bottom: 70px;"> 
-    <form class="navbar-form" role="search" action="{% url 'search_results' %}"
-    style="height: 6px;margin-bottom: 25px; ">
-    <div class="input-group md-form form-sm form-1 pl-0" style="padding-left: 300px;width: 400px;margin-left: 250px;margin-bottom: 100px;">
-        <div class="input-group-prepend" >
-          <span class="input-group-text purple lighten-3" id="basic-text1" style="background-color: rebeccapurple;"><i class="fas fa-search text-white"
-              aria-hidden="true" ></i></span>
-        </div>
-        <input class="form-control my-0 py-1" type="text" placeholder="subjects filter .."  name = "title" >
-      </div>
+
       
 
   </form>
-</div>
+</div> -->
 <div class="row" style="padding-left: 130px; margin: 100px;">
-    {% for subject in subjects %}
-    <div class="col-lg -4" style="margin-bottom: 30px;">
-    <div class="card" style="height: 200px; width: 200px;">
+  <img src="{% static 'images/teacher.png'%}" alt="" srcset="" style="margin-top: -170px;" style="height: 300px;width: 300px;">
+    
+    <hr>
+  {% for subject in subjects %}
+    <div class="col-md-3 mb-4">
 
-        <!-- Card image -->
-        <div class="view overlay">
-          <img class="card-img-top" src="{% static 'images/subs2.jpg'%}"
-            alt="Card image cap">
-          <a>
-            <div class="mask rgba-white-slight"></div>
-          </a>
-        </div>
-      
-        <!-- Card content -->
-        <div class="card-body elegant-color white-text rounded-bottom">
-      
-          <!-- Social shares button -->
-          
-          <!-- Title -->
-          <h4 class="card-title">{{subject.title}} </h4>
+      <!-- Card -->
+      <div class="card gradient-card">
+  
+          <div class="card-image" style="background-color: rgb(241, 156, 241);">
+  
+            <!-- Content -->
+            <a href="#!">
+              <div class="text-white d-flex h-100 mask purple-gradient-rgba">
+                <div class="first-content align-self-center p-3">
+                  <h4 class="card-title">{{subject.title}} </h4>
           {% if subject.username == user %}
           <a href="{% url 'subjects-list' subject.id%}"> <i class="fas fa-trash" style="color: red;" id = "message" onclick="swal()"></i> </a>
           <a href="{% url 'subject-update' subject.id%}"> <i class="fas fa-edit" style="color: purple;"></i> </a>
           {%endif%}
-         
-          <!-- Text -->
-          
-         
-          <!-- Link -->
-          <a href="#!" class="white-text d-flex justify-content-end">
-          
-          </a>
-      
-        </div>
-      
+                </div>
+                <div class="second-content  align-self-center mx-auto text-center">
+                
+                </div>
+              </div>
+            </a>
+  
+          </div>
+  
+          <!-- Data -->
+          <div class="third-content  ml-auto mr-4 mb-2">
+            <p class="card-title"> <i class="fas fa-user-tie" style="color: purple; margin-left: 20px;"></i>{{subject.username}}</p>
+            
+           
+          </div>
+  
+        
+  
       </div>
+      <!-- Card -->
+  
+    </div>
 
 
-    
-    
-</div>
+
     {% endfor %}
 </div>
 
