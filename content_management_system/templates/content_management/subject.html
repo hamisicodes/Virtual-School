@@ -1,3 +1,4 @@
+
 {% block content%}
 {% load static %}
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -19,26 +20,18 @@
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"></a>
     <a href="#" style="color: lightcoral; margin-top: -60px;margin-bottom: 35px;margin-right: 20px;"> <span style="color: red; font-size: 30px; font-family: 'Vast Shadow'; ">VS </span> </a>
     <a href="{% url 'profile' %}" style="color: black;margin-right: 20px;"> <i class="fas fa-user-circle" style="color: white;"> </i> <br><span style="font-size: 16px;">Profile</span><br> </a>
-   
-    {%if request.user.is_authenticated and request.user.is_staff%}
-    <!-- Just for now --> <a href="{% url 'create-subject' %}" style="color: black;margin-right: 20px;"> <i class="fas fa-upload"style="color: white;"> </i> <br> <span style="font-size: 16px;">Upload Subject</span><br> </a>
-    <a href="{% url 'dashboard' %}" style="color: black;margin-right: 20px;"> <i class="fa fa-sign-in"></i> <br>
-     <span style="font-size: 16px;">students</span><br> </a>
-        {%endif%}
     <a href="{% url 'subjects-list' %}" style="color: black;margin-right: 20px; "> <i class="fas fa-graduation-cap" style="color: purple"></i><br><span style="font-size: 16px;">Subjects</span> </a>
 
-
     <a href="{% url 'create-subject' %}" style="color: black;margin-right: 20px;"> <i class="fas fa-upload"style="color: white;"> </i> <br> <span style="font-size: 16px;">Upload Subject</span><br> </a>
-    
+    <a href="{% url 'manage_course_list' %}" style="color: black;margin-right: 20px;"> <i class="fas fa-list-ul" style="color: white;"> </i> <br> <span style="font-size: 16px;"> Courses</span><br> </a>
     <a href="{% url 'course_create' %}" style="color: black;margin-right: 20px;"> <i class="fas fa-upload"style="color: white;"> </i> <br> <span style="font-size: 16px;">Upload Course</span><br> </a>
    
     <a href="{% url 'manage_course_list' %}" style="color: black;margin-right: 20px;"> <i class="fas fa-list-ul" style="color: white;"> </i> <br> <span style="font-size: 16px;"> Courses</span><br> </a>
- 
   </div>
 <div id="main">
     <button class="openbtn" onclick="openNav()" style="background-color: transparent;color: #111; "></button>
 </div>
-<h3 style="margin-bottom: 50px;padding-left: 250px; margin-top: -60px;">Hello {{user}} </h3>
+<h3 style="margin-bottom: 50px;padding-left: 250px; margin-top: 20px;">Hello {{user}} </h3>
 
 
       
@@ -46,7 +39,7 @@
   </form>
 </div> -->
 <div class="row" style="padding-left: 130px; margin: 100px;">
-  <img src="{% static 'images/teacher.png'%}" alt="" srcset="" style="margin-top: -170px;" style="height: 300px;width: 300px;">
+  <img src="{% static 'images/teacher.png'%}" alt="" srcset="" style="margin-top: -170px;" style="height: 200px;width: 200px;">
     
     <hr>
   {% for subject in subjects %}
