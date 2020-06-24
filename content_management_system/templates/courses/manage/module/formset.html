@@ -1,47 +1,56 @@
  
 {% extends "base.html" %}
 {% load crispy_forms_tags %}
-{% load bootstrap3 %}
 {% load i18n %}
-   {% block title %}
-     {% trans 'Edit' %} "{{ course.course_name }}"
-   {% endblock %}
+  
    {% block content %}
-   <div class="container-fluid">
-         <h1>Edit "{{ course.course_name }}"</h1>
-         <img src="../../../../../static/images/Front End UI Testing Process.png" style="width:350px; height:200px;">
-         <div class="form modules">
-           <h2>Course modules</h2>
+   {% load static %}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css?family=Dancing+Script&display=swap" rel="stylesheet">
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Vast+Shadow&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{%static 'css/dashboard.css'%}">
+
+
+
+<div id="mySidebar" class="sidebar" style="text-align: center;">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"></a>
+    <a href="#" style="color: lightcoral; margin-top: -60px;margin-bottom: 15px;margin-right: 20px;"> <span style="color: red; font-size: 30px; font-family: 'Vast Shadow'; ">VS </span> </a>
+    <a href="{% url 'profile' %}" style="color: black;margin-right: 20px;"> <i class="fas fa-user-circle" style="color: white;"> </i> <br><span style="font-size: 16px;">Profile</span><br> </a>
+    <a href="#" style="color: black;margin-right: 20px; "> <i class="fas fa-graduation-cap" style="color: white"></i><br><span style="font-size: 16px;">Subjects</span> </a>
+
+    <a href="{% url 'create-subject' %}" style="color: black;margin-right: 20px;"> <i class="fas fa-upload"style="color: white;"> </i> <br> <span style="font-size: 16px;">Upload Subject</span><br> </a>
+    <a href="{% url 'course_create' %}" style="color: black;margin-right: 20px;"> <i class="fas fa-upload"style="color: white;"> </i> <br> <span style="font-size: 16px;">Upload Course</span><br> </a>
+   
+    <a href="{% url 'manage_course_list' %}" style="color: black;margin-right: 20px;"> <i class="fas fa-list-ul" style="color: white;"> </i> <br> <span style="font-size: 16px;"> Courses</span><br> </a>
+ 
+</div>
+<div id="main">
+    <button class="openbtn" onclick="openNav()" style="background-color: transparent;color: #111; "></button>
+</div>
+   <div class="row" style="margin-top: -45px;padding-left: 200px;">
+      
+         <img src="../../../../../static/images/Front End UI Testing Process.png" style="width:450px; height:300px;">
+         <div  class="col-lg-10">
+           <h5 style="margin-top: 50px;">{{ course.course_name }}</h5>
+           <hr>
            <form action="" method="post">
+               <fieldset class="form-group" style="width: 550px;">
              {{ formset.as_p }}
              {{ formset.management_form.as_p }}
              {% csrf_token %}
-             <input type="submit" class="btn btn-outline-primary" value=" Save modules">
-         </form>
+             <input type="submit" class="btn btn-sm" value=" Save modules" style="background-color: purple;color: white;">
+            </fieldset>
+            </form>
       </div>
     </div>
-<style>
-    .container-fluid {
-        text-align: center;
-        /* width: 350px; */
-        margin-top: 20%;
-        margin-bottom: auto;
-        background: #fafafa;
-        /* position: relative; */
-        /* display: center; */
-        /* justify-content: center; */
-        /* flex-direction: column; */
-        padding: 10px;
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-        -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-        -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
-        border-radius: 15px;
-        margin: 300px;
-        background: #833ab4;
-        background: -webkit-linear-gradient(to top, #7e5f35, #5a9325, #a049da);
-        /* Chrome 10-25, Safari 5.1-6 */
-        background: linear-gradient(to top, #c448dd, #d6cc3e, #3a73b4);
-    }
-</style>
+
 {% endblock %}

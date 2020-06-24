@@ -10,14 +10,14 @@ class CourseForm(forms.ModelForm):
         model = Course
         fields = ['course_name','slug','overview']
 class ModuleForm(forms.ModelForm):
-    title = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}))
+    title = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control', 'cols': 20, 'rows': 5}))
     description = forms.CharField(widget=forms.Textarea(attrs={'class':'form-control', 'cols': 40, 'rows': 8}))
 
     class Meta:
         model = Module
         exclude = ()
 
-ModuleFormSet = inlineformset_factory(Course, Module, form=ModuleForm, fields=['title', 'description',], extra=2, can_delete=True)
+ModuleFormSet = inlineformset_factory(Course, Module, form=ModuleForm, fields=['title', 'description',], extra=0, can_delete=True)
 
 
 

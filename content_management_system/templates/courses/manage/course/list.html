@@ -1,53 +1,122 @@
- 
-{% extends "base.html" %}
-{% load bootstrap3 %}
-{% block title %}{% endblock %}
-
+ {% extends "base.html" %}
 {% block content %}
-    <h1 style="font-size: 40px;">My courses</h1>
-   <div class="mango" > 
-    <div class="card">
-        {% for course in object_list %}
-            <div class="course-info">
-                <h3>{{ course.course_name }}</h3>
-                <small class="text-info">last_created:{{course.created}}</small>
-                <p>
-                    <a href="{% url "course_edit" course.id %}"> <button class="btn btn-outline-info btn-sm">Update</button></a>
-                    <a href="{% url "course_delete" course.id %}"><button class="btn btn-outline-danger btn-sm">Delete</button></a>
-                    <a href="{% url 'course_module_update' course.id %}"><button type="button" class="btn btn btn-success">Edit modules</button></a>
-                    {% if course.modules.count > 0 %}
-                      <a href="{% url 'module_content_list' course.modules.first.id %}"><button class="btn btn-outline-info btn-sm">Manage Content</button></a>
-                    {% endif %}
-                    
-                </p>
-            </div>
-        {% empty %}
-            <p>You haven't created any courses yet.</p>
-        {% endfor %}
-            <p>
-                <a href="{% url 'course_create' %}"><button type="button" class="btn btn btn-success">Create Course</button></a>
-            </p>
-    </div>
-  </div>
-<style>
-    .card {
-        font-size: 20px;
-        margin: 50px;
-        margin-top: 3%;
-        margin-left: auto;
-        /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-        -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-        -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
-        background: #FF512F;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #F09819, #FF512F);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #F09819, #FF512F); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+{% load static %}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css?family=Dancing+Script&display=swap" rel="stylesheet">
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Vast+Shadow&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{%static 'css/dashboard.css'%}">
 
-    }
-    .mango {
-        background-image: url(../static/images/school.jpg);
-        background-size: cover;
-        margin: 20px;
-        padding: 20px;
-    }
-</style>
+
+
+<div id="mySidebar" class="sidebar" style="text-align: center;">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"></a>
+    <a href="#" style="color: lightcoral; margin-top: -60px;margin-bottom: 15px;margin-right: 20px;"> <span style="color: red; font-size: 30px; font-family: 'Vast Shadow'; ">VS </span> </a>
+    <a href="{% url 'profile' %}" style="color: black;margin-right: 20px;"> <i class="fas fa-user-circle" style="color: white;"> </i> <br><span style="font-size: 16px;">Profile</span><br> </a>
+    <a href="{% url 'subjects-list' %}" style="color: black;margin-right: 20px; "> <i class="fas fa-graduation-cap" style="color: white"></i><br><span style="font-size: 16px;">Subjects</span> </a>
+    <a href="{% url 'create-subject' %}" style="color: black;margin-right: 20px;"> <i class="fas fa-upload"style="color: white;"> </i> <br> <span style="font-size: 16px;">Upload Subject</span><br> </a>
+    <a href="{% url 'course_create' %}" style="color: black;margin-right: 20px;"> <i class="fas fa-upload"style="color: white;"> </i> <br> <span style="font-size: 16px;">Upload Course</span><br> </a>
+    <a href="{% url 'manage_course_list' %}" style="color: black;margin-right: 20px;"> <i class="fas fa-list-ul" style="color: purple;"> </i> <br> <span style="font-size: 16px;"> Courses</span><br> </a>
+ 
+</div>
+<div id="main">
+    <button class="openbtn" onclick="openNav()" style="background-color: transparent;color: #111; "></button>
+</div>
+
+<div class="row" style="padding-left: 90px; margin: 30px;">
+    
+    <img class="card-img-top" src="{% static 'images/courses.png'%}" style="height: 500px;width: 700px; margin-top: -175px;" class="col-md -3" >
+    <div class="col-md -3" style="margin-bottom: 30px; margin-left: 100px;margin-top: 30px;">
+    {% for course in object_list %}
+    
+    <div class="card" style="height: 250px; width: 600px;margin-top: 40px;">
+
+        <!-- Card image -->
+        <div class="view overlay" style="background-color: palevioletred;">
+            
+            <i class="fas fa-book" style="color: white;text-align: center;"> <h4> {{course.subject}}  </h4></i> 
+          <a>
+            <div class="mask rgba-white-slight" style="background-color: palevioletred;">
+
+
+            </div>
+          </a>
+        </div>
+      
+        <!-- Card content -->
+        <div class="card-body elegant-color white-text rounded-bottom">
+      
+          <!-- Social shares button -->
+          
+          <!-- Title -->
+          <h4 class="card-title" style="margin-top: -10px;">{{ course.course_name }} <span> <small class="text-info" style="font-size: 10px;">{{course.created}}</small></span> </h4>
+          <p class="card-title" >{{ course.overview }} </p>
+          
+         
+         
+          {% if course.owner == user %}
+          <a href="{% url 'course_delete' course.id%}"> <i class="fas fa-trash" style="color: red;" id = "message" onclick="swal()"></i> </a>
+          <a href="{% url 'course_edit' course.id%}"> <i class="fas fa-edit" style="color: purple;"></i> </a>
+          <a href="{% url 'course_module_update' course.id %}" style="color: black;margin-right: 20px;"> <i class="fas fa-upload"style="color: white;"> </i> <br> <span style="font-size: 16px;">Upload Module</span><br> </a>
+          
+          {%endif%}
+
+          {% if course.modules.count > 0 %}
+          
+          <a href="{% url 'module_content_list' course.modules.first.id %}"><button class="btn btn-outline-info btn-sm">Manage Content</button></a>
+        {% endif %}
+        
+    </p>
+</div>
+{% empty %}
+<p>You haven't created any courses yet.</p>
+{% endfor %}
+
+         
+          <!-- Text -->
+          
+         
+          <!-- Link -->
+          <a href="#!" class="white-text d-flex justify-content-end">
+          
+          </a>
+      
+        </div>
+      
+      </div>
+
+
+    
+    
+</div>
+  
+</div>
+
+<script src="{% static 'js/dashboard.js'%}"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+
+
+
+
+
+    
+   
+
+
+
+
+
+
+
+
+
 {% endblock %}
