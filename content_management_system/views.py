@@ -89,12 +89,12 @@ class SubjectView(ListView,LoginRequiredMixin):
     template_name = 'content_management/subject.html'
     context_object_name = 'subjects'
     permission_required = 'subject.can_view'
-    
+
 class SubjectDelete(LoginRequiredMixin, DeleteView):
     model = Subject
     template_name = 'content_management/subject-delete.html'
     context_object_name = 'subject'
-    success_url = '/'
+    success_url = reverse_lazy('subjects-list')
     permission_required = 'subject.can_delete'
     def test_func(self):
         return is_users(self.get_object().username, self.request.user)
@@ -239,7 +239,7 @@ class ModuleContentListView(TemplateResponseMixin, View):
     template_name = 'courses/manage/module/content_list.html'
 
     def get(self, request, module_id):
-        module = get_object_or_404(Module, id=module_id, course__owner=request.user)
+        module = get_object_or_404(Module, id = module_id, course__owner = request.user)
 
         return self.render_to_response({'module': module})
 
