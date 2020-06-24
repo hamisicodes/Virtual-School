@@ -30,7 +30,7 @@ def student_profile(request):
         if user_form.is_valid() and  profile_form.is_valid():
             user_form.save()
             profile_form.save()
-            messages.success(request, f'Profile Updated for {username}')
+            messages.success(request, f'Profile Updated')
     else:
         user_form = UserUpdateForm(instance=request.user)
         profile_form = StudentProfileUpdateForm(instance=request.user.studentprofile)
