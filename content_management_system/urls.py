@@ -20,6 +20,7 @@ urlpatterns=[
   # path('course/<int:pk>/update', UpdateCourse.as_view(template_name = 'update_course.html'), name = 'course-update'),
   path('jimbo/', views.CourseListView.as_view(), name='course_list'),
   
+  path('', views.CourseListView.as_view(), name='course_list'),
   path('create/', views.CourseCreateView.as_view(),
         name='course_create'),
   path('<int:pk>/edit', views.CourseUpdateView.as_view(),

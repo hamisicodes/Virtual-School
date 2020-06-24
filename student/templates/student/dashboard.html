@@ -32,7 +32,7 @@
         <a href="#" class="closebtn" onclick="closeNav()"></a>
         <a href="#" style="color: lightcoral; margin-top: -60px;margin-bottom: 35px;margin-right: 20px;"> <span
                 style="color: red; font-size: 30px; font-family: 'Vast Shadow'; "> </span> </a>
-        <a href="#" style="color: black;margin-right: 20px;"> <i class="fas fa-user-circle" style="color: white;"> </i>
+        <a href="{%url 'student_profile'%}" style="color: black;margin-right: 20px;"> <i class="fas fa-user-circle" style="color: white;"> </i>
             <br>
             <span style="font-size: 16px;">Profile</span><br> </a>
         <a href="{% url 'dashboard' %}" style="color: black;margin-right: 20px; "> <i class="fas fa-graduation-cap"
@@ -42,11 +42,13 @@
             <span style="font-size: 16px;">Assignments</span><br> </a>
         <a href="{% url 'my_courses' %}" style="color: black;margin-right: 20px;"> <i class="fa fa-tasks" style="color: white;"> </i> <br>
             <span style="font-size: 16px;">My courses</span><br> </a>
-
+       {%if request.user.is_authenticated and request.user.is_staff%}
         <!-- Just for now -->
+        <a href="{% url 'login-educator' %}" style="color: black;margin-right: 20px;"> <i class="fas fa-chalkboard-teacher"></i> <br>
+         <span style="font-size: 16px;">Educator</span><br> </a>
+        {%endif%}
         <a href="{% url 'logout' %}" style="color: black;margin-right: 20px;"> <i class="fa fa-sign-out"></i> <br>
-            <span style="font-size: 16px;">Log Out</span><br> </a>
-        
+                <span style="font-size: 16px;">Log Out</span><br> </a>
 
 
 
@@ -73,7 +75,7 @@
             <div class="col-md-6">
                 {% block content %}
                 <div class="img-sect">
-                    <img src="{% static 'photos/student.png'%}" alt="">
+                    <img src="{% static 'photos/student.png'%}" height="100%" width='100%'alt="">
                 </div>
                 {% endblock %}
             </div>

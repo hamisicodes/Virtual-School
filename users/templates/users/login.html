@@ -9,21 +9,15 @@ integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw
             <form method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
                 <fieldset class="form-group">
-                    <legend class="border-bottom mb-4">Log In</legend>
+                    <legend class="border-bottom mb-4">Enter your credentials</legend>
                     {{ form|crispy }}
                 </fieldset>
                 <div class="form-group">
-                    <button class="btn btn-outline-info" type="submit">Login</button>
-                    <small class="text-muted ml-2">
-                        <a href="{% url 'password_reset' %}">Forgot Password?</a>
-                    </small>
+                    <button class="btn btn-outline-info" type="submit">Access</button>
+                    
                 </div>
             </form>
-            <div class="border-top pt-3">
-                <small class="text-muted">
-                    Need An Account? <a class="ml-2" href="{% url 'register' %}">Sign Up Now</a>
-                </small>
-            </div>
+            
         </div>
         
      
