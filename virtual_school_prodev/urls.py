@@ -24,6 +24,7 @@ urlpatterns = [
     path('student/',include('student.urls')),
     path('content_management_system/',include('content_management_system.urls')),
     path('', landing_page , name='landing_page'),
+    path('social-auth/',include('social_django.urls', namespace='social')),
     
 ]
 

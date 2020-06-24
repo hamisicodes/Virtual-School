@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
-
+from decouple import config
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -25,7 +25,7 @@ SECRET_KEY = '978p81-zj15c-8c4if9orco7#v2uz2ch8rhcu_kni24@0@$7-q'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['mysite.com', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -40,8 +40,9 @@ INSTALLED_APPS = [
     'users',
     'student',
     'crispy_forms',
-    'content_management_system'
-    
+    'content_management_system',
+    'social_django',
+    'django_extensions',
 ]
 
 MIDDLEWARE = [
@@ -137,18 +138,19 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'static/media')
 
 
 
-# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
-# EMAIL_USE_TLS = config('EMAIL_USE_TLS')
-# EMAIL_HOST = config('EMAIL_HOST')
-# EMAIL_PORT = config('EMAIL_PORT')
-# EMAIL_HOST_USER = config('EMAIL_HOST_USER')
-# EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+EMAIL_USE_TLS = config('EMAIL_USE_TLS')
+EMAIL_HOST = config('EMAIL_HOST')
+EMAIL_PORT = config('EMAIL_PORT')
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
-LOGIN_URL = 'login'
-LOGIN_REDIRECT_URL = 'dashboard'
+LOGIN_URL = 'login-educator'
+LOGIN_REDIRECT_URL = 'course_list'
+
 LOGOUT_URL = 'logout'
 LOGOUT_REDIRECT_URL = 'landing_page'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'

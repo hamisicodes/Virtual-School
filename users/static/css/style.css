@@ -11,7 +11,12 @@
 
 }
 
-
+.content-section{
+ justify-content: center;
+ margin-left:30% ;
+ margin-top:20% ;
+ width:80% ;
+}
 .form-text, .asteriskField{
     display:none;
 }
