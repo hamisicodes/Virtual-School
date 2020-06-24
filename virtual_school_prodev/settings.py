@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'student',
     'crispy_forms',
     'content_management_system',
+    'embed_video'
     # 'social_django',
     # 'django_extensions',
 ]
