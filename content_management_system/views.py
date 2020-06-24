@@ -36,8 +36,7 @@ def is_users(subject_username, logged_user):
 #     return course_user == logged_user
 
 def home(request):
-    subjects = Subjects.objects.all()
-    return render(request, 'home.html', {'subjects' : subjects})
+    return render(request, 'index.html')
 
 class OwnerMixin(object):
     def get_queryset(self):
