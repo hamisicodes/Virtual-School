@@ -1,6 +1,4 @@
-#!/bin/sh
-'''exec' "/home/hudson/Desktop/mc26/virtual school/virtual/bin/python" "$0" "$@"
-' '''
+#!/home/hudson/Desktop/Virtual-School/virtual/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys
