@@ -17,7 +17,7 @@ class ModuleForm(forms.ModelForm):
         model = Module
         exclude = ()
 
-ModuleFormSet = inlineformset_factory(Course, Module, form=ModuleForm, fields=['title', 'description',], extra=0, can_delete=True)
+ModuleFormSet = inlineformset_factory(Course, Module, form=ModuleForm, fields=['title', 'description',], extra=1, can_delete=True)
 
 
 
