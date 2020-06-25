@@ -1,0 +1,109 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Dancing+Script&display=swap" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Vast+Shadow&display=swap" rel="stylesheet">
+    <!-- MDBBOOTSTRAP -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.0/css/mdb.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/dashboardd.css' %}">
+</head>
+
+<body>
+    <div id="mySidebar" class="sidebar" style="text-align: center;">
+        <a href="#" class="closebtn" onclick="closeNav()"></a>
+        <a href="#" style="color: lightcoral; margin-top: -60px;margin-bottom: 35px;margin-right: 20px;"> <span
+                style="color: red; font-size: 30px; font-family: 'Vast Shadow'; "> </span> </a>
+        <a href="#" style="color: black;margin-right: 20px;"> <i class="fas fa-user-circle" style="color: white;"> </i>
+            <br>
+            <span style="font-size: 16px;">Profile</span><br> </a>
+        <a href="{% url 'dashboard' %}" style="color: black;margin-right: 20px; "> <i class="fas fa-graduation-cap"
+                style="color: purple"></i>
+            <br><span style="font-size: 16px;">Subjects</span> </a>
+        <a href="#" style="color: black;margin-right: 20px;"> <i class="fas fa-book" style="color: white;"> </i> <br>
+            <span style="font-size: 16px;">Assignments</span><br> </a>
+        <a href="{% url 'my_courses' %}" style="color: black;margin-right: 20px;"> <i class="fa fa-tasks" style="color: white;"> </i> <br>
+            <span style="font-size: 16px;">My courses</span><br> </a>
+
+        <a href="{% url 'logout' %}" style="color: black;margin-right: 20px;"> <i class="fa fa-sign-out"></i> <br>
+                <span style="font-size: 16px;">Log Out</span><br> </a>
+
+
+
+    </div>
+
+    <div id="main">
+        <button class="openbtn" onclick="openNav()" style="background-color: transparent;color: #111; ">☰ DashBoard
+        </button>
+
+    </div>
+
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-6">
+                <div class="subjects">
+                    {% for subject in subjects %}
+                    <a href="{% url 'subject_courses' subject.id %}"><button type="button" id="sub_{{subject.id}}"
+                            class="btn btn-rounded">{{subject.title}}</button> </a>
+
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="col-md-6">
+                {% block content %}
+                <p>{{subject.title}} courses</p>
+                {% for course in subject_courses %}
+                <img src="{% static 'photos/course.jpg' %}" alt="" height="180" width="180">
+
+                <div class="course-details">
+                    <p class="name">{{course.course_name}}</p>
+                    <p class="modules">{{modules}}</p>
+                    <p class="reviews">0 reviews</p>
+                    <a href="{% url 'module_list' course.id %}">Modules</a>
+                </div>
+
+                {% endfor %}
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+
+
+    <script src="{% static 'js/dashboardd.js' %}"></script>
+    <!-- JQuery -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
+
+</body>
+
+</html>
+
+
+
+
+

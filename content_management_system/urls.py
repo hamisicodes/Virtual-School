@@ -14,6 +14,7 @@ urlpatterns=[
   path('subject/<int:pk>/delete',SubjectDelete.as_view(), name = 'subjects-list'),
   path('subject/<int:pk>/', SubjectDetail.as_view(), name = 'subject-detail'),
   path('search/', views.search_results, name='search_results'),
+  path('jimbo/', views.CourseListView.as_view(), name='course_list'),
   path('', views.CourseListView.as_view(), name='course_list'),
   path('create/', views.CourseCreateView.as_view(),name='course_create'),
   path('<int:pk>/edit', views.CourseUpdateView.as_view(),name='course_edit'),

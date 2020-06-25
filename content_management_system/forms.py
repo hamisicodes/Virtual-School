@@ -9,6 +9,7 @@ class CourseForm(forms.ModelForm):
     class Meta:
         model = Course
         fields = ['course_name','slug','overview']
+
 class ModuleForm(forms.ModelForm):
     title = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control', 'cols': 20, 'rows': 5}))
     description = forms.CharField(widget=forms.Textarea(attrs={'class':'form-control', 'cols': 40, 'rows': 8}))

@@ -42,11 +42,11 @@ integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw
                             src="{{ comment.username.profile.profile_image.url }}">
 
                         <p style="font-size: 10px;">{{ course.course_name }} , {{ course.created | date:"M d,Y " }}
-                            <br> <span> {{ course.slug }} </span></p><br>
+                            <!-- <br> <span> {{ course.slug }} </span></p><br> -->
 
                         <p>{{course.overview}}</p>
-                      <a href="{% url 'course-delete' course.id%}">  <button class="btn btn-outline-danger btn-sm">Delete</button> </a> 
-                      <a href="{% url 'course-update' course.id%}">  <button class="btn btn-outline-primary btn-sm">Update</button> </a> 
+                      <a href="{% url 'course_delete' course.id%}">  <button class="btn btn-outline-danger btn-sm">Delete</button> </a> 
+                      <a href="{% url 'course_edit' course.id%}">  <button class="btn btn-outline-primary btn-sm">Update</button> </a> 
                     </div>
                 </div>
                 <div class="mb-2" style="width: 100%; height: 1px; background-color: rgba(255, 255, 255, 0.1)"></div>
@@ -60,7 +60,7 @@ integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw
         </article>
         {% endfor %}
     </div>
-    {% if user is not None %}
+    <!-- {% if user is not None %}
     <div class="col-12 col-md-6 pl-0 pl-md-3 pr-3">
         <h3 class="white-important mb-3">
 
@@ -79,7 +79,7 @@ integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw
             </div>
         </div>
     </div>
-    {% endif %}
+    {% endif %} -->
     </div>
     </div>
     

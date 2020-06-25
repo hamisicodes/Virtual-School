@@ -1,228 +1,101 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
-
-    <style>
-        body{
-            color: fafafa;
-            margin: 0;
-            padding: 0;
-        }
-        .coursesection-title{
-            margin-top: 10%;
-
-        }
-        .course-details{
-            padding: 0;
-            margin: 0;
-            line-height: 1;
-        }
-        .course-details .name{
-            font-size: 16px;
-            font-weight: bold;
-
-        }
-        .course-details .modules{
-            font-size: 14px;
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Dancing+Script&display=swap" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Vast+Shadow&display=swap" rel="stylesheet">
     
-        }
-        .course-details .reviews{
-            font-size: 14px;
-            font-style: italic;
-            width: 50%;
-            background-color: darkgray;
+    <!-- MDBBOOTSTRAP -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.0/css/mdb.min.css" rel="stylesheet">
     
-        }
-
-        .subjects{
-            line-height: 1;
-            position: relative;
-        }
-
-        .subjects .subjects-container{
-            position: absolute;
-            right: 5%;
-        }
-
-        .subjects .subjects-container .all-subjects{
-            padding: 25px;
-            font-size: 18px;
-            box-sizing: content-box;
-
-        }
-
-
-       .all-subjects .dot{
-            height: 70px;
-            width: 70px;
-            border-radius: 50%;
-            margin-right: 50px;
-            color:gray;
-            border : 1px solid gray;
-
-        }
-
-
-
-
-
-
-
-    </style>
-
-
+    <link rel="stylesheet" href="{% static 'css/dashboardd.css' %}">
 </head>
+
 <body>
-    <div class="subjects">
-        <div class="subjects-container">
-            <p style="font-size: 18px; font-weight: bold;">SUBJECTS</p>
-            <div class="all-subjects">
-                <p>All</p> 
-                <p>Science</p>
-                <p>Engineering</p>
-                <p>Technology</p>
-                <p>Arts</p>
-                <p>Mathematics</p>
-                <p>Agriculture</p>
-            </div>
+    <div id="mySidebar" class="sidebar" style="text-align: center;">
+        <a href="#" class="closebtn" onclick="closeNav()"></a>
+        <a href="#" style="color: lightcoral; margin-top: -60px;margin-bottom: 35px;margin-right: 20px;"> <span
+                style="color: red; font-size: 30px; font-family: 'Vast Shadow'; "> </span> </a>
+        <a href="{%url 'student_profile'%}" style="color: black;margin-right: 20px;"> <i class="fas fa-user-circle" style="color: white;"> </i>
+            <br>
+            <span style="font-size: 16px;">Profile</span><br> </a>
+        <a href="{% url 'dashboard' %}" style="color: black;margin-right: 20px; "> <i class="fas fa-graduation-cap"
+                style="color: purple"></i>
+            <br><span style="font-size: 16px;">Subjects</span> </a>
+        <a href="#" style="color: black;margin-right: 20px;"> <i class="fas fa-book" style="color: white;"> </i> <br>
+            <span style="font-size: 16px;">Assignments</span><br> </a>
+        <a href="{% url 'my_courses' %}" style="color: black;margin-right: 20px;"> <i class="fa fa-tasks" style="color: white;"> </i> <br>
+            <span style="font-size: 16px;">My courses</span><br> </a>
+       {%if request.user.is_authenticated and request.user.is_staff%}
+        <!-- Just for now -->
+        <a href="{% url 'login-educator' %}" style="color: black;margin-right: 20px;"> <i class="fas fa-chalkboard-teacher"></i> <br>
+         <span style="font-size: 16px;">Educator</span><br> </a>
+        {%endif%}
+        <a href="{% url 'logout' %}" style="color: white;margin-right: 20px;"> <i class='fas fa-sign-out-alt'></i> <br>
+            <span style="font-size: 16px; color: black;">Log Out</span><br> </a>
 
 
-        </div>
+
+    </div>
+
+    <div id="main">
+        <button class="openbtn" onclick="openNav()" style="background-color: transparent;color: #111; ">☰ DashBoard
+        </button>
+
     </div>
 
     <div class="container">
-        <h3 class="coursesection-title">ALL COURSES</h3>
         <div class="row">
-            <div class="col-md-2">
-                <img src="{% static 'photos/course.jpg' %}" alt="" height="180" width="180">
 
-                <div class="course-details">
-                    <p class="name">coursename</p>
-                    <p class="modules">0 modules</p>
-                    <p class="reviews">0 reviews</p>
-                </div>
-    
-            </div>
-        
-            <div class="col-md-2">
-                <img src="{% static 'photos/course.jpg' %}" alt="" height="180" width="180">
-                <div class="course-details">
-                    <p class="name">coursename</p>
-                    <p class="modules">0 modules</p>
-                    <p class="reviews">0 reviews</p>
-                </div>
-    
-            </div>
-            <div class="col-md-2">
-                <img src="{% static 'photos/course.jpg' %}" alt="" height="180" width="180">
-                <div class="course-details">
-                    <p class="name">coursename</p>
-                    <p class="modules">0 modules</p>
-                    <p class="reviews">0 reviews</p>
+            <div class="col-md-6">
+                <div class="subjects">
+                    {% for subject in subjects %}
+                    <a href="{% url 'subject_courses' subject.id %}"><button type="button" id="sub_{{subject.id}}"
+                            class="btn btn-rounded">{{subject.title}}</button> </a>
+
+                    {% endfor %}
                 </div>
             </div>
-            <div class="col-md-2">
-                <img src="{% static 'photos/course.jpg' %}" alt="" height="180" width="180">
-                <div class="course-details">
-                    <p class="name">coursename</p>
-                    <p class="modules">0 modules</p>
-                    <p class="reviews">0 reviews</p>
+            <div class="col-md-6">
+                {% block content %}
+                <div class="img-sect">
+                    <img src="{% static 'photos/student.png'%}" height="100%" width='100%'alt="">
                 </div>
-    
+                {% endblock %}
             </div>
         </div>
-
-        <div class="row">
-            <div class="col-md-2">
-                <img src="{% static 'photos/course.jpg' %}" alt="" height="180" width="180">
-
-                <div class="course-details">
-                    <p class="name">coursename</p>
-                    <p class="modules">0 modules</p>
-                    <p class="reviews">0 reviews</p>
-                </div>
-    
-            </div>
-        
-            <div class="col-md-2">
-                <img src="{% static 'photos/course.jpg' %}" alt="" height="180" width="180">
-                <div class="course-details">
-                    <p class="name">coursename</p>
-                    <p class="modules">0 modules</p>
-                    <p class="reviews">0 reviews</p>
-                </div>
-    
-            </div>
-            <div class="col-md-2">
-                <img src="{% static 'photos/course.jpg' %}" alt="" height="180" width="180">
-                <div class="course-details">
-                    <p class="name">coursename</p>
-                    <p class="modules">0 modules</p>
-                    <p class="reviews">0 reviews</p>
-                </div>
-            </div>
-            <div class="col-md-2">
-                <img src="{% static 'photos/course.jpg' %}" alt="" height="180" width="180">
-                <div class="course-details">
-                    <p class="name">coursename</p>
-                    <p class="modules">0 modules</p>
-                    <p class="reviews">0 reviews</p>
-                </div>
-    
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-2">
-                <img src="{% static 'photos/course.jpg' %}" alt="" height="180" width="180">
-
-                <div class="course-details">
-                    <p class="name">coursename</p>
-                    <p class="modules">0 modules</p>
-                    <p class="reviews">0 reviews</p>
-                </div>
-    
-            </div>
-        
-            <div class="col-md-2">
-                <img src="{% static 'photos/course.jpg' %}" alt="" height="180" width="180">
-                <div class="course-details">
-                    <p class="name">coursename</p>
-                    <p class="modules">0 modules</p>
-                    <p class="reviews">0 reviews</p>
-                </div>
-    
-            </div>
-            <div class="col-md-2">
-                <img src="{% static 'photos/course.jpg' %}" alt="" height="180" width="180">
-                <div class="course-details">
-                    <p class="name">coursename</p>
-                    <p class="modules">0 modules</p>
-                    <p class="reviews">0 reviews</p>
-                </div>
-            </div>
-            <div class="col-md-2">
-                <img src="{% static 'photos/course.jpg' %}" alt="" height="180" width="180">
-                <div class="course-details">
-                    <p class="name">coursename</p>
-                    <p class="modules">0 modules</p>
-                    <p class="reviews">0 reviews</p>
-                </div>
-    
-            </div>
-        </div>
-
-        
-
     </div>
-    
+
+
+    <script src="{% static 'js/dashboardd.js' %}"></script>
+    <!-- JQuery -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
 
 </body>
+
 </html>

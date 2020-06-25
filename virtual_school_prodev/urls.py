@@ -17,11 +17,14 @@ from django.contrib import admin
 from django.urls import path,include
 from django.conf import settings
 from django.conf.urls.static import static
+from content_management_system.views import home
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('users/',include('users.urls')),
     path('student/',include('student.urls')),
     path('content_management_system/',include('content_management_system.urls')),
+    path('',home,name='index'),
+    
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
