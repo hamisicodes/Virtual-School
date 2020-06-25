@@ -56,9 +56,10 @@
 
     <div class="container">
         <h3 class="coursesection-title"></h3>
+        {% for module in modules %}
         <div class="row">
-            {% for module in modules %}
-            <div class="col-md-2">
+            
+            <div class="col">
                 <img src="{% static 'photos/modules.svg' %}" alt="" height="180" width="180">
 
                 <div class="course-details">
@@ -68,16 +69,20 @@
                 <div class="module">
                     {% for content in module.contents.all %}
                     {% with item=content.item %}
-                    <!-- <h2>{{ item.title }}</h2> -->
-                    {{ item.render }}
+                    <h2>{{ item.title }}</h2>
+                   
+                        {{ item.render }}
+                    
+                    
                     {% endwith %}
                     {% endfor %}
                     </div>
     
             </div>
-            {% endfor %}
+            
 
         </div>
+        {% endfor %}
     </div>
 
 

@@ -9,11 +9,18 @@ integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw
 <link rel="stylesheet" href="{%static 'css/dashboard.css'%}">
 <div  class="sidebar"  style="text-align: center;" >
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"></a> 
- <a href="http://"  style="color: red; margin-top: -40px;margin-bottom: 35px;" >  <span style="color: red; font-size: 30px; font-family: 'Vast Shadow'; ">VS </span>  </a> 
-  <a href="#" style="color: black;" >  <i class="fas fa-user-circle" style="color: purple;margin-left: 10px;"> </i> <br>  <span style="font-size: 16px;">Profile</span><br> </a>
-  <a href="{% url 'subjects-list' %}" style="color: black; "  > <i class="fas fa-graduation-cap" style="color: white"></i> <br><span style="font-size: 16px;">Subjects</span>  </a>
-  <a href="#" style="color: black;" >  <i class="fas fa-book" style="color: white;"> </i> <br>  <span style="font-size: 16px;">Assignments</span><br> </a>
-  <a href="{% url 'create-subject' %}" style="color: black;" >  <i class="fas fa-upload" style="color: white;"> </i> <br>  <span style="font-size: 16px;">Upload Subject</span><br> </a>
+ 
+ <a href="{% url 'dashboard' %}" style="color: black;margin-right: 20px; "> <i class="fas fa-graduation-cap"
+    style="color: purple"></i>
+  <br><span style="font-size: 16px;">Subjects</span> </a>
+<a href="#" style="color: black;margin-right: 20px;"> <i class="fas fa-book" style="color: white;"> </i> <br> <span
+    style="font-size: 16px;">Assignments</span><br> </a>
+<a href="{% url 'my_courses' %}" style="color: black;margin-right: 20px;"> <i class="fa fa-tasks" style="color: white;"> </i> <br> <span
+    style="font-size: 16px;">My courses</span><br> </a>
+<a href="{% url 'logout' %}" style="color: white;margin-right: 20px;"> <i class='fas fa-sign-out-alt'></i> <br>
+  <span style="font-size: 16px; color: black;">Log Out</span><br> </a>
+
+ 
 
    
   
