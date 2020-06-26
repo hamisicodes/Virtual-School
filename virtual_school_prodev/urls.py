@@ -15,16 +15,25 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
+from django.contrib.auth import views as auth_views
+
 from django.conf import settings
 from django.conf.urls.static import static
 from content_management_system.views import home
+from content_management_system.views import CourseListView
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('users/',include('users.urls')),
     path('student/',include('student.urls')),
     path('content_management_system/',include('content_management_system.urls')),
     path('',home,name='index'),
+
+## api
+    path('api/', include('content_management_system.api.urls', namespace='api')),
     
 ]
 
-urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL,
+                          document_root=settings.MEDIA_ROOT)

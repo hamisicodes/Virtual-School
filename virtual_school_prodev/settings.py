@@ -41,9 +41,13 @@ INSTALLED_APPS = [
     'student',
     'crispy_forms',
     'content_management_system',
-    'embed_video'
+    'embed_video',
+    'rest_framework',
+
+
     # 'social_django',
     # 'django_extensions',
+
 ]
 
 MIDDLEWARE = [
@@ -80,17 +84,25 @@ WSGI_APPLICATION = 'virtual_school_prodev.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#       'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': os.environ.get('DB_NAME'),
+#         'USER': os.environ.get('DB_USER'),
+#         'PASSWORD': os.environ.get('DB_PASSWORD'),
+#         'HOST': os.environ.get('DB_HOST'),
+#     }
+# }
+
+
 DATABASES = {
     'default': {
-      'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': os.environ.get('DB_NAME'),
-        'USER': os.environ.get('DB_USER'),
-        'PASSWORD': os.environ.get('DB_PASSWORD'),
-        'HOST': os.environ.get('DB_HOST'),
-        # 'PORT': os.environ.get('DB_PORT'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'virtualschool01',
+        'USER': 'moringa',
+    'PASSWORD':'Access',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -125,6 +137,7 @@ USE_L10N = True
 USE_TZ = True
 
 
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
@@ -155,3 +168,12 @@ LOGIN_REDIRECT_URL = 'course_list'
 LOGOUT_URL = 'logout'
 LOGOUT_REDIRECT_URL = 'index'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+
+REST_FRAMEWORK = {
+'DEFAULT_PERMISSION_CLASSES': [
+# 'rest_framework.authentication.TokenAuthentication',
+'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+
+]
+}
