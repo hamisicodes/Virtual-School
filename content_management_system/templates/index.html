@@ -3,9 +3,10 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title> &mdash;</title>
+    <title>VirtualSchool</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
     
     
     <link href="https://fonts.googleapis.com/css?family=Muli:300,400,700,900" rel="stylesheet">
@@ -88,19 +89,21 @@
                 </div>
 
                 <div class="col-lg-5 ml-auto" data-aos="fade-up" data-aos-delay="500">
-                  <form action="" method="post" class="form-box">
+                
+                  <form action="POST" method="" class="form-box">
+                    {% csrf_token %}
                     <h3 class="h4 text-black mb-4">Sign Up</h3>
                     <div class="form-group">
-                      <input type="text" class="form-control" placeholder="Username">
+                     {{form.username}}
                     </div>
                     <div class="form-group">
-                      <input type="text" class="form-control" placeholder="Email Addresss">
+                      {{form.email}}
                     </div>
                     <div class="form-group">
-                      <input type="password" class="form-control" placeholder="Password">
+                      {{form.password1}}
                     </div>
                     <div class="form-group mb-4">
-                      <input type="password" class="form-control" placeholder="Re-type Password">
+                      {{form.password1}}
                     </div>
                     <div class="form-group">
                       <input type="submit" class="btn btn-primary btn-pill" value="Sign up">

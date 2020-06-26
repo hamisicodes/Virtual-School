@@ -23,9 +23,20 @@ from .forms import ModuleFormSet, CourseCreateForm
 from django.forms.models import modelform_factory
 from django import forms
 from braces.views import LoginRequiredMixin, PermissionRequiredMixin,CsrfExemptMixin, JsonRequestResponseMixin
+from student.forms import StudentRegistrationForm
 
 
-
+def student_register(request):
+    if request.method == 'POST':
+        form = StudentRegistrationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            messages.success(request, f'Student Account created for {username}')
+            return redirect('login')
+    else:
+        form = StudentRegistrationForm()
+    return render(request, 'index.html',{'form':form})
 
 
 def is_users(subject_username, logged_user):
