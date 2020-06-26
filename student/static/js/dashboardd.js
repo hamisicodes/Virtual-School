@@ -1,3 +1,19 @@
+$(document).ready(function(){
+   
+   $("#buttons").click(function(){
+   $("#viewmodule").slideToggle(900)
+   $("#buttons").slideToggle(900)
+   
+})
+    $("#buttonss").click(function(){
+    $("#viewmodule").slideToggle(900)
+    $("#buttons").slideToggle(900)
+    
+ })
+
+ })
+ console.log('working')
+
 const sub1 = document.getElementById('sub_1')
 sub1.className += " btn-primary";
 const sub2 = document.getElementById('sub_2')

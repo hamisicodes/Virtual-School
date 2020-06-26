@@ -54,39 +54,46 @@
 
     </div>
 
-    <div class="container">
+    <div class="container" >
         <h3 class="coursesection-title"></h3>
         {% for module in modules %}
-        <div class="row">
+        
+       <div style="margin-left: 150px; margin-top: -50px;" >
+        <h2 class="name" >MODULE: <span style="color: purple;"> {{module.title}}</span></h2>
+        <p class="modules">{{module.description}}</p>
+        <button class="btn btn-sm" id = "buttons" style="color: white;background-color: purple; ">View More</button>
+    </div>
+        <div class="row"  id = "viewmodule" style="margin-left: 180px;margin-top: -40px; ">
             
             <div class="col">
-                <img src="{% static 'photos/modules.svg' %}" alt="" height="180" width="180">
+                <img src="{% static 'photos/modules.svg' %}" alt="" height="300" width="300">
 
                 <div class="course-details">
-                    <p class="name">MODULE: {{module.title}}</p>
-                    <p class="modules">{{module.description}}</p>
+                    
                 </div>
                 <div class="module">
+                 
                     {% for content in module.contents.all %}
-                    {% with item=content.item %}
-                    <h2>{{ item.title }}</h2>
-                   
-                        {{ item.render }}
+                   <p> {% with item=content.item %}</p> 
+                    
+                  
+                       <p> {{ item.render }}</p> 
                     
                     
                     {% endwith %}
                     {% endfor %}
                     </div>
-    
+            
             </div>
             
-
+            <button class="btn btn-sm" id = "buttonss" style="color: white;background-color: purple; ">View less</button>
         </div>
         {% endfor %}
+        <hr>
     </div>
+   
 
-
-    <script src="{% static 'js/dashboardd.js' %}"></script>
+    
     <!-- JQuery -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- Bootstrap tooltips -->
@@ -98,7 +105,7 @@
     <!-- MDB core JavaScript -->
     <script type="text/javascript"
         src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
-
+        <script src="{% static 'js/dashboardd.js' %}"></script>
 </body>
 
 </html>

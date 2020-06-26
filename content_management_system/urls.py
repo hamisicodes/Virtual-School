@@ -14,12 +14,7 @@ urlpatterns=[
   path('subject/<int:pk>/delete',SubjectDelete.as_view(), name = 'subjects-list'),
   path('subject/<int:pk>/', SubjectDetail.as_view(), name = 'subject-detail'),
   path('search/', views.search_results, name='search_results'),
-  # path('', views.CourseListView.as_view(), name='course_list'),
-  # path('new/course', CreateCourse.as_view(template_name = 'create_course.html'), name = 'create-course'),
-  # path('', CourseView.as_view(template_name = 'course_view.html'), name = 'courses-list'),
-  # path('course/<int:pk>/update', UpdateCourse.as_view(template_name = 'update_course.html'), name = 'course-update'),
   path('jimbo/', views.CourseListView.as_view(), name='course_list'),
-  
   path('', views.CourseListView.as_view(), name='course_list'),
   path('create/', views.CourseCreateView.as_view(),
         name='course_create'),
