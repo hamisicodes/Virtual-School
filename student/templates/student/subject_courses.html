@@ -83,6 +83,15 @@
                 {% endblock %}
             </div>
         </div>
+        <div class="col-md-6">
+            <div class="subjects">
+                {% for course in subject_courses %}
+                <a href="{% url 'subject_courses' subject.id %}"><button type="button" id="sub_{{subject.id}}"
+                        class="btn btn-rounded">{{course.quiz}}</button> </a>
+
+                {% endfor %}
+            </div>
+        </div>
     </div>
 
 
