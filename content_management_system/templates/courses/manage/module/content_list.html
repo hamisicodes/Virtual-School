@@ -67,12 +67,14 @@
                 {% with item=content.item %}
                 <p>{{ item }} ({{ item|model_name}})</p>
                 {{ item.render }}
+                <br>
                 <a href="{% url 'module_content_update' module.id item|model_name item.id %}" class="btn btn-secondary">{% trans 'Edit' %}</a>
                 <form action="{% url 'module_content_delete' content.id %}" method="post">
-                <input type="submit" class="btn btn-secondary" value="{% trans 'Delete' %}">
+                <input type="submit" class="btn btn-secondary" value="{% trans 'Delete' %}"><br><br>
                 {% csrf_token %}
-            </form>
-            {% endwith %}
+                {% endwith %}
+                </form>
+            
         </div>
         {% empty %}
         <p>{% trans 'This module has no contents yet.' %}</p>

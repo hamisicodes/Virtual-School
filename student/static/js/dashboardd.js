@@ -12,7 +12,6 @@ $(document).ready(function(){
  })
 
  })
- console.log('working')
 
 const sub1 = document.getElementById('sub_1')
 sub1.className += " btn-primary";
@@ -24,6 +23,9 @@ const sub4 = document.getElementById('sub_4')
 sub4.className += " btn-success";
 const sub5 = document.getElementById('sub_5')
 sub4.className += " btn-info";
+ 
+
+
 
 
 

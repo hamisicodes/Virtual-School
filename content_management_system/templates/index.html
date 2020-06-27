@@ -92,7 +92,7 @@
                 
                   <form action="POST" method="" class="form-box">
                     {% csrf_token %}
-                    <h3 class="h4 text-black mb-4">Sign Up</h3>
+                    <a href="{% url 'student_register' %}"></a><h3 class="h4 text-black mb-4">Sign Up</h3>
                     <div class="form-group">
                      {{form.username}}
                     </div>
