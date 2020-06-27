@@ -12,7 +12,7 @@ class SubjectSerializer(serializers.ModelSerializer):
 class ModuleSerializer(serializers.ModelSerializer):
     class Meta:
         model = Module
-        fields = ['order', 'title', 'description']
+        fields = ['order', 'description']
 
 
 class CourseSerializer(serializers.ModelSerializer):
@@ -20,7 +20,7 @@ class CourseSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Course
-        fields = ['id', 'subject', 'title', 'slug', 'overview',
+        fields = ['id', 'subject', 'course_name','slug', 'overview',
                   'created', 'owner', 'modules']
 
 
@@ -36,18 +36,18 @@ class ContentSerializer(serializers.ModelSerializer):
         model = Content
         fields = ['order', 'item']
 
-
+# content_management_system
 class ModuleWithContentsSerializer(serializers.ModelSerializer):
     contents = ContentSerializer(many=True)
 
     class Meta:
         model = Module
-        fields = ['order', 'title', 'description', 'contents']
+        fields = ['order', 'title',  'description', 'contents']
 
 class CourseWithContentsSerializer(serializers.ModelSerializer):
     modules = ModuleWithContentsSerializer(many=True)
 
     class Meta:
         model = Course
-        fields = ['id', 'subject', 'title', 'slug',
+        fields = ['id',  'subject', 'title', 'slug',
                   'overview', 'created', 'owner', 'modules']

@@ -89,6 +89,7 @@ def subject_courses(request, pk):
         'subject':subject,
         'subject_courses':subject_courses
         # 'modules':modules
+    
     }
     return render(request, 'student/subject_courses.html', context)
 
