@@ -14,7 +14,6 @@
                 <div class="mask rgba-white-slight"></div>
             </a>
             </div>
-        
             <!-- Card content -->
             <div class="card-body">
         
@@ -23,13 +22,101 @@
             <!-- Text -->
             <p class="card-text">{{ quiz.description}}</p>
             <!-- Button -->
-            <a href="#" class="btn btn-primary">Take Quiz</a>
+                <!--Modal-->
+                <a href="#" class="btn btn-primary" type="button" data-toggle="modal" data-target="#modalPoll-1">Take Quiz</a>
+      
+            <!-- Modal: modalPoll -->
+            <div class="modal fade right" id="modalPoll-1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true" data-backdrop="false">
+                <div class="modal-dialog modal-full-height modal-right modal-notify modal-info" role="document">
+                    <div class="modal-content">
+                        <!--Header-->
+                        <div class="modal-header">
+                        <p class="heading lead">Quiz Name
+                        </p>
+                
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true" class="white-text">×</span>
+                        </button>
+                        </div>
+                
+                        <!--Body-->
+                        <div class="modal-body">
+                            <div class="text-center">
+                                <i class="far fa-file-alt fa-4x mb-3 animated rotateIn"></i>
+                                <p>
+                                <strong>Any Key points matters</strong>
+                                </p>
+                                <p>Have some ideas how to improve our product?
+                                <strong>Give us your feedback.</strong>
+                                </p>
+                            </div>
+                    
+                            <hr>
+                    
+                            <!-- Radio -->
+                            <p class="text-center">
+                                <strong>Question number 1</strong>
+                            </p>
+                            <div class="form-check mb-4">
+                                <input class="form-check-input" name="group1" type="radio" id="radio-179" value="false" checked>
+                                <label class="form-check-label" for="radio-179">Choice A</label>
+                            </div>
+                    
+                            <div class="form-check mb-4">
+                                <input class="form-check-input" name="group1" type="radio" id="radio-279" value="false">
+                                <label class="form-check-label" for="radio-279">Choice B</label>
+                            </div>
+                    
+                            <div class="form-check mb-4">
+                                <input class="form-check-input" name="group1" type="radio" id="radio-379" value="false">
+                                <label class="form-check-label" for="radio-379">Choice C</label>
+                            </div>
+                            <div class="form-check mb-4">
+                                <input class="form-check-input" name="group1" type="radio" id="radio-479" value="option4">
+                                <label class="form-check-label" for="radio-479">Choice D</label>
+                            </div>
+                            <!--choice A -->
+                            <div class="custom-control custom-radio">
+                                <input type="radio" class="custom-control-input" id="choicea" name="defaultExampleRadios">
+                                <label class="custom-control-label" for="choicea">Choise A</label>
+                            </div>
+                            
+                            <!-- Choice B -->
+                            <div class="custom-control custom-radio">
+                                <input type="radio" class="custom-control-input" id="choiceb" name="defaultExampleRadios" checked>
+                                <label class="custom-control-label" for="choiceb">Choice B</label>
+                            </div>
+                            <!-- Choice C -->
+                            <div class="custom-control custom-radio">
+                                <input type="radio" class="custom-control-input" id="defaultUnchecked" name="defaultExampleRadios">
+                                <label class="custom-control-label" for="defaultUnchecked">Choice C</label>
+                            </div>
+                            
+                            <!-- Choice D -->
+                            <div class="custom-control custom-radio">
+                                <input type="radio" class="custom-control-input" id="defaultChecked" name="defaultExampleRadios" checked>
+                                <label class="custom-control-label" for="defaultChecked">Choice D</label>
+                            </div>
+                            <!-- Radio -->
+                        </div>
+                        <!--Footer-->
+                        <div class="modal-footer justify-content-center">
+                        <a type="button" class="btn btn-primary waves-effect waves-light">Submit
+                            <i class="fa fa-paper-plane ml-1"></i>
+                        </a>
+                        <a type="button" class="btn btn-outline-primary waves-effect" data-dismiss="modal">Cancel</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Modal: modalPoll -->
             </div>
         </div>
         <!-- Card -->
     {% endfor %}
      </div>
-
+     
  </div>
  
   {% endblock %}
