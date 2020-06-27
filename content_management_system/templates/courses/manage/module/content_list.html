@@ -32,21 +32,22 @@
     <button class="openbtn" onclick="openNav()" style="background-color: transparent;color: #111; "></button>
 </div>
     {% with course=module.course %}
-    <div class="contents" style="margin-left: 200px;">
+    <div class="contents" style="margin-left: 30%;">
     <h1>{{ course.course_name }}</h1>
    
-    <div style=" margin-left: 300px; ">
-        <h3 > Available Modules</h3>
+    <div style="margin-left: 50%; ">
+        <h3 >All modules</h3>
         <ul id="modules" >
             {% for m in course.modules.all %}
             <li data-id="{{ m.id }}" {% if m == module %}
             class="selected"{% endif %}>
             <a href="{% url 'module_content_list' m.id %}">
                 <span>
-                    Module <span class="order">{{ m.order|add:1 }}</span>
+                    <!-- Module <span class="order">{{ m.order }}</span> -->
                 </span>
-                <br>
+                
                 {{ m.title }}
+                <br>
             </a> </li>
             {% empty %}
             <li>No modules yet.</li>
@@ -58,19 +59,22 @@
     </div>
    
     <div class="module" style="margin-left: 200px;">
-        <h2>Module {{ module.order|add:1 }}: {{ module.title }}</h2>
+        <h2> {{ module.title }}</h2>
         <h3>Module contents:</h3>
         <div id="module-contents">
             {% for content in module.contents.all %}
             <div data-id="{{ content.id }}">
                 {% with item=content.item %}
                 <p>{{ item }} ({{ item|model_name}})</p>
+                {{ item.render }}
+                <br>
                 <a href="{% url 'module_content_update' module.id item|model_name item.id %}" class="btn btn-secondary">{% trans 'Edit' %}</a>
                 <form action="{% url 'module_content_delete' content.id %}" method="post">
-                <input type="submit" class="btn btn-secondary" value="{% trans 'Delete' %}">
+                <input type="submit" class="btn btn-secondary" value="{% trans 'Delete' %}"><br><br>
                 {% csrf_token %}
-            </form>
-            {% endwith %}
+                {% endwith %}
+                </form>
+            
         </div>
         {% empty %}
         <p>{% trans 'This module has no contents yet.' %}</p>
@@ -88,7 +92,7 @@
     </ul>
     </div>
     {% endwith %}
-    return None
+   
 
 {% endblock %}
 

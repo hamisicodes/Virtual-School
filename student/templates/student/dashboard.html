@@ -17,13 +17,13 @@
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@1,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Vast+Shadow&display=swap" rel="stylesheet">
-    
+
     <!-- MDBBOOTSTRAP -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.0/css/mdb.min.css" rel="stylesheet">
-    
+
     <link rel="stylesheet" href="{% static 'css/dashboardd.css' %}">
 </head>
 
@@ -32,7 +32,8 @@
         <a href="#" class="closebtn" onclick="closeNav()"></a>
         <a href="#" style="color: lightcoral; margin-top: -60px;margin-bottom: 35px;margin-right: 20px;"> <span
                 style="color: red; font-size: 30px; font-family: 'Vast Shadow'; "> </span> </a>
-        <a href="{%url 'student_profile'%}" style="color: black;margin-right: 20px;"> <i class="fas fa-user-circle" style="color: white;"> </i>
+        <a href="{%url 'student_profile'%}" style="color: black;margin-right: 20px;"> <i class="fas fa-user-circle"
+                style="color: white;"> </i>
             <br>
             <span style="font-size: 16px;">Profile</span><br> </a>
         <a href="{% url 'dashboard' %}" style="color: black;margin-right: 20px; "> <i class="fas fa-graduation-cap"
@@ -40,15 +41,17 @@
             <br><span style="font-size: 16px;">Subjects</span> </a>
         <a href="#" style="color: black;margin-right: 20px;"> <i class="fas fa-book" style="color: white;"> </i> <br>
             <span style="font-size: 16px;">Assignments</span><br> </a>
-        <a href="{% url 'my_courses' %}" style="color: black;margin-right: 20px;"> <i class="fa fa-tasks" style="color: white;"> </i> <br>
+        <a href="{% url 'my_courses' %}" style="color: black;margin-right: 20px;"> <i class="fa fa-tasks"
+                style="color: white;"> </i> <br>
             <span style="font-size: 16px;">My courses</span><br> </a>
-       {%if request.user.is_authenticated and request.user.is_staff%}
+        {%if request.user.is_authenticated and request.user.is_staff%}
         <!-- Just for now -->
-        <a href="{% url 'login-educator' %}" style="color: black;margin-right: 20px;"> <i class="fas fa-chalkboard-teacher"></i> <br>
-         <span style="font-size: 16px;">Educator</span><br> </a>
+        <a href="{% url 'login-educator' %}" style="color: black;margin-right: 20px;"> <i
+                class="fas fa-chalkboard-teacher"></i> <br>
+            <span style="font-size: 16px;">Educator</span><br> </a>
         {%endif%}
-        <a href="{% url 'logout' %}" style="color: black;margin-right: 20px;"> <i class="fa fa-sign-out"></i> <br>
-                <span style="font-size: 16px;">Log Out</span><br> </a>
+        <a href="{% url 'logout' %}" style="color: white;margin-right: 20px;"> <i class='fas fa-sign-out-alt'></i> <br>
+            <span style="font-size: 16px; color: black;">Log Out</span><br> </a>
 
 
 
@@ -75,7 +78,7 @@
             <div class="col-md-6">
                 {% block content %}
                 <div class="img-sect">
-                    <img src="{% static 'photos/student.png'%}" height="100%" width='100%'alt="">
+                    <img src="{% static 'photos/student.png'%}" height="100%" width='100%' alt="">
                 </div>
                 {% endblock %}
             </div>
@@ -83,7 +86,7 @@
     </div>
 
 
-    <script src="{% static 'js/dashboardd.js' %}"></script>
+
     <!-- JQuery -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- Bootstrap tooltips -->
@@ -95,6 +98,7 @@
     <!-- MDB core JavaScript -->
     <script type="text/javascript"
         src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
+    <script src="{% static 'js/dashboardd.js' %}"></script>
 
 </body>
 
