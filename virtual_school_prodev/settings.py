@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'content_management_system',
     'embed_video',
     'online_test',
+    'bootstrap4',
     # 'social_django',
     # 'django_extensions',
 ]
