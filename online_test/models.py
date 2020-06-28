@@ -5,18 +5,18 @@ from content_management_system.models import Course
 # Create your models here.
 
 class Quiz(models.Model):
-	name = models.CharField(max_length=100)
-	description = models.CharField(max_length=70)
-	roll_out = models.BooleanField(default=False)
-	timestamp = models.DateTimeField(auto_now_add=True)
-    course = models.ForeignKey(Course,on_delete=models.CASCADE)
+        course = models.ForeignKey(Course,on_delete=models.CASCADE)
+        description = models.CharField(max_length = 70)
+        rol_out= models.BooleanField(default=False)
+        timestamp = models.DateTimeField(auto_now_add=True)
+        name = models.CharField(max_length=100)
+        
+        class Meta:
+            ordering = ['timestamp',]
+            verbose_name_plural = "Quizzes"
 
-	class Meta:
-		ordering = ['timestamp',]
-		verbose_name_plural = "Quizzes"
-
-	def __str__(self):
-		return self.name
+        def __str__(self):
+            return self.name
 
 class Question(models.Model):
 	quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE)
