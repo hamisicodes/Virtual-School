@@ -63,7 +63,7 @@ def studentLogin(request):
 def dashboard(request):
     courses = Course.objects.all()
     subjects = Subject.objects.all()
-    # subject_courses = Course.objects.filter(subject=pk)
+    # subject_courses = Course.objects.filter(subject=subjects)
     context = {
         "courses":courses,
         "subjects":subjects,
