@@ -9,7 +9,7 @@ class Quiz(models.Model):
 	description = models.CharField(max_length=70)
 	roll_out = models.BooleanField(default=False)
 	timestamp = models.DateTimeField(auto_now_add=True)
-    course = models.ForeignKey(Course,on_delete=models.CASCADE)
+	course = models.ForeignKey(Course, on_delete=models.CASCADE)
 
 	class Meta:
 		ordering = ['timestamp',]
