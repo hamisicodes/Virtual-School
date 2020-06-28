@@ -13,8 +13,10 @@ integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw
  <a href="{% url 'dashboard' %}" style="color: black;margin-right: 20px; "> <i class="fas fa-graduation-cap"
     style="color: purple"></i>
   <br><span style="font-size: 16px;">Subjects</span> </a>
-<a href="#" style="color: black;margin-right: 20px;"> <i class="fas fa-book" style="color: white;"> </i> <br> <span
-    style="font-size: 16px;">Assignments</span><br> </a>
+  {% for course in subject_courses %}
+    <a href="{% url 'list_of_quiz' course.id %}" style="color: black;margin-right: 20px;"> <i class="fas fa-book" style="color: white;"> </i> <br>
+        <span style="font-size: 16px;">Assignments</span><br> </a>
+{% endfor %}
 <a href="{% url 'my_courses' %}" style="color: black;margin-right: 20px;"> <i class="fa fa-tasks" style="color: white;"> </i> <br> <span
     style="font-size: 16px;">My courses</span><br> </a>
 <a href="{% url 'logout' %}" style="color: white;margin-right: 20px;"> <i class='fas fa-sign-out-alt'></i> <br>

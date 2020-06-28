@@ -5,6 +5,7 @@ from content_management_system.models import Course
 # Create your models here.
 
 class Quiz(models.Model):
+
         course = models.ForeignKey(Course,on_delete=models.CASCADE)
         description = models.CharField(max_length = 70)
         rol_out= models.BooleanField(default=False)
@@ -17,6 +18,7 @@ class Quiz(models.Model):
 
         def __str__(self):
             return self.name
+
 
 class Question(models.Model):
 	quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE)

@@ -6,6 +6,7 @@ from django.contrib import messages
 from .forms import StudentRegistrationForm, StudentProfileUpdateForm, UserUpdateForm
 from .models import StudentProfile
 from content_management_system.models import Course, Module, Subject
+from online_test.models import Quiz
 
 def landing_page(request):
       return render(request, 'student/landing_page.html')
@@ -62,7 +63,7 @@ def studentLogin(request):
 def dashboard(request):
     courses = Course.objects.all()
     subjects = Subject.objects.all()
-    # subject_courses = Course.objects.filter(subject=pk)
+    # subject_courses = Course.objects.filter(subject=subjects)
     context = {
         "courses":courses,
         "subjects":subjects,
@@ -83,12 +84,15 @@ def subject_courses(request, pk):
     subject = Subject.objects.get(pk = pk)
     subjects = Subject.objects.all()
     subject_courses = Course.objects.filter(subject=subject)
+    course = Course.objects.all()
+    quizs = Quiz.objects.filter(course=course)
     
     context = {
         'subjects':subjects,
         'subject':subject,
-        'subject_courses':subject_courses
+        'subject_courses':subject_courses,
         # 'modules':modules
+        'quizs':quizs
     }
     return render(request, 'student/subject_courses.html', context)
 
