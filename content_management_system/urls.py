@@ -40,4 +40,6 @@ urlpatterns=[
   path('<int:slug>/', views.CourseDetailView.as_view(), name='course_detail'),
   path('module/<int:module_id>/content/<model_name>/create/',views.ContentCreateUpdateView.as_view(),name='module_content_create'),
   path('module/<int:module_id>/content/<model_name>/<int:id>/',views.ContentCreateUpdateView.as_view(), name='module_content_update'),
+
+  
 ]

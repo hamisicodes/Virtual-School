@@ -28,7 +28,6 @@ urlpatterns = [
     path('student/',include('student.urls')),
     path('content_management_system/',include('content_management_system.urls')),
     path('',home,name='index'),
-# content_management_system
 ## api
     path('api/', include('content_management_system.api.urls', namespace='api')),
     

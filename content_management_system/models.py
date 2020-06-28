@@ -19,12 +19,6 @@ from django.utils.text import slugify
 
 
 
-
-
-
-
-
-
 class Subject(models.Model):
 
     title = models.CharField(max_length =160,null = True)
