@@ -31,9 +31,20 @@ def create_quiz(request):
     }
 
     return render(request,'online_test/create_quiz.html',context)
-# def update_quiz(request)
+def update_quiz(request, pk):
+    quiz = Quiz.objects.get(id=pk)
+    form = QuizCreateForm(instance=quiz)
+
+    if request.method == 'POST':
+        form = QuizCreateForm(request.POST)
+        if form.is_valid():
+            form.save() 
+            return redirect('quiz_create') 
+    else:
+        form = QuizCreateForm()
+    return render(request, 'online_test/create_quiz.html', {'form':form,'quiz':quiz})
+
 def create_question(request):
-   
     if request.method == 'POST' and request.POST.get('question'):
         question_label = request.POST.get('question')
         new_question = Question.objects.create(label = question_label, quiz_id = 1)
