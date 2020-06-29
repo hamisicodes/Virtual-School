@@ -44,6 +44,18 @@ def update_quiz(request, pk):
         form = QuizCreateForm()
     return render(request, 'online_test/create_quiz.html', {'form':form,'quiz':quiz})
 
+
+# def delete_post(request, pk):
+#     post = Image.objects.get(id=pk)
+#     current_user = request.user
+
+#     if current_user == post.author and request.method == 'POST':
+#         post.delete()
+#         return redirect('main_page')
+#     context = {
+#         "post":post
+#     }
+#     return render(request, 'instagram/delete_post.html', context)
 def create_question(request):
     if request.method == 'POST' and request.POST.get('question'):
         question_label = request.POST.get('question')
