@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from .models import Quiz
+from content_management_system.models import Course
 from django.forms.models import inlineformset_factory
 
 

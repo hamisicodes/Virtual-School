@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.http  import HttpResponse,HttpResponseRedirect
 from .models import Question,Answer,Quiz
 from content_management_system.models import Course
+from .forms import QuizCreateForm
 
 # Create your views here.
 
@@ -14,6 +15,18 @@ def list_of_quiz(request,pk):
     }
     return render(request, 'online_test/quiz.html', context)
 
+def create_quiz(request):
+    current_user == request.user 
+    form = QuizCreateForm()
+    if request.method == 'POST':
+        form = QuizCreateForm(request.POST)
+        if form.is_valid():
+            quiz = form.save()
+            return reditrect('create_question')
+    else:
+        form = QuizCreateForm()
+
+    return render(request,'new_quiz.html',{"form":form})
 def create_question(request):
    
     if request.method == 'POST' and request.POST.get('question'):
