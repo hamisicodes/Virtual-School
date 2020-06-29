@@ -40,6 +40,7 @@
             <button type="submit" class="btn  btn-info btn-rounded">ADD</button>
         </form>
 
+        {% if all_questions %}
         {% for question in all_questions %}
         <div class="container my-5 py-5 z-depth-1">
             <!-- Question Display -->
@@ -72,6 +73,11 @@
 
         </div>
         {% endfor %}
+        {% else %}
+        <div class="no-questions">
+            You can add Questions for this Quiz
+        </div>
+        {% endif %}
 
     </div>
 </body>

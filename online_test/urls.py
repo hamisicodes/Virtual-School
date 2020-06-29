@@ -10,4 +10,5 @@ urlpatterns = [
     path('create_quiz/', views.create_quiz, name='quiz_create'),
     path('update_quiz/(<int:pk>)/', views.update_quiz, name='quiz_update')
 
+
 ]

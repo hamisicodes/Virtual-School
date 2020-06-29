@@ -37,7 +37,7 @@ class Answer(models.Model):
 		return self.label
 
 class QuizTaker(models.Model):
-	user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+	
 	quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE)
 	score = models.IntegerField(default=0)
 	completed = models.BooleanField(default=False)
@@ -47,8 +47,11 @@ class QuizTaker(models.Model):
 	def __str__(self):
 		return self.user.email
 
+    
+
+
 class UsersAnswer(models.Model):
-	quiz_taker = models.ForeignKey(QuizTaker, on_delete=models.CASCADE)
+	user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 	question = models.ForeignKey(Question, on_delete=models.CASCADE)
 	answer = models.ForeignKey(Answer, on_delete=models.CASCADE, null=True)
 
