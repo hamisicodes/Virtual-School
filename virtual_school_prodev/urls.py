@@ -26,5 +26,5 @@ urlpatterns = [
     path('',home,name='index'),
     path('online_test/',include('online_test.urls')),
 
-
+]
 urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
