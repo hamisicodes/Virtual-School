@@ -16,17 +16,22 @@ def list_of_quiz(request,pk):
     return render(request, 'online_test/quiz.html', context)
 
 def create_quiz(request):
-    current_user == request.user 
+    quizs = Quiz.objects.all()
     form = QuizCreateForm()
     if request.method == 'POST':
         form = QuizCreateForm(request.POST)
         if form.is_valid():
             quiz = form.save()
-            return reditrect('create_question')
+            return redirect('create_question')
     else:
         form = QuizCreateForm()
+    context = {
+        'form':form,
+        'quizs':quizs
+    }
 
-    return render(request,'new_quiz.html',{"form":form})
+    return render(request,'online_test/create_quiz.html',context)
+# def update_quiz(request)
 def create_question(request):
    
     if request.method == 'POST' and request.POST.get('question'):

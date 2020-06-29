@@ -1,10 +1,19 @@
- {% extends 'online_test/base.html' %}
- {% load static %}
- {% load bootstrap4%}
- {% block content %}
+{% extends 'online_test/base.html' %}
+{% load bootstrap4%}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="container">
     <div class="row margin-top mt-5">
+        <div class='col-md-4 margin-top mt-3'>
+            <form class='form'action="{% url 'quiz_create' %}" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form| crispy }}
+                <input type="submit" class ="btn btn-success btn-sm" value="Create">
+            </form>
+        </div>
         {% for quiz in quizs%}
-            <div class="col-md-4 margin-top mt-3">
+            <div class="col-md-4">
                 {% if quizs.count == 0 %}
                     <p>There are no Quiz(s) Available Yet</p>
                 {% else %}
@@ -27,7 +36,10 @@
                         <p class="card-text">{{ quiz.description}}</p>
                         <!-- Button -->
                             <!--Modal-->
-                            <a href="#" class="btn btn-primary" type="button" data-toggle="modal" data-target="#modalPoll-1">Take Quiz</a>
+                            <a href="#" class="btn btn-primary btn-sm" type="button" data-toggle="modal" data-target="#modalPoll-1">Quiz</a>
+                            <a href="#" class="btn btn-primary btn-sm" type="button" data-toggle="modal"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                            </a>
+                            <a href="#" class="btn btn-danger btn-sm" type="button" data-toggle="modal"><i class="fa fa-minus-circle" aria-hidden="true"></i></a>
                 
                         <!-- Modal: modalPoll -->
                         <div class="modal fade right" id="modalPoll-1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -109,6 +121,44 @@
                 {% endif%}
             </div>
         {% endfor %}
+        <div class='col-md-4'>
+
+        </div>
     </div>
- 
-  {% endblock %}
+</div>
+<div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Sign in</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <i class="fas fa-envelope prefix grey-text"></i>
+          <input type="email" id="defaultForm-email" class="form-control validate">
+          <label data-error="wrong" data-success="right" for="defaultForm-email">Your email</label>
+        </div>
+
+        <div class="md-form mb-4">
+          <i class="fas fa-lock prefix grey-text"></i>
+          <input type="password" id="defaultForm-pass" class="form-control validate">
+          <label data-error="wrong" data-success="right" for="defaultForm-pass">Your password</label>
+        </div>
+
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <button class="btn btn-default">Login</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="text-center">
+  <a href="" class="btn btn-default btn-rounded mb-4" data-toggle="modal" data-target="#modalLoginForm">Launch
+    Modal Login Form</a>
+</div>
+{% endblock %}
