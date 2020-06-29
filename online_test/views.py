@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.http  import HttpResponse,HttpResponseRedirect
 from .models import Question,Answer,Quiz
 from content_management_system.models import Course
+from .forms import QuizCreateForm
 
 # Create your views here.
 
@@ -18,8 +19,48 @@ def list_of_quiz(request,pk):
     }
     return render(request, 'online_test/quiz.html', context)
 
+def create_quiz(request):
+    quizs = Quiz.objects.all()
+    form = QuizCreateForm()
+    if request.method == 'POST':
+        form = QuizCreateForm(request.POST)
+        if form.is_valid():
+            quiz = form.save()
+            return redirect('create_question')
+    else:
+        form = QuizCreateForm()
+    context = {
+        'form':form,
+        'quizs':quizs
+    }
+
+    return render(request,'online_test/create_quiz.html',context)
+def update_quiz(request, pk):
+    quiz = Quiz.objects.get(id=pk)
+    form = QuizCreateForm(instance=quiz)
+
+    if request.method == 'POST':
+        form = QuizCreateForm(request.POST)
+        if form.is_valid():
+            form.save() 
+            return redirect('quiz_create') 
+    else:
+        form = QuizCreateForm()
+    return render(request, 'online_test/create_quiz.html', {'form':form,'quiz':quiz})
+
+
+# def delete_post(request, pk):
+#     post = Image.objects.get(id=pk)
+#     current_user = request.user
+
+#     if current_user == post.author and request.method == 'POST':
+#         post.delete()
+#         return redirect('main_page')
+#     context = {
+#         "post":post
+#     }
+#     return render(request, 'instagram/delete_post.html', context)
 def create_question(request):
-   
     if request.method == 'POST' and request.POST.get('question'):
         question_label = request.POST.get('question')
         new_question = Question.objects.create(label = question_label, quiz_id = 1)

@@ -8,7 +8,7 @@ class Quiz(models.Model):
 
         course = models.ForeignKey(Course,on_delete=models.CASCADE)
         description = models.CharField(max_length = 70)
-        rol_out= models.BooleanField(default=False)
+        roll_out= models.BooleanField(default=False)
         timestamp = models.DateTimeField(auto_now_add=True)
         name = models.CharField(max_length=100)
         
