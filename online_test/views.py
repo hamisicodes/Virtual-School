@@ -5,7 +5,26 @@ from content_management_system.models import Course
 from .forms import QuizCreateForm
 
 # Create your views here.
+quiztakers = [
+    {
+        'quiz_taker':'alex',
+        'quiz':'quiz1',
+        'score':'20%',
 
+    },
+    {
+        'quiz_taker':'Ken',
+        'quiz':'quiz5',
+        'score':'27%',
+
+    },
+    {
+        'quiz_taker':'Leen',
+        'quiz':'quiz3',
+        'score':'50%',
+
+    },
+]
 def list_of_quiz(request,pk):
     # course = Course.objects.all(course=pk)
     quizs = Quiz.objects.filter(course=pk)
@@ -49,17 +68,6 @@ def update_quiz(request, pk):
     return render(request, 'online_test/create_quiz.html', {'form':form,'quiz':quiz})
 
 
-# def delete_post(request, pk):
-#     post = Image.objects.get(id=pk)
-#     current_user = request.user
-
-#     if current_user == post.author and request.method == 'POST':
-#         post.delete()
-#         return redirect('main_page')
-#     context = {
-#         "post":post
-#     }
-#     return render(request, 'instagram/delete_post.html', context)
 def create_question(request):
     if request.method == 'POST' and request.POST.get('question'):
         question_label = request.POST.get('question')
@@ -89,6 +97,33 @@ def create_answer(request, pk):
 
     else:
         return redirect('create_question')
+
+
+quiztakers = [
+    {
+        'quiz_taker':'alex',
+        'quiz':'quiz1',
+        'score':'20%',
+
+    },
+    {
+        'quiz_taker':'Ken',
+        'quiz':'quiz5',
+        'score':'27%',
+
+    },
+    {
+        'quiz_taker':'Leen',
+        'quiz':'quiz3',
+        'score':'50%',
+
+    },
+]
+def quiztaker(request):
+    context = {
+        'quiztakers':quiztakers
+    }
+    return render(request, 'online_test/quiz_takers.html', context)
 
 
 

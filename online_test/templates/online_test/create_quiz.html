@@ -12,6 +12,9 @@
                 <input type="submit" class ="btn btn-success btn-sm" value="Create">
             </form>
         </div>
+        <div class='col-md-4'>
+            <a href="{% url 'quiz_takers' %}">Quiz Takers</a>
+        </div>
         {% for quiz in quizs%}
             <div class="col-md-4">
                 {% if quizs.count == 0 %}
