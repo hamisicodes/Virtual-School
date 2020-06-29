@@ -36,7 +36,7 @@
                                 <div class="modal-content">
                                     <!--Header-->
                                     <div class="modal-header">
-                                    <p class="heading lead">Quiz Name
+                                    <p class="heading lead">{{quiz.name}}
                                     </p>
                             
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -49,42 +49,40 @@
                                         <div class="text-center">
                                             <i class="far fa-file-alt fa-4x mb-3 animated rotateIn"></i>
                                             <p>
-                                            <strong>Any Key points matters</strong>
+                                            <strong>Attempt All Questions</strong>
                                             </p>
-                                            <p>Have some ideas how to improve our product?
-                                            <strong>Give us your feedback.</strong>
+                                            <p>The Questions are based on what you have learnt</p>
+                                            
                                             </p>
                                         </div>
                                 
                                         <hr>
                                 
                                         <!-- Radio -->
-                                        <p class="text-center">
-                                            <strong>Question number 1</strong>
-                                        </p>
-                                        <!--choice A -->
-                                        <div class="custom-control custom-radio">
-                                            <input type="radio" class="custom-control-input" id="choicea" name="defaultExampleRadios">
-                                            <label class="custom-control-label" for="choicea">Choise A</label>
-                                        </div>
+                                    
                                         
-                                        <!-- Choice B -->
-                                        <div class="custom-control custom-radio">
-                                            <input type="radio" class="custom-control-input" id="choiceb" name="defaultExampleRadios" checked>
-                                            <label class="custom-control-label" for="choiceb">Choice B</label>
-                                        </div>
-                                        <!-- Choice C -->
-                                        <div class="custom-control custom-radio">
-                                            <input type="radio" class="custom-control-input" id="defaultUnchecked" name="defaultExampleRadios">
-                                            <label class="custom-control-label" for="defaultUnchecked">Choice C</label>
-                                        </div>
+                                        {% for question in questions %}
+                                        {% if quiz == question.quiz %}
+                                            <p class="text-center">
+                                                <strong>{{question.label}}</strong>
+                                            </p>
+                                            <form action="">
+                                            {% for answer in answers %}
+                                            
+                                                {% if question == answer.question %}
+                                                <div><label for="radio1"><input type="radio" name="rad"
+                                                    >{{answer.label}}</label></div>
+
+                                                {% endif %}
+                                                {% endfor %} 
+                                            </form>
+
+
+                                            <br><br>
                                         
-                                        <!-- Choice D -->
-                                        <div class="custom-control custom-radio">
-                                            <input type="radio" class="custom-control-input" id="defaultChecked" name="defaultExampleRadios" checked>
-                                            <label class="custom-control-label" for="defaultChecked">Choice D</label>
-                                        </div>
-                                        <!-- Radio -->
+                                        {% endif %}
+                                        {% endfor %}
+                                        
                                     </div>
                                     <!--Footer-->
                                     <div class="modal-footer justify-content-center">

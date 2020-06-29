@@ -8,9 +8,13 @@ from content_management_system.models import Course
 def list_of_quiz(request,pk):
     # course = Course.objects.all(course=pk)
     quizs = Quiz.objects.filter(course=pk)
+    questions = Question.objects.all()
+    answers = Answer.objects.all()
     # subject_courses = Course.objects.filter(subject=subject)
     context = {
-        "quizs":quizs
+        "quizs":quizs,
+        "answers":answers,
+        "questions":questions,
     }
     return render(request, 'online_test/quiz.html', context)
 
