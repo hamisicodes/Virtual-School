@@ -1,7 +1,7 @@
  
 {% extends "base.html" %}
 {% load static %}
-{% load course %}
+{% load course %}     
 {% load i18n %}
 {% block content %}
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -16,6 +16,10 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Vast+Shadow&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="{%static 'css/dashboard.css'%}">
+<link href="{% static 'css3/base.css' %}" rel="stylesheet">
+<script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script type="text/javascript"  src="{% static 'js/jquery.bootstrap.modal.forms.min.js' %}"></script>
 
 
 
@@ -23,7 +27,9 @@
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"></a>
     <a href="#" style="color: lightcoral; margin-top: -60px;margin-bottom: 35px;margin-right: 20px;"> <span style="color: red; font-size: 30px; font-family: 'Vast Shadow'; ">VS </span> </a>
     <a href="{% url 'profile' %}" style="color: black;margin-right: 20px;"> <i class="fas fa-user-circle" style="color: white;"> </i> <br><span style="font-size: 16px;">Profile</span><br> </a>
+    <br>
     <a href="{% url 'subjects-list' %}" style="color: black;margin-right: 20px; "> <i class="fas fa-graduation-cap" style="color: white"></i><br><span style="font-size: 16px;">Subjects</span> </a>
+    <br>
     <a href="{% url 'create-subject' %}" style="color: black;margin-right: 20px;"> <i class="fas fa-upload"style="color: white;"> </i> <br> <span style="font-size: 16px;">Upload Subject</span><br> </a>
  
     
@@ -32,10 +38,11 @@
     <button class="openbtn" onclick="openNav()" style="background-color: transparent;color: #111; "></button>
 </div>
     {% with course=module.course %}
-    <div class="contents" style="margin-left: 30%;">
-    <h1>{{ course.course_name }}</h1>
+    <h1 style="margin-left: 60px;">{{ course.course_name }}</h1>
+    <div class="contents">
+    <!-- <h1>{{ course.course_name }}</h1> -->
    
-    <div style="margin-left: 50%; ">
+    <!-- <div style="margin-left: 10%; "> -->
         <h3 >All modules</h3>
         <ul id="modules" >
             {% for m in course.modules.all %}
@@ -43,7 +50,7 @@
             class="selected"{% endif %}>
             <a href="{% url 'module_content_list' m.id %}">
                 <span>
-                    <!-- Module <span class="order">{{ m.order }}</span> -->
+                    Module <span class="order">{{ m.order }}</span>
                 </span>
                 
                 {{ m.title }}
@@ -54,11 +61,11 @@
             {% endfor %}
         </ul>
         <p><a href="{% url 'course_module_update' course.id %}"><button type="button" class="btn btn-sm btn-primary">Edit modules</button></a></p>
-        </div>
+        <!-- </div> -->
 
     </div>
    
-    <div class="module" style="margin-left: 200px;">
+    <div class="module" >
         <h2> {{ module.title }}</h2>
         <h3>Module contents:</h3>
         <div id="module-contents">
@@ -67,9 +74,9 @@
                 {% with item=content.item %}
                 <p>{{ item }} ({{ item|model_name}})</p>
                 {{ item.render }}
-                <a href="{% url 'module_content_update' module.id item|model_name item.id %}" class="btn btn-secondary">{% trans 'Edit' %}</a>
+                <a href="{% url 'module_content_update' module.id item|model_name item.id %}" class="btn btn-success">{% trans 'Edit' %}</a>
                 <form action="{% url 'module_content_delete' content.id %}" method="post">
-                <input type="submit" class="btn btn-secondary" value="{% trans 'Delete' %}">
+                <button type="submit" class="btn btn-danger" value="{% trans 'Delete' %}">Delete</button>
                 {% csrf_token %}
             </form>
             {% endwith %}
@@ -80,17 +87,19 @@
 
     </div>
     <hr>
+
+    <!-- <div class="wow" style="margin-left: 0px;" > -->
     <h3>{% trans 'Add new content' %}:</h3>
     <img src="{% trans 'Image' %}" alt="" srcset="">
     <ul class="content-types">
-        <li><a href="{% url 'module_content_create' module.id 'text' %}" class="link">{% trans 'Text' %}</a></li>
-        <li><a href="{% url 'module_content_create' module.id 'image'%}" class="link">{% trans 'Image' %}</a></li>
-        <li><a href="{% url 'module_content_create' module.id 'video' %}" class="link">{% trans 'Video' %}</a></li>
-        <li><a href="{% url 'module_content_create' module.id 'file' %}" class="link">{% trans 'File' %}</a></li>
+        <li><a href="{% url 'module_content_create' module.id 'text'%}" class="link"  ><img src="../../../../../static/images/tiny-18-512.png" style="width: 80px;height: 80px; "></a></li>
+        <li><a href="{% url 'module_content_create' module.id 'image'%}" class="link"  ><img src="../../../../../static/images/media-pict-camera.png" style="width: 80px;height: 80px; "></a></li>
+        <li><a href="{% url 'module_content_create' module.id 'video' %}" class="link" ><img src="../../../../../static/images/unnamed.png" style="width: 80px;height: 80px;" ></a></li>
+        <li><a href="{% url 'module_content_create' module.id 'file' %}" class="link" ><img src="../../../../../static/images/66-661812_upload-file-icon-png-small-file-image-icon.png" style="width: 80px;height: 80px;"></a></li>
     </ul>
     </div>
+
     {% endwith %}
-   
+
 
 {% endblock %}
-

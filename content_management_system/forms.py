@@ -1,8 +1,9 @@
 from django import forms
 from django.contrib.auth.models import User
-from .models import Course,Subject,Content,Module
+from .models import Course,Subject,Content,Module,ItemBase
 from django.forms.models import inlineformset_factory
-
+from bootstrap_modal_forms.forms import BSModalModelForm
+from django.forms.models import modelform_factory
 
 
 class CourseForm(forms.ModelForm):
@@ -30,3 +31,12 @@ class CourseCreateForm(forms.ModelForm):
     class Meta:
         model = Course
         fields = ['subject', 'course_name', 'overview']
+
+class ContentModelForm(BSModalModelForm):
+    title = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}))
+    content = forms.CharField(widget=forms.Textarea(attrs={'class':'form-control', 'cols': 40, 'rows': 8}))
+    url = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}))
+    class Meta:
+        model = ItemBase
+        exclude =['owner', 'order', 'created', 'updated']
+

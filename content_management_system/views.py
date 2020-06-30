@@ -19,11 +19,11 @@ from django.utils.decorators import method_decorator
 from django.core.cache import cache
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.urls import reverse_lazy,reverse
-from .forms import ModuleFormSet, CourseCreateForm
+from .forms import ModuleFormSet, CourseCreateForm,ContentModelForm
 from django.forms.models import modelform_factory
 from django import forms
 from braces.views import LoginRequiredMixin, PermissionRequiredMixin,CsrfExemptMixin, JsonRequestResponseMixin
-
+from bootstrap_modal_forms.generic import BSModalCreateView
 
 
 
@@ -187,6 +187,8 @@ class ContentCreateUpdateView(TemplateResponseMixin, View):
     module = None
     model = None
     obj = None
+    # form_class = ContentModelForm
+    # success_url = reverse_lazy('module_content_list')
     template_name = 'courses/manage/content/form.html'
 
     def get_model(self, model_name):
@@ -308,3 +310,10 @@ class ContentOrderView(CsrfExemptMixin, JsonRequestResponseMixin, View):
             Content.objects.filter(id=id,
                                    module__course__owner=request.user).update(order=order)
         return self.render_json_response({'saved': 'OK'})
+
+
+# class ContentCreateUpdateView(BSModalCreateView):
+#     template_name = 'courses/manage/content/form.html'
+#     form_class = ContentModelForm
+#     success_message = 'Success: Book was created.'
+#     success_url = reverse_lazy('module_content_list')

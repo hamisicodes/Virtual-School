@@ -26,6 +26,8 @@ h1 {
 
 .module {
     overflow:auto;
+    padding:50px 60px;
+    float:right;
 }
 
 .module h3 {
@@ -69,9 +71,9 @@ h1 {
 }
 
 .contents {
-    width:20%;
-    padding:10px;
-    float:left;
+    width:40%;
+    padding:50px;
+    margin-left: 60px;
     background:#333;
     color: #fff;
     font-family:'Roboto', sans-serif;
@@ -114,10 +116,6 @@ h1 {
     color:#4dcc43;
 }
 
-.module {
-    padding:10px 20px;
-    float:left;
-}
 
 ul.content-types li {
     list-style:none;
@@ -211,7 +209,7 @@ ul#course-modules li:hover {
 }
 
 #module-contents div {
-    padding:20px 20px 4px 20px;
+    padding:40px 40px 6px 40px;
     border:1px solid #ccc;
     background:#fff;
     overflow:auto;
@@ -222,7 +220,7 @@ ul#course-modules li:hover {
 }
 
 #module-contents a {
-    float:left;
+    float:right;
 }
 
 #module-contents form {

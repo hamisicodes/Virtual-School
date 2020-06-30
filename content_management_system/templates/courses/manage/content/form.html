@@ -19,14 +19,13 @@
   </div>
    
   {% endif %}
-</h1>
-<div class="users_card">
+</h1><div class="users_card" >
 
-<div class="module">
+<div class="module" >
   <h4 style="padding: 16px; background-color: cornflowerblue; border-radius: 2px; border: 2px solid blueviolet;">ADD CONTENT BELOW</h4>
-  <form action="" method="post" enctype="multipart/form-data">
-    {{ form|crispy }}
+  <form action="" method="post" enctype="multipart/form-data" >
     {% csrf_token %}
+    {{ form|crispy }}
     <p><input type="submit" class="btn btn-outline-primary" value="Save content"></p>
   </form>
 </div>
@@ -63,7 +62,7 @@
         -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
         border-radius: 15px;
-        
+
         /* background: #833ab4; */
         /* background: -webkit-linear-gradient(to top, #7e5f35, #5a9325, #a049da); */
         /* Chrome 10-25, Safari 5.1-6 */
@@ -71,6 +70,7 @@
 
 
     }
+ 
 
 </style>
 {% endblock %}
