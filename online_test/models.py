@@ -5,7 +5,6 @@ from content_management_system.models import Course
 # Create your models here.
 
 class Quiz(models.Model):
-
         course = models.ForeignKey(Course,on_delete=models.CASCADE)
         description = models.CharField(max_length = 70)
         roll_out= models.BooleanField(default=False)
@@ -43,7 +42,7 @@ class QuizTaker(models.Model):
 	completed = models.BooleanField(default=False)
 	date_finished = models.DateTimeField(null=True)
 	timestamp = models.DateTimeField(auto_now_add=True)
-	
+
 	def __str__(self):
 		return self.user.email
 
