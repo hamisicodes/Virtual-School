@@ -1,23 +1,55 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http  import HttpResponse,HttpResponseRedirect
 from .models import Question,Answer,Quiz
 from content_management_system.models import Course
 from .forms import QuizCreateForm
 
 # Create your views here.
+quiztakers = [
+    {
+        'quiz_taker':'alex',
+        'quiz':'quiz1',
+        'score':'20%',
 
+    },
+    {
+        'quiz_taker':'Ken',
+        'quiz':'quiz5',
+        'score':'27%',
+
+    },
+    {
+        'quiz_taker':'Leen',
+        'quiz':'quiz3',
+        'score':'50%',
+
+    },
+]
 def list_of_quiz(request,pk):
-    # course = Course.objects.all(course=pk)
     quizs = Quiz.objects.filter(course=pk)
+    quizes = Quiz.objects.all()
+    quizes = Quiz.objects.all()
     questions = Question.objects.all()
+    print(questions)
     answers = Answer.objects.all()
-    # subject_courses = Course.objects.filter(subject=subject)
     context = {
+        "quizes":quizes,
         "quizs":quizs,
         "answers":answers,
         "questions":questions,
     }
     return render(request, 'online_test/quiz.html', context)
+
+# def take_quiz(request, pk):
+#     questions = Question.objects.filter(quiz=pk)
+#     print(questions)
+#     context = {
+#         # "quizs":quizs,
+#         "answers":answers,
+#         "questions":questions,
+#     }
+#     return render(request, 'online_test/quiz.html', context)
+    
 
 def create_quiz(request):
     quizs = Quiz.objects.all()
@@ -91,6 +123,31 @@ def create_answer(request, pk):
 
     else:
         return redirect('create_question',question.quiz.id)
+quiztakers = [
+    {
+        'quiz_taker':'alex',
+        'quiz':'quiz1',
+        'score':'20%',
+
+    },
+    {
+        'quiz_taker':'Ken',
+        'quiz':'quiz5',
+        'score':'27%',
+
+    },
+    {
+        'quiz_taker':'Leen',
+        'quiz':'quiz3',
+        'score':'50%',
+
+    },
+]
+def quiztaker(request):
+    context = {
+        'quiztakers':quiztakers
+    }
+    return render(request, 'online_test/quiz_takers.html', context)
 
 
 

@@ -1,0 +1,29 @@
+{% extends 'online_test/base.html' %}
+{% load bootstrap4%}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<table class="table table-striped table-responsive-md btn-table">
+
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>QUIZ TAKER</th>
+        <th>QUIZ NAME</th>
+        <th>SCORE</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for quiztaker in quiztakers %}
+      <tr>
+        <th scope="row">{{quiztaker.id}}</th>
+        <td>
+          {{quiztaker.quiz_taker}}
+        </td>
+        <td>{{quiztaker.quiz}}</td>
+        <td>{{quiztaker.score}}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+    </table>
+{% endblock %}

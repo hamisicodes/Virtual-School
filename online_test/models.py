@@ -5,7 +5,6 @@ from content_management_system.models import Course
 # Create your models here.
 
 class Quiz(models.Model):
-
         course = models.ForeignKey(Course,on_delete=models.CASCADE)
         description = models.CharField(max_length = 70)
         timestamp = models.DateTimeField(auto_now_add=True)
@@ -36,7 +35,7 @@ class Answer(models.Model):
 		return self.label
 
 class QuizTaker(models.Model):
-	
+	# quiz_taker = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, default='')
 	quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE)
 	score = models.IntegerField(default=0)
 	completed = models.BooleanField(default=False)
