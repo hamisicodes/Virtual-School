@@ -12,4 +12,4 @@ class QuizCreateForm(forms.ModelForm):
 
     class Meta:
         model = Quiz
-        fields = ['name', 'course','description','roll_out']
+        fields = ['name', 'course','description']

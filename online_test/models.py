@@ -7,7 +7,6 @@ from content_management_system.models import Course
 class Quiz(models.Model):
         course = models.ForeignKey(Course,on_delete=models.CASCADE)
         description = models.CharField(max_length = 70)
-        roll_out= models.BooleanField(default=False)
         timestamp = models.DateTimeField(auto_now_add=True)
         name = models.CharField(max_length=100)
         
@@ -36,7 +35,7 @@ class Answer(models.Model):
 		return self.label
 
 class QuizTaker(models.Model):
-	quiz_taker = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+	# quiz_taker = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, default='')
 	quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE)
 	score = models.IntegerField(default=0)
 	completed = models.BooleanField(default=False)
@@ -50,7 +49,7 @@ class QuizTaker(models.Model):
 
 
 class UsersAnswer(models.Model):
-	user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+	quiz_taker =  models.ForeignKey(QuizTaker, on_delete=models.CASCADE ,null= True)
 	question = models.ForeignKey(Question, on_delete=models.CASCADE)
 	answer = models.ForeignKey(Answer, on_delete=models.CASCADE, null=True)
 

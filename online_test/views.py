@@ -45,7 +45,7 @@ def create_quiz(request):
         form = QuizCreateForm(request.POST)
         if form.is_valid():
             quiz = form.save()
-            return redirect('create_question')
+            return redirect('create_question', quiz.pk)
     else:
         form = QuizCreateForm()
     context = {
@@ -68,16 +68,29 @@ def update_quiz(request, pk):
     return render(request, 'online_test/create_quiz.html', {'form':form,'quiz':quiz})
 
 
-def create_question(request):
+# def delete_post(request, pk):
+#     post = Image.objects.get(id=pk)
+#     current_user = request.user
+
+#     if current_user == post.author and request.method == 'POST':
+#         post.delete()
+#         return redirect('main_page')
+#     context = {
+#         "post":post
+#     }
+#     return render(request, 'instagram/delete_post.html', context)
+def create_question(request,pk):
+    quiz = Quiz.objects.get(pk = pk)
     if request.method == 'POST' and request.POST.get('question'):
         question_label = request.POST.get('question')
-        new_question = Question.objects.create(label = question_label, quiz_id = 1)
-        return redirect('create_question')
+        new_question = Question.objects.create(label = question_label, quiz=quiz)
+        return redirect('create_question', quiz.pk)
 
     else:
-        all_questions = Question.objects.all()
+        all_questions = Question.objects.filter(quiz=quiz)
         context ={
-            'all_questions':all_questions
+            'all_questions':all_questions,
+            'quiz':quiz
         }
 
     return render(request ,'online_test/questions.html',context )
@@ -93,10 +106,10 @@ def create_answer(request, pk):
     if request.method == 'POST' and request.POST.get('answer'):
         answer_label = request.POST.get('answer')
         new_answer = Answer.objects.create(label = answer_label, question = question)
-        return redirect('create_question')
+        return redirect('create_question', question.quiz.id)
 
     else:
-        return redirect('create_question')
+        return redirect('create_question',question.quiz.id)
 
 
 quiztakers = [
