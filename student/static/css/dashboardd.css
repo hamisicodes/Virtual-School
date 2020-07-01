@@ -106,3 +106,6 @@ body{
   #viewmodule{
     display: none;
   }
+.sidebar{
+  margin-top:0;
+}

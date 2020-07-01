@@ -1,7 +1,5 @@
-<div id="mySidebar" class="sidebar" style="text-align: center;">
-    <a href="#" class="closebtn" onclick="closeNav()"></a>
-    <a href="#" style="color: lightcoral; margin-top: -60px;margin-bottom: 35px;margin-right: 20px;"> <span
-            style="color: red; font-size: 30px; font-family: 'Vast Shadow'; "> </span> </a>
+<div id="mySidebar" class="sidebar" style="text-align: center;margin-top:0">
+    
     <a href="{%url 'student_profile'%}" style="color: black;margin-right: 20px;"> <i class="fas fa-user-circle"
             style="color: white;"> </i>
         <br>
@@ -9,10 +7,10 @@
     <a href="{% url 'dashboard' %}" style="color: black;margin-right: 20px; "> <i class="fas fa-graduation-cap"
             style="color: purple"></i>
         <br><span style="font-size: 16px;">Subjects</span> </a>
-    {% for course in courses %}
-        <a href="{% url 'list_of_quiz' course.id %}" style="color: black;margin-right: 20px;"> <i class="fas fa-book" style="color: white;"> </i> <br>
+    
+        <a href="#" style="color: black;margin-right: 20px;"> <i class="fas fa-book" style="color: white;"> </i> <br>
             <span style="font-size: 16px;">Assignments</span><br> </a>
-    {% endfor %}
+    
     <a href="{% url 'my_courses' %}" style="color: black;margin-right: 20px;"> <i class="fa fa-tasks"
             style="color: white;"> </i> <br>
         <span style="font-size: 16px;">My courses</span><br> </a>
