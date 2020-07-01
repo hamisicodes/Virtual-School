@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect
 from django.http  import HttpResponse,HttpResponseRedirect
-from .models import Question,Answer,Quiz
+from .models import Question,Answer,Quiz,QuizTaker
 from content_management_system.models import Course
 from .forms import QuizCreateForm
-
+from django.views.generic.edit import FormView
+from .forms import MyForm
 # Create your views here.
 
 def list_of_quiz(request,pk):
@@ -11,6 +12,7 @@ def list_of_quiz(request,pk):
     quizs = Quiz.objects.filter(course=pk)
     questions = Question.objects.all()
     answers = Answer.objects.all()
+   
     # subject_courses = Course.objects.filter(subject=subject)
     context = {
         "quizs":quizs,
@@ -91,6 +93,44 @@ def create_answer(request, pk):
 
     else:
         return redirect('create_question',question.quiz.id)
+
+
+
+def myview(request):
+    score = 0
+    if request.method == 'POST':
+        form = MyForm(request.POST)
+
+        if 'done' in request.POST:
+            # print(request.POST['my_object'])
+            student_answer = request.POST.get('choices')
+            answer = Answer.objects.get(label = student_answer)
+            if answer.is_correct:
+                score = 100
+                quiztaker = QuizTaker.objects.create(quiz_taker = request.user , score = score , completed = True , quiz = answer.question.quiz )
+            else:
+                score = 0
+                quiztaker = QuizTaker.objects.create(quiz_taker = request.user , score = score , completed = True , quiz = answer.question.quiz  )
+            return redirect('results')
+                
+    else:
+        return redirect('list_of_quiz' , 1)
+
+def results(request):
+   
+    quiz_details = QuizTaker.objects.filter(quiz_taker = request.user)
+
+    context ={
+        'quiz_details':quiz_details  #queryset
+    }
+
+    return render(request,'online_test/results.html', context)
+
+
+
+
+
+
 
 
 
