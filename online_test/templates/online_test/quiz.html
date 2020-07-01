@@ -26,11 +26,11 @@
                 <p class="card-text">{{ quiz.description}}</p>
                 <!-- Button -->
                 <!--Modal-->
-                <a href="#" class="btn btn-primary" type="button" data-toggle="modal" data-target="#modalPoll-1">Take
+                <a href="#" class="btn btn-primary" type="button" data-toggle="modal" data-target="#modal{{quiz.id}}">Take
                     Quiz</a>
 
                 <!-- Modal: modalPoll -->
-                <div class="modal fade right" id="modalPoll-1" tabindex="-1" role="dialog"
+                <div class="modal fade right" id="modal{{quiz.id}}" tabindex="-1" role="dialog"
                     aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="false">
                     <div class="modal-dialog modal-full-height modal-right modal-notify modal-info" role="document">
                         <div class="modal-content">
