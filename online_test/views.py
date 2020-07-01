@@ -88,7 +88,11 @@ def create_answer(request, pk):
    
     if request.method == 'POST' and request.POST.get('answer'):
         answer_label = request.POST.get('answer')
-        new_answer = Answer.objects.create(label = answer_label, question = question)
+        if request.POST.get('choices'):
+            new_answer = Answer.objects.create(label = answer_label, question = question , is_correct = True)
+        else:
+            new_answer = Answer.objects.create(label = answer_label, question = question)
+
         return redirect('create_question', question.quiz.id)
 
     else:
