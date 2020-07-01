@@ -1,0 +1,34 @@
+<div id="mySidebar" class="sidebar" style="text-align: center;margin-top:0">
+    
+    <a href="{%url 'student_profile'%}" style="color: black;margin-right: 20px;"> <i class="fas fa-user-circle"
+            style="color: white;"> </i>
+        <br>
+        <span style="font-size: 16px;">Profile</span><br> </a>
+    <a href="{% url 'dashboard' %}" style="color: black;margin-right: 20px; "> <i class="fas fa-graduation-cap"
+            style="color: purple"></i>
+        <br><span style="font-size: 16px;">Subjects</span> </a>
+    
+        <a href="#" style="color: black;margin-right: 20px;"> <i class="fas fa-book" style="color: white;"> </i> <br>
+            <span style="font-size: 16px;">Assignments</span><br> </a>
+    
+    <a href="{% url 'my_courses' %}" style="color: black;margin-right: 20px;"> <i class="fa fa-tasks"
+            style="color: white;"> </i> <br>
+        <span style="font-size: 16px;">My courses</span><br> </a>
+    {%if request.user.is_authenticated and request.user.is_staff%}
+    <!-- Just for now -->
+    <a href="{% url 'manage_course_list' %}" style="color: black;margin-right: 20px;"> <i
+            class="fas fa-chalkboard-teacher"></i> <br>
+        <span style="font-size: 16px;">Educator</span><br> </a>
+    {%endif%}
+    <a href="{% url 'logout' %}" style="color: white;margin-right: 20px;"> <i class='fas fa-sign-out-alt'></i> <br>
+        <span style="font-size: 16px; color: black;">Log Out</span><br> </a>
+
+
+
+</div>
+
+<div id="main">
+    <button class="openbtn" onclick="openNav()" style="background-color: transparent;color: #111; ">☰ DashBoard
+    </button>
+
+</div>

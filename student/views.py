@@ -6,6 +6,14 @@ from django.contrib import messages
 from .forms import StudentRegistrationForm, StudentProfileUpdateForm, UserUpdateForm
 from .models import StudentProfile
 from content_management_system.models import Course, Module, Subject
+from online_test.models import Quiz
+
+from django.views.generic.edit import FormView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from .forms import CourseEnrollForm
+from django.views.generic.list import ListView
+from django.views.generic.detail import DetailView
+from .models import Enrollment
 
 def landing_page(request):
       return render(request, 'student/landing_page.html')
@@ -17,7 +25,7 @@ def student_register(request):
             form.save()
             username = form.cleaned_data.get('username')
             messages.success(request, f'Student Account created for {username}')
-            return redirect('login')
+            return redirect('dashboard')
     else:
         form = StudentRegistrationForm()
     return render(request, 'student/register.html',{'form':form})
@@ -62,7 +70,7 @@ def studentLogin(request):
 def dashboard(request):
     courses = Course.objects.all()
     subjects = Subject.objects.all()
-    # subject_courses = Course.objects.filter(subject=pk)
+    # subject_courses = Course.objects.filter(subject=subjects)
     context = {
         "courses":courses,
         "subjects":subjects,
@@ -79,26 +87,72 @@ def module_list(request, pk):
     }
     return render(request, 'student/modules.html', context)
 
+
 def subject_courses(request, pk):
     subject = Subject.objects.get(pk = pk)
     subjects = Subject.objects.all()
     subject_courses = Course.objects.filter(subject=subject)
+    course = Course.objects.all()
+    quizs = Quiz.objects.filter(course=course)
+    my_courses = Enrollment.objects.filter(user=request.user)
+
     
     context = {
         'subjects':subjects,
         'subject':subject,
-        'subject_courses':subject_courses
-        # 'modules':modules
+        'subject_courses':subject_courses,
+        'my_courses':my_courses,
+        'quizs':quizs
     }
     return render(request, 'student/subject_courses.html', context)
+
+def enroll(request,pk):
+    course = Course.objects.get(pk = pk)
+    enrollment = Enrollment.objects.create(user = request.user , course = course)
+
+    return redirect('subject_courses', course.subject.id)
 
 def my_courses(request):
     courses = Course.objects.all()
     subjects = Subject.objects.all()
-    # subject_courses = Course.objects.filter(subject=pk)
+    my_courses = Enrollment.objects.filter(user=request.user)
     context = {
         "courses":courses,
         "subjects":subjects,
-        # "subject_courses":subject_courses
+        "my_courses":my_courses
     }
     return render(request, 'student/my_courses.html', context)
+class StudentEnrollCourseView(LoginRequiredMixin, FormView):
+    course = None
+    form_class = CourseEnrollForm
+    def form_valid(self, form):
+        self.course = form.cleaned_data['course']
+        self.course.students.add(self.request.user)
+        return super().form_valid(form)
+    def get_success_url(self):
+        return reverse_lazy('student_course_detail',
+        args=[self.course.id])
+class StudentCourseListView(LoginRequiredMixin, ListView):
+    model = Course
+    template_name = 'student/course/list.html'
+    def get_queryset(self):
+        qs = super().get_queryset()
+        return qs.filter(students__in=[self.request.user])
+class StudentCourseDetailView(DetailView):
+    model = Course
+    template_name = 'student/course/detail.html'
+    def get_queryset(self):
+        qs = super().get_queryset()
+        return qs.filter(students__in=[self.request.user])
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # get course object
+        course = self.get_object()
+        if 'module_id' in self.kwargs:
+            # get current module
+            context['module'] = course.modules.get(
+            id=self.kwargs['module_id'])
+        else:
+            # get first module
+            context['module'] = course.modules.all()[0]
+        return context        

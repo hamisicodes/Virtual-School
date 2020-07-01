@@ -103,4 +103,9 @@ body{
       background-color: darkgray;
   
   }
-  
+  #viewmodule{
+    display: none;
+  }
+.sidebar{
+  margin-top:0;
+}

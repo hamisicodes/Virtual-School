@@ -1,15 +1,18 @@
  
-{% extends "base.html" %}
+{% extends 'base.html' %}
 {% load crispy_forms_tags %}
-{% block title %}
-{% if object %}
-  Edit content "{{ object.title }}"
-{% else %}
-  Add a new content
-{% endif %}
-{% endblock %}
+{% load static %}
 
-{% block content %}
+{% block content%}
+
+
+<link rel="stylesheet" href="{%static 'css/dashboard.css'%}">
+
+  
+{%include 'sidenavbar.html'%}
+
+
+
 <h1>
   {% if object %}
     Edit content "{{ object.title }}"

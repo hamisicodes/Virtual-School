@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/3.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
 """
-
+from django.urls import reverse_lazy
 import os
 from decouple import config
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -41,7 +41,9 @@ INSTALLED_APPS = [
     'student',
     'crispy_forms',
     'content_management_system',
-    'embed_video'
+    'embed_video',
+    'online_test',
+    'bootstrap4',
     # 'social_django',
     # 'django_extensions',
 ]
@@ -61,7 +63,7 @@ ROOT_URLCONF = 'virtual_school_prodev.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR,"templates")],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -69,6 +71,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.i18n',
+
             ],
         },
     },
@@ -90,6 +94,8 @@ DATABASES = {
         # 'PORT': os.environ.get('DB_PORT'),
     }
 }
+
+
 
 
 # Password validation
@@ -141,17 +147,21 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'static/media')
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
-EMAIL_USE_TLS = os.environ.get('EMAIL_USE_TLS')
-EMAIL_HOST = os.environ.get('EMAIL_HOST')
-EMAIL_PORT = os.environ.get('EMAIL_PORT')
-EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
-
+EMAIL_USE_TLS = config('EMAIL_USE_TLS')
+EMAIL_HOST = config('EMAIL_HOST')
+EMAIL_PORT = config('EMAIL_PORT')
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT =587
+EMAIL_HOST_USER ='virtualschoolpro@gmail.com'
+EMAIL_HOST_PASSWORD = 'virtual2020'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
-LOGIN_URL = 'login-educator'
-LOGIN_REDIRECT_URL = 'course_list'
 
+
+LOGIN_REDIRECT_URL = reverse_lazy('student_course_list')
 LOGOUT_URL = 'logout'
 LOGOUT_REDIRECT_URL = 'index'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
