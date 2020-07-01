@@ -8,16 +8,38 @@
 
 
 <link rel="stylesheet" href="{%static 'css/dashboard1.css'%}">
+<link rel="stylesheet" href="{%static 'css/base.css'%}">
 
 
 
 
 {%include 'sidenavbar.html'%}
+      
+</div>
+<div id="main">
+    <button class="openbtn" onclick="openNav()" style="background-color: transparent;color: #111; "></button>
+</div>
+
+   <div class="wow" style="margin-left: 50px; text-align: center;" >
+    <h3>{% trans 'Add new content' %}:</h3>
+    <img src="{% trans 'Image' %}" alt="" srcset="">
+    
+    <ul class="content-types">
+        <li><a href="{% url 'module_content_create' module.id 'file'%}" class="link"  ><i class="far fa-file-alt"></i></li>
+        <li><a href="{% url 'module_content_create' module.id 'image'%}" class="link"  ><i class="far fa-images"></i></a></li>
+        <li><a href="{% url 'module_content_create' module.id 'video' %}" class="link" ><i class="fas fa-video"></i></a></li>
+        <li><a href="{% url 'module_content_create' module.id 'text' %}" class="link" ><i class="fas fa-remove-format"></i></a></li>
+    </ul>
+    <br><br>
+    </div>
+
+
     {% with course=module.course %}
-    <div class="contents" style="margin-left: 30%;">
-    <h1>{{ course.course_name }}</h1>
+    <h1 style="margin-left: 60px;">{{ course.course_name }}</h1><br><br><br><br>
+    <div class="contents">
+    <!-- <h1>{{ course.course_name }}</h1> -->
    
-    <div style="margin-left: 50%; ">
+    <!-- <div style="margin-left: 10%; "> -->
         <h3 >All modules</h3>
         <ul id="modules" >
             {% for m in course.modules.all %}
@@ -25,7 +47,7 @@
             class="selected"{% endif %}>
             <a href="{% url 'module_content_list' m.id %}">
                 <span>
-                    <!-- Module <span class="order">{{ m.order }}</span> -->
+                    Module <span class="order">{{ m.order }}</span>
                 </span>
                 
                 {{ m.title }}
@@ -36,11 +58,11 @@
             {% endfor %}
         </ul>
         <p><a href="{% url 'course_module_update' course.id %}"><button type="button" class="btn btn-sm btn-primary">Edit modules</button></a></p>
-        </div>
+        <!-- </div> -->
 
     </div>
    
-    <div class="module" style="margin-left: 200px;">
+    <div class="module" style="margin-left: auto;" >
         <h2> {{ module.title }}</h2>
         <h3>Module contents:</h3>
         <div id="module-contents">
@@ -49,32 +71,22 @@
                 {% with item=content.item %}
                 <p>{{ item }} ({{ item|model_name}})</p>
                 {{ item.render }}
-                <br>
-                <a href="{% url 'module_content_update' module.id item|model_name item.id %}" class="btn btn-secondary">{% trans 'Edit' %}</a>
+                <a href="{% url 'module_content_update' module.id item|model_name item.id %}" class="btn btn-sm btn-success">{% trans 'Edit' %}</a>
                 <form action="{% url 'module_content_delete' content.id %}" method="post">
-                <input type="submit" class="btn btn-secondary" value="{% trans 'Delete' %}"><br><br>
+                <button type="submit" class="btn btn-sm btn-danger" value="{% trans 'Delete' %}">Delete</button>
                 {% csrf_token %}
-                {% endwith %}
-                </form>
-            
+            </form>
+            {% endwith %}
         </div>
         {% empty %}
         <p>{% trans 'This module has no contents yet.' %}</p>
         {% endfor %}
 
-    </div>
+     </div>
     <hr>
-    <h3>{% trans 'Add new content' %}:</h3>
-    <img src="{% trans 'Image' %}" alt="" srcset="">
-    <ul class="content-types">
-        <li><a href="{% url 'module_content_create' module.id 'text' %}" class="link">{% trans 'Text' %}</a></li>
-        <li><a href="{% url 'module_content_create' module.id 'image'%}" class="link">{% trans 'Image' %}</a></li>
-        <li><a href="{% url 'module_content_create' module.id 'video' %}" class="link">{% trans 'Video' %}</a></li>
-        <li><a href="{% url 'module_content_create' module.id 'file' %}" class="link">{% trans 'File' %}</a></li>
-    </ul>
     </div>
     {% endwith %}
-   
 
+
+    
 {% endblock %}
-

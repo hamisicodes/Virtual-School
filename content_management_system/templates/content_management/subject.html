@@ -25,16 +25,16 @@
       <!-- Card -->
       <div class="card gradient-card">
   
-          <div class="card-image" style="background-color: rgb(241, 156, 241);">
+          <div class="card-image" style="background-color:rgb(71, 196, 245);">
   
             <!-- Content -->
             <a href="#!">
               <div class="text-white d-flex h-100 mask purple-gradient-rgba">
                 <div class="first-content align-self-center p-3">
-                  <h4 class="card-title">{{subject.title}} </h4>
+                  <h4 class="card-title text-white">{{subject.title}} </h4>
           {% if subject.username == user %}
           <a href="{% url 'subjects-list' subject.id%}"> <i class="fas fa-trash" style="color: red;" id = "message" onclick="swal()"></i> </a>
-          <a href="{% url 'subject-update' subject.id%}"> <i class="fas fa-edit" style="color: purple;"></i> </a>
+          <a href="{% url 'subject-update' subject.id%}"> <i class="fas fa-edit" style="color: rgb(38, 0, 128);"></i> </a>
           {%endif%}
                 </div>
                 <div class="second-content  align-self-center mx-auto text-center">
