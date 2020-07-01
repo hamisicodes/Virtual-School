@@ -40,15 +40,15 @@ def list_of_quiz(request,pk):
     }
     return render(request, 'online_test/quiz.html', context)
 
-# def take_quiz(request, pk):
-#     questions = Question.objects.filter(quiz=pk)
-#     print(questions)
-#     context = {
-#         # "quizs":quizs,
-#         "answers":answers,
-#         "questions":questions,
-#     }
-#     return render(request, 'online_test/quiz.html', context)
+def take_quiz(request, pk):
+    questions = Question.objects.filter(quiz=pk)
+    print(questions)
+    context = {
+        # "quizs":quizs,
+        "answers":answers,
+        "questions":questions,
+    }
+    return render(request, 'online_test/quiz.html', context)
     
 
 def create_quiz(request):

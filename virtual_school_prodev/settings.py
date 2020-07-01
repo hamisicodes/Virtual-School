@@ -155,8 +155,7 @@ EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
-LOGIN_URL = 'login-educator'
-LOGIN_REDIRECT_URL = 'course_list'
+
 
 LOGOUT_URL = 'logout'
 LOGOUT_REDIRECT_URL = 'index'

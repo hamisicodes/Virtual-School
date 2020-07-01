@@ -1,0 +1,36 @@
+<div id="mySidebar" class="sidebar" style="text-align: center;">
+    <a href="#" class="closebtn" onclick="closeNav()"></a>
+    <a href="#" style="color: lightcoral; margin-top: -60px;margin-bottom: 35px;margin-right: 20px;"> <span
+            style="color: red; font-size: 30px; font-family: 'Vast Shadow'; "> </span> </a>
+    <a href="{%url 'student_profile'%}" style="color: black;margin-right: 20px;"> <i class="fas fa-user-circle"
+            style="color: white;"> </i>
+        <br>
+        <span style="font-size: 16px;">Profile</span><br> </a>
+    <a href="{% url 'dashboard' %}" style="color: black;margin-right: 20px; "> <i class="fas fa-graduation-cap"
+            style="color: purple"></i>
+        <br><span style="font-size: 16px;">Subjects</span> </a>
+    {% for course in courses %}
+        <a href="{% url 'list_of_quiz' course.id %}" style="color: black;margin-right: 20px;"> <i class="fas fa-book" style="color: white;"> </i> <br>
+            <span style="font-size: 16px;">Assignments</span><br> </a>
+    {% endfor %}
+    <a href="{% url 'my_courses' %}" style="color: black;margin-right: 20px;"> <i class="fa fa-tasks"
+            style="color: white;"> </i> <br>
+        <span style="font-size: 16px;">My courses</span><br> </a>
+    {%if request.user.is_authenticated and request.user.is_staff%}
+    <!-- Just for now -->
+    <a href="{% url 'course_list' %}" style="color: black;margin-right: 20px;"> <i
+            class="fas fa-chalkboard-teacher"></i> <br>
+        <span style="font-size: 16px;">Educator</span><br> </a>
+    {%endif%}
+    <a href="{% url 'logout' %}" style="color: white;margin-right: 20px;"> <i class='fas fa-sign-out-alt'></i> <br>
+        <span style="font-size: 16px; color: black;">Log Out</span><br> </a>
+
+
+
+</div>
+
+<div id="main">
+    <button class="openbtn" onclick="openNav()" style="background-color: transparent;color: #111; ">☰ DashBoard
+    </button>
+
+</div>
