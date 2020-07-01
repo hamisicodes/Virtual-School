@@ -28,7 +28,7 @@ from django.utils.text import slugify
 class Subject(models.Model):
 
     title = models.CharField(max_length =160,null = True)
-    slug = models.SlugField(max_length=40)
+    slug = models.SlugField(max_length=160)
     username= models.ForeignKey(User,on_delete=models.CASCADE,null = True)
    
 
@@ -52,7 +52,7 @@ class Course(models.Model):
     overview =models.TextField(max_length=2000,default=1)
     students = models.ManyToManyField(User, related_name='students_to_course')
     slug = models.SlugField(max_length=200, unique=True)
-
+    students = models.ManyToManyField(User,related_name='courses_joined',blank=True)
     class Meta:
         ordering = ('-created',)
 

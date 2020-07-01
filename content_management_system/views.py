@@ -23,7 +23,7 @@ from .forms import ModuleFormSet, CourseCreateForm
 from django.forms.models import modelform_factory
 from django import forms
 from braces.views import LoginRequiredMixin, PermissionRequiredMixin,CsrfExemptMixin, JsonRequestResponseMixin
-
+from student.forms import CourseEnrollForm
 
 
 
@@ -247,50 +247,41 @@ class ModuleContentListView(TemplateResponseMixin, View):
 
 class CourseListView(TemplateResponseMixin, View):
     model = Course
-    template_name = 'courses/manage/course/list.html'
+    template_name = 'courses/course/list.html'
 
     def get(self, request, subject=None):
-        # subjects = Subject.objects.annotate(total_courses=Count('courses'))
-        # courses = Course.objects.annotate(total_modules=Count('modules'))
-
-        # if subject:
-            # subject = get_object_or_404(Subject, slug=subject)
-            # courses = courses.filter(subject=subject)
         subjects = cache.get('all_subjects')
-
         if not subjects:
-            subjects = Subject.objects.annotate(total_courses=Count('course'))
+            subjects = Subject.objects.annotate(
+                            total_courses=Count('course'))
             cache.set('all_subjects', subjects)
-        all_courses = Course.objects.annotate(total_modules=Count('modules', distinct=True))
-        page = request.GET.get('page', 1)
-
-        # subjects = Course.objects.annotate(total_modules=Count('courses'))
-        # courses = Course.objects.annotate(total_modules=Count('modules'))
-
+        all_courses = Course.objects.annotate(
+                           total_modules=Count('modules'))
         if subject:
             subject = get_object_or_404(Subject, slug=subject)
-            key = 'subject_{}_courses'.format(subject.id)
+            key = f'subject_{subject.id}_courses'
             courses = cache.get(key)
             if not courses:
                 courses = all_courses.filter(subject=subject)
                 cache.set(key, courses)
-            paginator = Paginator(courses, 10)
         else:
             courses = cache.get('all_courses')
             if not courses:
                 courses = all_courses
                 cache.set('all_courses', courses)
-            paginator = Paginator(courses, 10)
+        return self.render_to_response({'subjects': subjects,
+                                        'subject': subject,
+                                        'courses': courses})
 
-        try:
-            courses = paginator.page(page)
-        except PageNotAnInteger:
-            courses = paginator.page(1)
-        except EmptyPage:
-            courses = paginator.page(paginator.num_pages)
-        
-        return self.render_to_response({'subjects': subjects, 'subject': subject, 'courses': courses})
+class CourseDetailView(DetailView):
+    model = Course
+    template_name = 'courses/course/detail.html'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['enroll_form'] = CourseEnrollForm(
+                                   initial={'course':self.object})
+        return context
 
 class ModuleOrderView(CsrfExemptMixin, JsonRequestResponseMixin, View):
 

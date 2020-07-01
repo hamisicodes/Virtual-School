@@ -6,7 +6,11 @@ from django.contrib import messages
 from .forms import StudentRegistrationForm, StudentProfileUpdateForm, UserUpdateForm
 from .models import StudentProfile
 from content_management_system.models import Course, Module, Subject
-
+from django.views.generic.edit import FormView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from .forms import CourseEnrollForm
+from django.views.generic.list import ListView
+from django.views.generic.detail import DetailView
 def landing_page(request):
       return render(request, 'student/landing_page.html')
 
@@ -17,7 +21,7 @@ def student_register(request):
             form.save()
             username = form.cleaned_data.get('username')
             messages.success(request, f'Student Account created for {username}')
-            return redirect('login')
+            return redirect('dashboard')
     else:
         form = StudentRegistrationForm()
     return render(request, 'student/register.html',{'form':form})
@@ -102,3 +106,37 @@ def my_courses(request):
         # "subject_courses":subject_courses
     }
     return render(request, 'student/my_courses.html', context)
+class StudentEnrollCourseView(LoginRequiredMixin, FormView):
+    course = None
+    form_class = CourseEnrollForm
+    def form_valid(self, form):
+        self.course = form.cleaned_data['course']
+        self.course.students.add(self.request.user)
+        return super().form_valid(form)
+    def get_success_url(self):
+        return reverse_lazy('student_course_detail',
+        args=[self.course.id])
+class StudentCourseListView(LoginRequiredMixin, ListView):
+    model = Course
+    template_name = 'student/course/list.html'
+    def get_queryset(self):
+        qs = super().get_queryset()
+        return qs.filter(students__in=[self.request.user])
+class StudentCourseDetailView(DetailView):
+    model = Course
+    template_name = 'student/course/detail.html'
+    def get_queryset(self):
+        qs = super().get_queryset()
+        return qs.filter(students__in=[self.request.user])
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # get course object
+        course = self.get_object()
+        if 'module_id' in self.kwargs:
+            # get current module
+            context['module'] = course.modules.get(
+            id=self.kwargs['module_id'])
+        else:
+            # get first module
+            context['module'] = course.modules.all()[0]
+        return context        

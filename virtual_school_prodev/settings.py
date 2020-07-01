@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/3.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
 """
-
+from django.urls import reverse_lazy
 import os
 from decouple import config
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -139,19 +139,25 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'static/media')
 
 
 
-# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
-# EMAIL_USE_TLS = config('EMAIL_USE_TLS')
-# EMAIL_HOST = config('EMAIL_HOST')
-# EMAIL_PORT = config('EMAIL_PORT')
-# EMAIL_HOST_USER = config('EMAIL_HOST_USER')
-# EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
-
+EMAIL_USE_TLS = config('EMAIL_USE_TLS')
+EMAIL_HOST = config('EMAIL_HOST')
+EMAIL_PORT = config('EMAIL_PORT')
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT =587
+EMAIL_HOST_USER ='virtualschoolpro@gmail.com'
+EMAIL_HOST_PASSWORD = 'virtual2020'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
-LOGIN_URL = 'login-educator'
+LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'course_list'
 
+
+LOGIN_REDIRECT_URL = reverse_lazy('student_course_list')
 LOGOUT_URL = 'logout'
 LOGOUT_REDIRECT_URL = 'index'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'

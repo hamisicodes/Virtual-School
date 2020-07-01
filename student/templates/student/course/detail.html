@@ -40,7 +40,7 @@
             <br><span style="font-size: 16px;">Subjects</span> </a>
         <a href="#" style="color: black;margin-right: 20px;"> <i class="fas fa-book" style="color: white;"> </i> <br>
             <span style="font-size: 16px;">Assignments</span><br> </a>
-        <a href="{% url 'my_courses' %}" style="color: black;margin-right: 20px;"> <i class="fa fa-tasks" style="color: white;"> </i> <br>
+        <a href="{% url 'student_course_list' %}" style="color: black;margin-right: 20px;"> <i class="fa fa-tasks" style="color: white;"> </i> <br>
             <span style="font-size: 16px;">My courses</span><br> </a>
        {%if request.user.is_authenticated and request.user.is_staff%}
         <!-- Just for now -->
@@ -60,41 +60,55 @@
 
     </div>
 
-    <div class="container">
-        <div class="row">
-
-            <div class="col-md-6">
-                <div class="subjects">
-                    {% for subject in subjects %}
-                    <a href="{% url 'subject_courses' subject.id %}"><button type="button" id="sub_{{subject.id}}"
-                            class="btn btn-rounded">{{subject.title}}</button> </a>
-
-                    {% endfor %}
+ <div class="container">
+     <div class="row">
+         <div class="col-md-6">
+            <div class="contents">
+                <h3>Modules</h3>
+                <ul id="modules">
+                {% for m in object.modules.all %}
+                <li data-id="{{ m.id }}" {% if m == 'module' %}
+               class="selected"{% endif %}>
+                <a href="{% url 'student_course_detail_module' object.id m.id %}">
+                <span>
+                Module <span class="order">{{ m.order|add:1 }}</span>
+                </span>
+                <br>
+                {{ m.title }}
+                </a>
+                </li>
+                {% empty %}
+                <li>No modules yet.</li>
+                {% endfor %}
+                </ul>
                 </div>
-            </div>
-            <div class="col-md-6">
-                {% block content %}
-                <div class="img-sect">
-                    <img src="{% static 'photos/student.png'%}" height="100%" width='100%'alt="">
+                <div class="module">
+                {% for content in module.contents.all %}
+                {% with item=content.item %}
+                
+                {{ item.render }}
+                {% endwith %}
+                {% endfor %}
                 </div>
-                {% endblock %}
-            </div>
-        </div>
-    </div>
+               
+               
+         </div>
+         <div class="col-md-6"></div>
+     </div>
+ </div>
 
-
-    <script src="{% static 'js/dashboardd.js' %}"></script>
-    <!-- JQuery -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <!-- Bootstrap tooltips -->
-    <script type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
-    <!-- Bootstrap core JavaScript -->
-    <script type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
-    <!-- MDB core JavaScript -->
-    <script type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
+<script src="{% static 'js/dashboardd.js' %}"></script>
+<!-- JQuery -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
 
 </body>
 
