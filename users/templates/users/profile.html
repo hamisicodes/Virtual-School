@@ -17,32 +17,141 @@ integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw
    
   
 </div>
-<div class="row" style="padding-left: 210px"; >
+
+
+<section class="ftco-about img ftco-section" id="about-section">
+    <div class="container">
+        <div class="row d-flex no-gutters">
+            <div class="col-md-6 col-lg-6 d-flex">
+                <div class="img-about img d-flex align-items-stretch">
+                    <div class="overlay"></div>
+                    <div class="img d-flex align-self-stretch align-items-center">
+                        <img class="one-third js-fullheight align-self-end order-md-last img-fluid" src="../../static/images/features-3.png" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-6 pl-md-5">
+                <div class="row" style="padding-left: 210px"; >
  
+                    <div class="card testimonial-card" style="width: 400px;margin-top: 5px; position: fixed;"  >
+                
+                        <!-- Background color -->
+                        <div class="card-up indigo lighten-1" style="background: rgb(255, 51, 255);height: 200px;" >
+                          
+                        </div>
+                      
+                        <!-- Avatar -->
+                        <div class="avatar mx-auto white">
+                          <img src="{{user.profile.image.url}}" class="rounded-circle"
+                            alt="woman avatar" style="margin-top: -80px;" height="150px" width="150px">
+                        </div>
+                        <h6 class="card-title"> <i class="fas fa-user-tie" style="color: purple; margin-left: 20px;"></i>{{ user.username }}</h6>
+                        <h6 class="card-title"> <i class="far fa-envelope" style="color: purple;margin-left: 20px;"></i>{{ user.email }}</h6>
+                        <h6> <i class="fas fa-phone-alt" style="color: purple;margin-left: 20px;"></i>{{ user.profile.contacts }}</h6>
+                       
+                        <!-- Quotation -->
+                        <p style="font-size: 15px;"><i class="fas fa-quote-left" style="color: purple;margin-left: 20px;"></i> {{ user.profile.bio}} <i class="fas fa-quote-right" style="color: purple;"></i>
+                
+                        </p>
+                        
+                        <a  data-toggle="modal" data-target=".bd-example-modal-md"> <button class="btn btn-sm" style="background:  rgb(71, 196, 245);color: white; margin-left: 20px; margin-bottom: 20px;"> Edit Profile </button></a>
+                      </div>
+                      <div class="col-lg-3" style="border: none; border-left: 1px solid purple;border-top: 1px solid purple; margin-top: 10px;margin-left: 10px;margin-left: 450px; width: 300px; position:fixed;">
+                          <h6>Courses</h6>
+                
+                          <h6>Students</h6>
+                          
+                      </div>
+                    
+                    </div>
+                
+                
+                <div class="row" style="margin-top:8%">
+                    
+                    <div class="content-section">
+                        <div class="media">
+                            <div class="container">
+                                <div class="row"  style="margin-left: 250px;">
+                                    
+                                    <div class="col-md-1"></div>
+                                    
+                                    <div class="col-md-6 mt-3">
+                                        <div class="media-body">
+                                      
+                                           
+                                                
+                                                
+                                               
+                                            </div>
+                
+                
+                                            
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="modal fade bd-example-modal-sm" id="ModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-sm" role="document">
+                                <div class="modal-content">
+                              </div>
+                            </div>
+                        </div>
+                        <div class="modal fade bd-example-modal-md" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-md ">
+                                <div class="modal-content">
+                                    <form action="" method="post" novalidate enctype="multipart/form-data" class="mr-4 mt-4 ml-4 mb-4">
+                                        {% csrf_token%}
+                                        {{ u_form|crispy}}
+                                        {{ p_form|crispy}}
+                                        <button type="submit" class="btn  btn-sm"> Update Profile</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="mt-4">
+                
+                </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="row" style="padding-left: 210px"; >
  
-
-  
-    
-
-
-    <div class="card testimonial-card" style="width: 400px;margin-top: 5px; position: fixed;"  >
+    <div class="card testimonial-card" style="width: 400px;margin-top: 5px; position: fixed;"  > -->
 
         <!-- Background color -->
-        <div class="card-up indigo lighten-1" style="background: rgb(255, 51, 255);height: 200px;" >
+        <!-- <div class="card-up indigo lighten-1" style="background: rgb(255, 51, 255);height: 200px;" >
           
-        </div>
+        </div> -->
       
         <!-- Avatar -->
-        <div class="avatar mx-auto white">
+        <!-- <div class="avatar mx-auto white">
           <img src="{{user.profile.image.url}}" class="rounded-circle"
             alt="woman avatar" style="margin-top: -80px;" height="150px" width="150px">
         </div>
         <h6 class="card-title"> <i class="fas fa-user-tie" style="color: purple; margin-left: 20px;"></i>{{ user.username }}</h6>
         <h6 class="card-title"> <i class="far fa-envelope" style="color: purple;margin-left: 20px;"></i>{{ user.email }}</h6>
-        <h6> <i class="fas fa-phone-alt" style="color: purple;margin-left: 20px;"></i>{{ user.profile.contacts }}</h6>
+        <h6> <i class="fas fa-phone-alt" style="color: purple;margin-left: 20px;"></i>{{ user.profile.contacts }}</h6> -->
        
         <!-- Quotation -->
-        <p style="font-size: 15px;"><i class="fas fa-quote-left" style="color: purple;margin-left: 20px;"></i> {{ user.profile.bio}} <i class="fas fa-quote-right" style="color: purple;"></i>
+        <!-- <p style="font-size: 15px;"><i class="fas fa-quote-left" style="color: purple;margin-left: 20px;"></i> {{ user.profile.bio}} <i class="fas fa-quote-right" style="color: purple;"></i>
 
         </p>
         
@@ -56,15 +165,6 @@ integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw
       </div>
     
     </div>
-</div>
-
-
-
-
-
-
-
-
 
 
 <div class="row" style="margin-top:8%">
@@ -113,7 +213,7 @@ integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw
             </div>
         </div>
     </div>
-    <hr class="mt-4">
+    <hr class="mt-4"> -->
 
 </div>
 </div>
