@@ -27,10 +27,11 @@
                         <p class="card-text">{{ quiz.description}}</p>
                         <!-- Button -->
                             <!--Modal-->
-                            <a href="#" class="btn btn-primary" type="button" data-toggle="modal" data-target="#modalPoll-1">Take Quiz</a>
+                            <p>{{quiz.id}}</p>
+                            <a href="" class="btn btn-primary" type="button" data-toggle="modal" data-target="#p{{quiz.id}}">Take Quiz</a>
                 
                         <!-- Modal: modalPoll -->
-                        <div class="modal fade right" id="modalPoll-1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                        <div class="modal fade right" id="p{{quiz.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                             aria-hidden="true" data-backdrop="false">
                             <div class="modal-dialog modal-full-height modal-right modal-notify modal-info" role="document">
                                 <div class="modal-content">
@@ -38,7 +39,6 @@
                                     <div class="modal-header">
                                     <p class="heading lead">{{quiz.name}}
                                     </p>
-                            
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true" class="white-text">×</span>
                                     </button>

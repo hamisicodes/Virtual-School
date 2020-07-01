@@ -1,6 +1,12 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags%}
+{% block content%}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
+
+<link rel="stylesheet" href="{%static 'css/dashboard.css'%}">
+
+  
+{%include 'sidenavbar.html'%}
 
 <head>
     <meta charset="UTF-8">
@@ -83,6 +89,7 @@
            
         </div>
     {% endwith %}
+<<<<<<< HEAD
             </div>
             <div class="col-md-6"></div>
         </div>
@@ -105,3 +112,8 @@
 </body>
 
 </html>
+=======
+{% endblock %}
+
+{%endblock%}
+>>>>>>> a243e44eb86ef333bad0de9036bfd51c30d6314e

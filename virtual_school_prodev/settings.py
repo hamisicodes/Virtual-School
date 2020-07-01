@@ -159,8 +159,6 @@ EMAIL_HOST_USER ='virtualschoolpro@gmail.com'
 EMAIL_HOST_PASSWORD = 'virtual2020'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
-LOGIN_URL = 'login'
-LOGIN_REDIRECT_URL = 'course_list'
 
 
 LOGIN_REDIRECT_URL = reverse_lazy('student_course_list')
