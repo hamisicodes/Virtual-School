@@ -92,6 +92,18 @@ def create_answer(request, pk):
     else:
         return redirect('create_question',question.quiz.id)
 
+def submit_quiz(request):
+    
+    if request.method == 'POST':
+        answer1 = request.POST.get('answer-1')
+        print(answer1)
+        return redirect('list_of_quiz')
+    else:
+        return redirect('list_of_quiz')
+
+
+
+
 
 
 

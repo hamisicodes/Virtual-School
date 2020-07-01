@@ -59,48 +59,56 @@
         </button>
 
     </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6">
-                {% with subject=object.subject %}
-        <h1>
-            {{ object.title }}
-        </h1>
-        <div class="module">
-            <h2>Overview</h2>
-            <p>
-                <a href="{% url 'course_list_subject' subject.slug %}">{{ subject.title }}</a>.
-                {{ object.modules.count }} modules.
-                Instructor: {{ object.owner.username }}
-            </p>
-            {{ object.overview|linebreaks }}
-            
-                <form action="{% url 'student_enroll_course' %}" method="post">
-                    {{ enroll_form }}
-                    {% csrf_token %}
-                    <input type="submit" class="button" value="Enroll now">
-                </form>
-           
-        </div>
-    {% endwith %}
-            </div>
-            <div class="col-md-6"></div>
-        </div>
-        
-    </div>
-    
-    <script src="{% static 'js/dashboardd.js' %}"></script>
-    <!-- JQuery -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <!-- Bootstrap tooltips -->
-    <script type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
-    <!-- Bootstrap core JavaScript -->
-    <script type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
-    <!-- MDB core JavaScript -->
-    <script type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
+
+ <div class="container">
+     <div class="row">
+         <div class="col-md-6">
+            <div class="contents">
+                <h3>Modules</h3>
+                <ul id="modules">
+                {% for m in object.modules.all %}
+                <li data-id="{{ m.id }}" {% if m == 'module' %}
+               class="selected"{% endif %}>
+                <a href="{% url 'student_course_detail_module' object.id m.id %}">
+                <span>
+                Module <span class="order">{{ m.order|add:1 }}</span>
+                </span>
+                <br>
+                {{ m.title }}
+                </a>
+                </li>
+                {% empty %}
+                <li>No modules yet.</li>
+                {% endfor %}
+                </ul>
+                </div>
+                <div class="module">
+                {% for content in module.contents.all %}
+                {% with item=content.item %}
+                
+                {{ item.render }}
+                {% endwith %}
+                {% endfor %}
+                </div>
+               
+               
+         </div>
+         <div class="col-md-6"></div>
+     </div>
+ </div>
+
+<script src="{% static 'js/dashboardd.js' %}"></script>
+<!-- JQuery -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
 
 </body>
 

@@ -9,7 +9,7 @@ from django.contrib.auth import views as auth_views
 urlpatterns=[
   
   path('new/subject', CreateSubject.as_view(template_name = 'content_management/create_subject.html'), name = 'create-subject'),
-  path('', SubjectView.as_view(template_name = 'content_management/subject.html'), name = 'subjects-list'),
+  path('subject/', SubjectView.as_view(template_name = 'content_management/subject.html'), name = 'subjects-list'),
   path('subject/<int:pk>/update', UpdateSubject.as_view(template_name = 'content_management/subject_update.html'), name = 'subject-update'),
   path('subject/<int:pk>/delete',SubjectDelete.as_view(), name = 'subjects-list'),
   path('subject/<int:pk>/', SubjectDetail.as_view(), name = 'subject-detail'),
@@ -31,8 +31,8 @@ urlpatterns=[
   path('subject/<int:pk>/', SubjectDetail.as_view(), name = 'subject-detail'),
   path('content/<int:id>/delete', views.ContentDeleteView.as_view(), name='module_content_delete'),
   path('module/<int:module_id>/', views.ModuleContentListView.as_view(), name='module_content_list'),
-  path('subject/<subject>/', views.CourseListView.as_view(), name='course_list_subject'),
-  path('<int:slug>/', views.CourseDetailView.as_view(), name='course_detail'),
+  path('subject/<str:slug>/',views.CourseListView.as_view(),name='course_list_subject'),
+  path('<int:pk>/', views.CourseDetailView.as_view(), name='course_detail'),
   path('module/<int:module_id>/content/<model_name>/create/',views.ContentCreateUpdateView.as_view(),name='module_content_create'),
   path('module/<int:module_id>/content/<model_name>/<int:id>/',views.ContentCreateUpdateView.as_view(), name='module_content_update'),
 ]

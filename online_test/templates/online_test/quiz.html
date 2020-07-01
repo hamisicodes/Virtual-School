@@ -61,20 +61,24 @@
                                         <!-- Radio -->
                                     
                                         
+                                            
                                         {% for question in questions %}
                                         {% if quiz == question.quiz %}
                                             <p class="text-center">
                                                 <strong>{{question.label}}</strong>
                                             </p>
-                                            <form action="">
+                                            <form action="#">
+                                            
+                                            
                                             {% for answer in answers %}
                                             
                                                 {% if question == answer.question %}
-                                                <div><label for="radio1"><input type="radio" name="rad"
-                                                    >{{answer.label}}</label></div>
+                                                {% csrf_token %}
+                                                <div><label for="radio1"><input type="radio"  value="1" name="answer">{{answer.label}}</label></div>
 
                                                 {% endif %}
                                                 {% endfor %} 
+                                                <button type="submit">confirm</button>
                                             </form>
 
 
@@ -83,12 +87,14 @@
                                         {% endif %}
                                         {% endfor %}
                                         
+                                        
                                     </div>
                                     <!--Footer-->
                                     <div class="modal-footer justify-content-center">
-                                    <a type="button" class="btn btn-primary waves-effect waves-light">Submit
+                                    <button type="submit" class="btn btn-primary waves-effect waves-light">Submit
                                         <i class="fa fa-paper-plane ml-1"></i>
-                                    </a>
+                                    </button>
+                                    
                                     <a type="button" class="btn btn-outline-primary waves-effect" data-dismiss="modal">Cancel</a>
                                     </div>
                                 </div>
