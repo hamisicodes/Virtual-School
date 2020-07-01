@@ -1,6 +1,7 @@
  
 {% extends "base.html" %}
 {% load static %}
+{% load crispy_forms_tags %}
 {% load course %}     
 {% load i18n %}
 {% block content %}
@@ -17,9 +18,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Vast+Shadow&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="{%static 'css/dashboard.css'%}">
 <link href="{% static 'css3/base.css' %}" rel="stylesheet">
-<script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
-<script src="{% static 'js/bootstrap.min.js' %}"></script>
-<script type="text/javascript"  src="{% static 'js/jquery.bootstrap.modal.forms.min.js' %}"></script>
+
 
 
 
@@ -37,6 +36,19 @@
 <div id="main">
     <button class="openbtn" onclick="openNav()" style="background-color: transparent;color: #111; "></button>
 </div>
+
+   <div class="wow" style="margin-left: 50px; text-align: center;" >
+    <h3>{% trans 'Add new content' %}:</h3>
+    <img src="{% trans 'Image' %}" alt="" srcset="">
+    <ul class="content-types">
+        <li><a href="{% url 'module_content_create' module.id 'text'%}" class="link"  ><img src="../../../../../static/images/tiny-18-512.png" style="width: 80px;height: 80px; "></a></li>
+        <li><a href="{% url 'module_content_create' module.id 'image'%}" class="link"  ><img src="../../../../../static/images/media-pict-camera.png" style="width: 80px;height: 80px; "></a></li>
+        <li><a href="{% url 'module_content_create' module.id 'video' %}" class="link" ><img src="../../../../../static/images/unnamed.png" style="width: 80px;height: 80px;" ></a></li>
+        <li><a href="{% url 'module_content_create' module.id 'file' %}" class="link" ><img src="../../../../../static/images/66-661812_upload-file-icon-png-small-file-image-icon.png" style="width: 80px;height: 80px;"></a></li>
+    </ul>
+    </div>
+
+
     {% with course=module.course %}
     <h1 style="margin-left: 60px;">{{ course.course_name }}</h1>
     <div class="contents">
@@ -65,7 +77,7 @@
 
     </div>
    
-    <div class="module" >
+    <div class="module" style="margin-left: auto;" >
         <h2> {{ module.title }}</h2>
         <h3>Module contents:</h3>
         <div id="module-contents">
@@ -85,21 +97,11 @@
         <p>{% trans 'This module has no contents yet.' %}</p>
         {% endfor %}
 
-    </div>
+     </div>
     <hr>
-
-    <!-- <div class="wow" style="margin-left: 0px;" > -->
-    <h3>{% trans 'Add new content' %}:</h3>
-    <img src="{% trans 'Image' %}" alt="" srcset="">
-    <ul class="content-types">
-        <li><a href="{% url 'module_content_create' module.id 'text'%}" class="link"  ><img src="../../../../../static/images/tiny-18-512.png" style="width: 80px;height: 80px; "></a></li>
-        <li><a href="{% url 'module_content_create' module.id 'image'%}" class="link"  ><img src="../../../../../static/images/media-pict-camera.png" style="width: 80px;height: 80px; "></a></li>
-        <li><a href="{% url 'module_content_create' module.id 'video' %}" class="link" ><img src="../../../../../static/images/unnamed.png" style="width: 80px;height: 80px;" ></a></li>
-        <li><a href="{% url 'module_content_create' module.id 'file' %}" class="link" ><img src="../../../../../static/images/66-661812_upload-file-icon-png-small-file-image-icon.png" style="width: 80px;height: 80px;"></a></li>
-    </ul>
     </div>
-
     {% endwith %}
 
 
+    <script src="{% static 'js2/jaz.js' %}"></script>
 {% endblock %}

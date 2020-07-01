@@ -5,7 +5,7 @@ from django.views.generic.base import TemplateResponseMixin, View
 from .models import Course,Subject
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import user_passes_test, login_required
-from django.views.generic import (ListView, DetailView,CreateView, UpdateView, DeleteView)
+from django.views.generic import (ListView, DetailView,CreateView, UpdateView, DeleteView ,FormView)
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin,PermissionRequiredMixin
 from . forms import CourseForm
 from django.contrib import messages
@@ -181,7 +181,7 @@ class CourseDetailView(DetailView):
         context = super(CourseDetailView, self).get_context_data(**kwargs)
         context['enroll_form'] = CourseEnrollForm(initial={'course': self.object})
         return context
-      
+
 
 class ContentCreateUpdateView(TemplateResponseMixin, View):
     module = None
@@ -312,8 +312,3 @@ class ContentOrderView(CsrfExemptMixin, JsonRequestResponseMixin, View):
         return self.render_json_response({'saved': 'OK'})
 
 
-# class ContentCreateUpdateView(BSModalCreateView):
-#     template_name = 'courses/manage/content/form.html'
-#     form_class = ContentModelForm
-#     success_message = 'Success: Book was created.'
-#     success_url = reverse_lazy('module_content_list')
