@@ -18,7 +18,7 @@
         <span style="font-size: 16px;">My courses</span><br> </a>
     {%if request.user.is_authenticated and request.user.is_staff%}
     <!-- Just for now -->
-    <a href="{% url 'course_list' %}" style="color: black;margin-right: 20px;"> <i
+    <a href="{% url 'manage_course_list' %}" style="color: black;margin-right: 20px;"> <i
             class="fas fa-chalkboard-teacher"></i> <br>
         <span style="font-size: 16px;">Educator</span><br> </a>
     {%endif%}
