@@ -25,7 +25,7 @@ def student_register(request):
             form.save()
             username = form.cleaned_data.get('username')
             messages.success(request, f'Student Account created for {username}')
-            return redirect('dashboard')
+            return redirect('login')
     else:
         form = StudentRegistrationForm()
     return render(request, 'student/register.html',{'form':form})
