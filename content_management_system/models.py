@@ -43,6 +43,10 @@ class Subject(models.Model):
         titles = cls.objects.filter(title__icontains=search_term)
         return titles
 
+    @property
+    def number_of_courses(self):
+        return Course.objects.filter(subject=self).count()
+
 
 class Course(models.Model):
     course_name = models.CharField(unique=True, max_length=20)
@@ -61,6 +65,10 @@ class Course(models.Model):
     
     def get_absolute_url(self):
         return reverse('manage_courses_list')
+
+    @property
+    def number_of_modules(self):
+        return Module.objects.filter(course=self).count()
 
 
 class Module(models.Model):

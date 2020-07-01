@@ -13,6 +13,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from .forms import CourseEnrollForm
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
+from .models import Enrollment
 
 def landing_page(request):
       return render(request, 'student/landing_page.html')
@@ -86,30 +87,39 @@ def module_list(request, pk):
     }
     return render(request, 'student/modules.html', context)
 
+
 def subject_courses(request, pk):
     subject = Subject.objects.get(pk = pk)
     subjects = Subject.objects.all()
     subject_courses = Course.objects.filter(subject=subject)
     course = Course.objects.all()
     quizs = Quiz.objects.filter(course=course)
+    my_courses = Enrollment.objects.filter(user=request.user)
+
     
     context = {
         'subjects':subjects,
         'subject':subject,
         'subject_courses':subject_courses,
-        # 'modules':modules
+        'my_courses':my_courses,
         'quizs':quizs
     }
     return render(request, 'student/subject_courses.html', context)
 
+def enroll(request,pk):
+    course = Course.objects.get(pk = pk)
+    enrollment = Enrollment.objects.create(user = request.user , course = course)
+
+    return redirect('subject_courses', course.subject.id)
+
 def my_courses(request):
     courses = Course.objects.all()
     subjects = Subject.objects.all()
-    # subject_courses = Course.objects.filter(subject=pk)
+    my_courses = Enrollment.objects.filter(user=request.user)
     context = {
         "courses":courses,
         "subjects":subjects,
-        # "subject_courses":subject_courses
+        "my_courses":my_courses
     }
     return render(request, 'student/my_courses.html', context)
 class StudentEnrollCourseView(LoginRequiredMixin, FormView):
