@@ -1,4 +1,12 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
+{% load crispy_forms_tags%}
+{% block content%}
+{% load static %}
+
+<link rel="stylesheet" href="{%static 'css/dashboard.css'%}">
+
+  
+{%include 'sidenavbar.html'%}
 
 {% block title %}
     {{ object.title }}
@@ -31,3 +39,5 @@
         </div>
     {% endwith %}
 {% endblock %}
+
+{%endblock%}

@@ -1,9 +1,13 @@
  
-{% extends "base.html" %}
+{% extends 'base.html' %}
+{% load crispy_forms_tags%}
+{% block content%}
+{% load static %}
 
-{% block title %}{% endblock %}
+<link rel="stylesheet" href="{%static 'css/dashboard.css'%}">
 
-{% block content %}
+  
+{%include 'sidenavbar.html'%}
 <div class="card">
     <h1>Delete course "{{ object.course_name }}"</h1>
     <div class="module">

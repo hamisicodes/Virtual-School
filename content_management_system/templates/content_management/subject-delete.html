@@ -1,34 +1,12 @@
-{% extends 'content_management/base.html' %}
+{% extends 'base.html' %}
 {% load crispy_forms_tags%}
 {% block content%}
 {% load static %}
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<link href="https://fonts.googleapis.com/css?family=Dancing+Script&display=swap" rel="stylesheet">
-<!-- Bootstrap CSS -->
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@500&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@1,700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Vast+Shadow&display=swap" rel="stylesheet">
+
 <link rel="stylesheet" href="{%static 'css/dashboard.css'%}">
 
   
-<div id="mySidebar" class="sidebar" style="text-align: center;">
-  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"></a>
-  <a href="http://" style="color: lightcoral; margin-top: -60px;margin-bottom: 35px;margin-right: 20px;"> <span style="color: red; font-size: 30px; font-family: 'Vast Shadow'; ">VS </span> </a>
-  <a href="{% url 'profile' %}" style="color: black;margin-right: 20px;"> <i class="fas fa-user-circle" style="color: white;"> </i> <br><span style="font-size: 16px;">Profile</span><br> </a>
-  <a href="{% url 'subjects-list' %}" style="color: black;margin-right: 20px; "> <i class="fas fa-graduation-cap" style="color: purple"></i><br><span style="font-size: 16px;">Subjects</span> </a>
-  <a href="{% url 'create-subject' %}" style="color: black;margin-right: 20px;"> <i class="fas fa-upload"style="color: white;"> </i> <br> <span style="font-size: 16px;">Upload Subject</span><br> </a>
-  <a href="{% url 'course_create' %}" style="color: black;margin-right: 20px;"> <i class="fas fa-upload"style="color: white;"> </i> <br> <span style="font-size: 16px;">Upload Course</span><br> </a>
-   
-    <a href="{% url 'manage_course_list' %}" style="color: black;margin-right: 20px;"> <i class="fas fa-list-ul" style="color: white;"> </i> <br> <span style="font-size: 16px;"> Courses</span><br> </a>
-</div>
-<div id="main">
-  <button class="openbtn" onclick="openNav()" style="background-color: transparent;color: #111; "></button>
-</div>
+{%include 'sidenavbar.html'%}
 
 <img src="{% static 'images/form.jpg' %}" alt="" srcset="" style="height: 250px;width: 250px;margin-bottom: 50px; margin-left: 400px;">
   <div class="col-lg-10" style="margin-left: -100px;">

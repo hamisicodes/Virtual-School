@@ -1,30 +1,9 @@
 
-{%extends 'base.html'%}
-{% load crispy_forms_tags %}
-{% block content %}
-{% load static %}
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<link href="https://fonts.googleapis.com/css2?family=Vast+Shadow&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="{%static 'css/dashboard.css'%}">
-<div  class="sidebar"  style="text-align: center;" >
-  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"></a> 
- 
- <a href="{% url 'dashboard' %}" style="color: black;margin-right: 20px; "> <i class="fas fa-graduation-cap"
-    style="color: purple"></i>
-  <br><span style="font-size: 16px;">Subjects</span> </a>
-  {% for course in subject_courses %}
-    <a href="{% url 'list_of_quiz' course.id %}" style="color: black;margin-right: 20px;"> <i class="fas fa-book" style="color: white;"> </i> <br>
-        <span style="font-size: 16px;">Assignments</span><br> </a>
-{% endfor %}
-<a href="{% url 'my_courses' %}" style="color: black;margin-right: 20px;"> <i class="fa fa-tasks" style="color: white;"> </i> <br> <span
-    style="font-size: 16px;">My courses</span><br> </a>
-<a href="{% url 'logout' %}" style="color: white;margin-right: 20px;"> <i class='fas fa-sign-out-alt'></i> <br>
-  <span style="font-size: 16px; color: black;">Log Out</span><br> </a>
-
- 
-
-   
+{%extends 'layout.html' %}
+{%load static%}
+{% load crispy_forms_tags%}
+{%block content%}
+{%include 'sidebar.html'%}
   
 </div>
 <div class="row" style="padding-left: 210px"; >
@@ -111,6 +90,3 @@ integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw
 </div>
 </div>
 {% endblock %}
-<script src="/users/static/js/dashboard.js"></script>
-<script src="{% static 'js/dashboard.js'%}"></script>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"crossorigin="anonymous"></script>
