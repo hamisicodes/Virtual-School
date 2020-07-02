@@ -9,13 +9,18 @@
 
 {%include 'sidenavbar.html'%}
 <div class="container">
+    <div class="row" style="margin-top: -250px; color: black;">
+        <div class="col-md-6" style="text-align: center; ">
   {% for course in object_list %}
-  <div class="card" style="margin-left: 200px;">
-      <div class="face face1" style="height: 350px; margin-top: -100px;width: 400px;">
+  <div class="card" style="margin-left: 100px;">
+      <div class="face face1" style="height: 100%; margin-top: -100px;width: 400px;">
           <div class="content" style="color: white;">
               
-            <img src="https://github.com/Jhonierpc/WebDevelopment/blob/master/CSS%20Card%20Hover%20Effects/img/design_128.png?raw=true">
+            <img src="https://github.com/Jhonierpc/WebDevelopment/blob/master/CSS%20Card%20Hover%20Effects/img/design_128.png?raw=true" style="margin-top: 50px;">
             <h3 style="color: white;">{{course.course_name}}</h3>
+
+            <p class="card-title" style="margin-top: 50px;"> {{course.created}}</small></span> </h4> <br></span>{{ course.overview }} </p>      
+
             {% if course.owner == user %}
           <a href="{% url 'course_delete' course.id%}"> <i class="fas fa-trash" style="color: red;" id = "message" onclick="swal()"></i> </a>
           <a href="{% url 'course_edit' course.id%}"> <i class="fas fa-edit" style="color: purple;"></i> </a>
@@ -25,7 +30,7 @@
 
           {% if course.modules.count > 0 %}
           
-          <a href="{% url 'module_content_list' course.modules.first.id %}"><button class="btn btn-outline-info btn-sm" style="margin-top: 20px;">Manage Content</button></a>
+          <a href="{% url 'module_content_list' course.modules.first.id %}"><button class="btn btn-info btn-sm" style="margin-top: 20px;">Manage Content</button></a>
         {% endif %}
         
     </p>
@@ -34,19 +39,22 @@
 <p>You haven't created any courses yet.</p>
           </div>
       </div>
-      <div class="face face2" style="height: 200px; width: 400px;">
-          <div class="content">
-              
+      <div class="face face2" style="height: 100%; width: 400px; background-color: blue;">
                   
-                  
-          <p class="card-title" style="margin-top: 50px;"> {{course.created}}</small></span> </h4> <br></span>{{ course.overview }} </p>
+         
 
           
-</div>
+
       </div>
+      
 {% endfor%}
-</body>
+
 </div>
+
+
+
+</div>
+</body>
 </html>
 <style>
 
@@ -81,8 +89,10 @@ body{
 
 .container .card .face.face1{
     position: relative;
-    background: #333;
+    background: #ff0057;
+    background-color:#333;
     display: flex;
+    color:black;
     justify-content: center;
     align-items: center;
     z-index: 1;
@@ -95,7 +105,7 @@ body{
 }
 
 .container .card .face.face1 .content{
-    opacity: 0.2;
+    
     transition: 0.5s;
 }
 

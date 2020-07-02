@@ -4,21 +4,24 @@
     {% load crispy_forms_tags%}
     {%block content%}
     {%include 'sidebar.html'%}
+    
+    
     <div class="container">
-        <div class="row">
-
-            <div class="col-md-4">
+        <div class="row" style="margin-left: 100px;">
+            <h4 style="padding-left: 310px; margin-top: -50px;"> Found {{subject.number_of_courses}} Available Courses
+                for {{subject.title}}</h4>
+            <div class="col-md-6">
                 <div class="subjects">
                     {% for subject in subjects %}
                     <a href="{% url 'subject_courses' subject.id %}"><button type="button" id="sub_{{subject.id}}"
-                            class="btn btn-rounded">{{subject.title}}</button> </a>
+                            class="btn btn-rounded"> <i class="fa fa-tasks" style="margin-right: 3px;"></i> {{subject.title}}</button> </a>
 
                     {% endfor %}
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-6">
                 
-                <p>{{subject.title}} courses</p>
+                <p> <i class="fa fa-tasks" style="margin-right: 3px;color: purple;"></i>{{subject.title}} courses</p>
                 
                 {% for course in subject_courses %}
 
@@ -33,14 +36,16 @@
 
                     <br>
                     
-                    <a href="{% url 'enroll' course.id %}" onclick="enrolled()"><button>Enroll Now</button></a>
+                    <a href="{% url 'enroll' course.id %} " onclick="enrolled()">
+                    <button type="submit" value="Enroll now " class="btn btn-sm"
+                    style="background-color: purple; color: white;"> Enroll Now </button> 
                     
-                   
-                   
+                    
 
                    
                 </div>
-                
+                <br>
+                <hr>
                 <div class="col-md-">
 
                     

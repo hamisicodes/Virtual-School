@@ -15,6 +15,9 @@ class StudentProfile(models.Model):
 class Enrollment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     course = models.ForeignKey(Course,on_delete=models.CASCADE)
+    @property
+    def number_of_enrollments(self):
+        return Enrollment.objects.filter(user=self).count()
 
     def __str__(self):
         return f'{self.user.username}'

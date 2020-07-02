@@ -55,7 +55,7 @@ class Course(models.Model):
     subject =models.ForeignKey(Subject, on_delete=models.CASCADE,default=1)
     overview =models.TextField(max_length=2000,default=1)
     students = models.ManyToManyField(User, related_name='students_to_course')
-    slug = models.SlugField(max_length=200, unique=True)
+    
     students = models.ManyToManyField(User,related_name='courses_joined',blank=True)
     class Meta:
         ordering = ('-created',)
