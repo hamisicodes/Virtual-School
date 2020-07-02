@@ -60,16 +60,22 @@
                     <form action="{% url 'create_answer' question.pk %}" method="POST">
                         {% csrf_token %}
                         <input type="text" id="inputDisabledEx2" class="form-control" name="answer">
+  
                         <div><label for="radio1"><input type="checkbox" name="choices"
                             value="is_correct">correct answer</label></div>
+
                 </div>
-                <div class="col-md-5 answer" style="margin-top: 15px;">
+                <div class="col-md-5 answer" style="margin-top: 15px; line-height: 0.9;">
                     <button type="submit" class="fabutton">
                         <i class="fa fa-plus-circle"></i>
                     </button>
-                    <i class="fa fa-minus-circle" style="color:red"></i>
+                    <i class="fa fa-minus-circle" style="color:red"></i><br><br><br>
+                    <!-- <p>Answer</p>
+                    <p>Answer</p>
+                    <p>Answer</p> -->
 
                 </div>
+
 
                 </form>
 

@@ -26,7 +26,8 @@
                 <p class="card-text">{{ quiz.description}}</p>
                 <!-- Button -->
                 <!--Modal-->
-                <a href="#" class="btn btn-primary" type="button" data-toggle="modal" data-target="#modal{{quiz.id}}">Take
+                <a href="#" class="btn btn-primary" type="button" data-toggle="modal"
+                    data-target="#modal{{quiz.id}}">Take
                     Quiz</a>
 
                 <!-- Modal: modalPoll -->
@@ -66,6 +67,9 @@
                                 <p class="text-center">
                                     <strong>{{question.label}}</strong>
                                 </p>
+
+
+
                                 <form action="{% url 'post_quiz' %}" method="POST">
                                     {% csrf_token %%}
                                     {% for answer in answers %}
@@ -73,17 +77,24 @@
                                     {% if question == answer.question %}
                                     <div><label for="radio1"><input type="checkbox" name="choices"
                                                 value="{{answer.label}}">{{answer.label}}</label></div>
-
-                                    {% endif %}
-                                    {% endfor %}
                                     
-                                    <!-- Button trigger modal -->
-                                    <div class="text-center">
+
+
+                                        {% endif %}
+                                        {% endfor %}
+
+                                        <!-- Button trigger modal -->
+                                        <div class="text-center">
                                         <button class="btn btn-default btn-rounded" data-toggle="modal"
-                                            data-target="#centralModalSuccess" type="submit" name ='done'>Submit
-                                             <i class="far fa-eye ml-1"></i></button>
+                                            data-target="#centralModalSuccess" type="submit" name='done'>Submit
+                                            <i class="far fa-eye ml-1"></i></button>
                                     </div>
+
                                 </form>
+
+
+
+
 
 
                                 <br><br>
@@ -91,15 +102,11 @@
                                 {% endif %}
                                 {% endfor %}
 
+
+
+
                             </div>
-                            <!--Footer-->
-                            <div class="modal-footer justify-content-center">
-                                <a type="button" class="btn btn-primary waves-effect waves-light">Submit
-                                    <i class="fa fa-paper-plane ml-1"></i>
-                                </a>
-                                <a type="button" class="btn btn-outline-primary waves-effect"
-                                    data-dismiss="modal">Cancel</a>
-                            </div>
+
                         </div>
                     </div>
                 </div>
