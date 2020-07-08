@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from .models import Quiz
+from .models import Quiz,Answer
 from content_management_system.models import Course
 from django.forms.models import inlineformset_factory
 
@@ -13,3 +13,10 @@ class QuizCreateForm(forms.ModelForm):
     class Meta:
         model = Quiz
         fields = ['name', 'course','description']
+
+class MyForm(forms.Form):
+    choices = forms.ModelMultipleChoiceField(
+        queryset = Answer.objects.all(),
+        widget = forms.CheckboxSelectMultiple,
+    )
+

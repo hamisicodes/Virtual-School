@@ -1,6 +1,7 @@
 from django.db import models
 from django.conf import settings
 from content_management_system.models import Course
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -35,7 +36,7 @@ class Answer(models.Model):
 		return self.label
 
 class QuizTaker(models.Model):
-	# quiz_taker = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, default='')
+	quiz_taker = models.ForeignKey(User, on_delete=models.CASCADE , default= 0)
 	quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE)
 	score = models.IntegerField(default=0)
 	completed = models.BooleanField(default=False)
@@ -43,9 +44,8 @@ class QuizTaker(models.Model):
 	timestamp = models.DateTimeField(auto_now_add=True)
 
 	def __str__(self):
-		return self.user.email
+		return self.quiz_taker.username
 
-    
 
 
 class UsersAnswer(models.Model):

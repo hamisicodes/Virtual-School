@@ -1,55 +1,25 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect
 from django.http  import HttpResponse,HttpResponseRedirect
-from .models import Question,Answer,Quiz
+from .models import Question,Answer,Quiz,QuizTaker
 from content_management_system.models import Course
 from .forms import QuizCreateForm
-
+from django.views.generic.edit import FormView
+from .forms import MyForm
 # Create your views here.
-quiztakers = [
-    {
-        'quiz_taker':'alex',
-        'quiz':'quiz1',
-        'score':'20%',
 
-    },
-    {
-        'quiz_taker':'Ken',
-        'quiz':'quiz5',
-        'score':'27%',
-
-    },
-    {
-        'quiz_taker':'Leen',
-        'quiz':'quiz3',
-        'score':'50%',
-
-    },
-]
 def list_of_quiz(request,pk):
+    # course = Course.objects.all(course=pk)
     quizs = Quiz.objects.filter(course=pk)
-    quizes = Quiz.objects.all()
-    quizes = Quiz.objects.all()
     questions = Question.objects.all()
-    print(questions)
     answers = Answer.objects.all()
+   
+    # subject_courses = Course.objects.filter(subject=subject)
     context = {
-        "quizes":quizes,
         "quizs":quizs,
         "answers":answers,
         "questions":questions,
     }
     return render(request, 'online_test/quiz.html', context)
-
-def take_quiz(request, pk):
-    questions = Question.objects.filter(quiz=pk)
-    print(questions)
-    context = {
-        # "quizs":quizs,
-        "answers":answers,
-        "questions":questions,
-    }
-    return render(request, 'online_test/quiz.html', context)
-    
 
 def create_quiz(request):
     quizs = Quiz.objects.all()
@@ -118,49 +88,47 @@ def create_answer(request, pk):
    
     if request.method == 'POST' and request.POST.get('answer'):
         answer_label = request.POST.get('answer')
-        new_answer = Answer.objects.create(label = answer_label, question = question)
+        if request.POST.get('choices'):
+            new_answer = Answer.objects.create(label = answer_label, question = question , is_correct = True)
+        else:
+            new_answer = Answer.objects.create(label = answer_label, question = question)
+
         return redirect('create_question', question.quiz.id)
 
     else:
         return redirect('create_question',question.quiz.id)
-quiztakers = [
-    {
-        'quiz_taker':'alex',
-        'quiz':'quiz1',
-        'score':'20%',
 
-    },
-    {
-        'quiz_taker':'Ken',
-        'quiz':'quiz5',
-        'score':'27%',
 
-    },
-    {
-        'quiz_taker':'Leen',
-        'quiz':'quiz3',
-        'score':'50%',
 
-    },
-]
-def quiztaker(request):
-    context = {
-        'quiztakers':quiztakers
-    }
-    return render(request, 'online_test/quiz_takers.html', context)
-
-def submit_quiz(request):
-    
+def myview(request):
+    score = 0
     if request.method == 'POST':
-        answer1 = request.POST.get('answer-1')
-        print(answer1)
-        return redirect('list_of_quiz')
+        form = MyForm(request.POST)
+
+        if 'done' in request.POST:
+            # print(request.POST['my_object'])
+            student_answer = request.POST.get('choices')
+            answer = Answer.objects.get(label = student_answer)
+            if answer.is_correct:
+                score = 100
+                quiztaker = QuizTaker.objects.create(quiz_taker = request.user , score = score , completed = True , quiz = answer.question.quiz )
+            else:
+                score = 0
+                quiztaker = QuizTaker.objects.create(quiz_taker = request.user , score = score , completed = True , quiz = answer.question.quiz  )
+            return redirect('results')
+                
     else:
-        return redirect('list_of_quiz')
+        return redirect('list_of_quiz' , 1)
 
+def results(request):
+   
+    quiz_details = QuizTaker.objects.filter(quiz_taker = request.user)
 
+    context ={
+        'quiz_details':quiz_details  #queryset
+    }
 
-
+    return render(request,'online_test/results.html', context)
 
 
 

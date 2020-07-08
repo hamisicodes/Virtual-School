@@ -1,0 +1,56 @@
+{% extends 'online_test/base.html' %}
+{% load static %}
+{% load bootstrap4%}
+
+{% block content %}
+
+<div class="container">
+
+
+    <div class="row row-cols-1 row-cols-md-1" style="margin-top: 5%; margin-left: 10%;  margin-right: 10%;">
+        <div class="col mb-4">
+            <!-- Card -->
+            <br><br><br>
+
+            {% for quiz in quiz_details %}
+            <div class="card " style="margin-top: 30px;">
+
+                <!--Card image-->
+                <div class="view overlay">
+                    <img class="card-img-top" width="500" height="500"
+                        src="https://mdbootstrap.com/img/Photos/Others/images/16.jpg" alt="Card image cap">
+                    <a href="#!">
+
+
+                    </a>
+                </div>
+
+                <!--Card content-->
+                <div class="card-body">
+
+                    <!--Title-->
+                    <h4 class="card-title">{{quiz.quiz.name}}</h4>
+                    <!--Text-->
+                    <p class="card-text">Thank you for participating in this Quiz. Your Score is {{quiz.score}}
+                        .</p>
+                    <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
+
+
+
+
+                </div>
+
+            </div> <br><br><br>
+            {% endfor %}
+
+        </div>
+    </div>
+
+</div>
+
+<!-- Card -->
+
+
+
+
+{% endblock %}
