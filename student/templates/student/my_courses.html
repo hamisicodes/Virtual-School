@@ -4,53 +4,38 @@
 {%block content%}
 {%include 'sidebar.html'%}
   <div class="container">
-    <div class="row">
-
-      <div class="col-md-6">
-        <div class="subjects">
-          {% for subject in subjects %}
-          <a href="{% url 'subject_courses' subject.id %}"><button type="button" id="sub_{{subject.id}}"
-            class="btn btn-rounded">{{subject.title}}</button> </a>
-          {% endfor %}
-        </div>
-      </div>
-      <div class="col-md-6">
-        
-
   
-
-
-
-    <div class="container">
-        <div class="row">
-
-            <div class="col-md-4">
-               
-                <p>{{subject.title}} courses</p>
-
-                {% if my_courses %}
+    <div class="row content" style="margin-left: 180px; margin-top: -30px;">
+      <h3 style="margin-left: 230px; margin-top: -50px;text-align: center;"> <i class="far fa-hand-paper"></i> Hello <strong>{{ user.username|upper }} <br>
+        you have enrolled to the following Courses:</strong></h3>
+      
+      <div class="col-md-4 order-1 order-md-2" data-aos="fade-left">
+        <img src="{% static 'photos/details-4.png'%}" class="img-fluid" alt="">
+      </div>
+      <div class="col-md-8 pt-5 order-2 order-md-1" data-aos="fade-up">
+        {% if my_courses %}
                 
-                {% for course in my_courses %}
-                
-                <div class="course-details">
+        {% for course in my_courses %}
+        <h3> <i class="fas fa-angle-double-right" ></i> {{course.course.course_name}} </a> ,instructor {{course.course.owner}}.</h3>
 
-                    <p><i class="fas fa-angle-double-right" ></i> {{course.course.course_name}} </a> ,instructor {{course.course.owner}} </p>
-                    <small> {{course.course.number_of_modules}} Available module for {{course.course.course_name}} </small> <br> <br>
-                    <small> <i class="fas fa-clock" style="color: purple;"></i>
-                        {{course.course.created| date:"M d,Y "}}</small> <br>
+       
+        <p class="font-italic">
+         
+        </p>
+        <p>
+           {{course.course.number_of_modules}} Available module for {{course.course.course_name}}  
+           <i class="fas fa-clock" style="color: purple;"></i>
+             <small> {{course.course.created| date:"M d,Y "}} </small> <br>
 
-                      <br>
-                        <a href="{% url 'module_list' course.course.id %}">View</a>
-                    
-                </div>
-                <div class="col-md-">
+        </p>
+        <a href="{% url 'module_list' course.course.id %}"> <button class="btn btn-sm" style="background-color: purple;color:white"> View More</button></a>
+        
+      </div>
+    </div>
 
-                    
-                </div><br><br>
-
-                {% endfor %}
+  {% endfor %}
                 {% else %}
-                <h3>You Are not enrolled to any Course</h3>
+                <h3> Opps You Are not enrolled to any Course</h3>
                 {% endif %}
 
                

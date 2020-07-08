@@ -8,7 +8,7 @@ from django.forms.models import inlineformset_factory
 class CourseForm(forms.ModelForm):
     class Meta:
         model = Course
-        fields = ['course_name','slug','overview']
+        fields = ['course_name','overview']
 
 class ModuleForm(forms.ModelForm):
     title = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control', 'cols': 20, 'rows': 5}))

@@ -51,17 +51,6 @@ def update_quiz(request, pk):
     return render(request, 'online_test/create_quiz.html', {'form':form,'quiz':quiz})
 
 
-# def delete_post(request, pk):
-#     post = Image.objects.get(id=pk)
-#     current_user = request.user
-
-#     if current_user == post.author and request.method == 'POST':
-#         post.delete()
-#         return redirect('main_page')
-#     context = {
-#         "post":post
-#     }
-#     return render(request, 'instagram/delete_post.html', context)
 def create_question(request,pk):
     quiz = Quiz.objects.get(pk = pk)
     if request.method == 'POST' and request.POST.get('question'):
@@ -129,8 +118,6 @@ def results(request):
     }
 
     return render(request,'online_test/results.html', context)
-
-
 
 
 

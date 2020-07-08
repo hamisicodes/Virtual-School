@@ -1,8 +1,9 @@
-{%extends 'layout.html' %}
+{%extends 'layout2.html' %}
 {%load static%}
 {% load crispy_forms_tags%}
 {%block content%}
 {%include 'sidebar.html'%}
+<link rel="stylesheet" href="{% static 'css/dashboardd.css'%}">
     <div class="container">
         <h3 class="coursesection-title"></h3>
         {% for module in modules %}
@@ -40,9 +41,17 @@
 
             <button class="btn btn-sm" id="buttonss" style="color: white;background-color:cadetblue ">View less</button><br><br>
         </div>
-        <br><br>
+       
         {% endfor %}
         <hr>
     </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script src="{% static 'js/toggle.js' %}"></script>
+    <style>
+        #viewmodule{
+            display: none;
+        }
+        </style>
     {% endblock %}
-    <script src="{% static 'js/dashboardd.js' %}"></script>
+
+   

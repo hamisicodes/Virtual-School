@@ -7,7 +7,6 @@ from .forms import StudentRegistrationForm, StudentProfileUpdateForm, UserUpdate
 from .models import StudentProfile
 from content_management_system.models import Course, Module, Subject
 from online_test.models import Quiz
-
 from django.views.generic.edit import FormView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .forms import CourseEnrollForm
@@ -25,7 +24,7 @@ def student_register(request):
             form.save()
             username = form.cleaned_data.get('username')
             messages.success(request, f'Student Account created for {username}')
-            return redirect('login')
+            return redirect('dashboard')
     else:
         form = StudentRegistrationForm()
     return render(request, 'student/register.html',{'form':form})
@@ -122,6 +121,8 @@ def my_courses(request):
         "my_courses":my_courses
     }
     return render(request, 'student/my_courses.html', context)
+
+    
 class StudentEnrollCourseView(LoginRequiredMixin, FormView):
     course = None
     form_class = CourseEnrollForm

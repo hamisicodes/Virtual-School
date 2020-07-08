@@ -8,38 +8,20 @@
 
 
 {%include 'sidenavbar.html'%}
-<div class="row" style="padding-left: 90px; margin: 30px;">
-    
-    <img class="card-img-top" src="{% static 'images/courses.png'%}" style="height: 500px;width: 700px; margin-top: -175px;" class="col-md -3" >
-    <div class="col-md -3" style="margin-bottom: 30px; margin-left: 100px;margin-top: 30px;">
-    {% for course in object_list %}
-    
-    <div class="card" style="height: 250px; width: 600px;margin-top: 40px;">
+<div class="container">
+    <div class="row" style="margin-top: -250px; color: black;">
+        <div class="col-md-6" style="text-align: center; ">
+  {% for course in object_list %}
+  <div class="card" style="margin-left: 100px;">
+      <div class="face face1" style="height: 100%; margin-top: -100px;width: 400px;">
+          <div class="content" style="color: white;">
+              
+            <img src="https://github.com/Jhonierpc/WebDevelopment/blob/master/CSS%20Card%20Hover%20Effects/img/design_128.png?raw=true" style="margin-top: 50px;">
+            <h3 style="color: white;">{{course.course_name}}</h3>
 
-        <!-- Card image -->
-        <div class="view overlay" style="background-color: rgb(71, 196, 245);">
-            
-            <i class="fas fa-book" style="color: white;text-align: center;"> <h4> {{course.subject}}  </h4></i> 
-          <a>
-            <div class="mask rgba-white-slight" style="background-color: palevioletred;">
+            <p class="card-title" style="margin-top: 50px;"> {{course.created}}</small></span> </h4> <br></span>{{ course.overview }} </p>      
 
-
-            </div>
-          </a>
-        </div>
-      
-        <!-- Card content -->
-        <div class="card-body elegant-color white-text rounded-bottom">
-      
-          <!-- Social shares button -->
-          
-          <!-- Title -->
-          <h4 class="card-title" style="margin-top: -10px;">{{ course.course_name }} <span> <small class="text-info" style="font-size: 10px;">{{course.created}}</small></span> </h4>
-          <p class="card-title" >{{ course.overview }} </p>
-          
-         
-         
-          {% if course.owner == user %}
+            {% if course.owner == user %}
           <a href="{% url 'course_delete' course.id%}"> <i class="fas fa-trash" style="color: red;" id = "message" onclick="swal()"></i> </a>
           <a href="{% url 'course_edit' course.id%}"> <i class="fas fa-edit" style="color: purple;"></i> </a>
           <a href="{% url 'course_module_update' course.id %}" style="color: black;margin-right: 20px;"> <i class="fas fa-upload"style="color: white;"> </i> <br> <span style="font-size: 16px;">Upload Module</span><br> </a>
@@ -48,27 +30,142 @@
 
           {% if course.modules.count > 0 %}
           
-          <a href="{% url 'module_content_list' course.modules.first.id %}"><button class="btn btn-outline-info btn-sm">Manage Content</button></a>
+          <a href="{% url 'module_content_list' course.modules.first.id %}"><button class="btn btn-info btn-sm" style="margin-top: 20px;">Manage Content</button></a>
         {% endif %}
         
     </p>
-</div>
+
 {% empty %}
 <p>You haven't created any courses yet.</p>
-{% endfor %}
-
-         
-          <!-- Text -->
-          
-         
-          <!-- Link -->
-          <a href="#!" class="white-text d-flex justify-content-end">
-          
-          </a>
-      
-        </div>
-      
+          </div>
       </div>
+      <div class="face face2" style="height: 100%; width: 400px; background-color: blue;">
+                  
+         
+
+          
+
+      </div>
+      
+{% endfor%}
+
+</div>
+
+
+
+</div>
+</body>
+</html>
+<style>
+
+body{
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: consolas;
+}
+
+.container{
+    width: 1000px;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+}
+
+.container .card{
+    position: relative;
+    cursor: pointer;
+}
+
+.container .card .face{
+    width: 300px;
+    height: 200px;
+    transition: 0.5s;
+}
+
+.container .card .face.face1{
+    position: relative;
+    background: #ff0057;
+    background-color:#333;
+    display: flex;
+    color:black;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    transform: translateY(100px);
+}
+
+.container .card:hover .face.face1{
+    background: #ff0057;
+    transform: translateY(0);
+}
+
+.container .card .face.face1 .content{
+    
+    transition: 0.5s;
+}
+
+.container .card:hover .face.face1 .content{
+    opacity: 1;
+}
+
+.container .card .face.face1 .content img{
+    max-width: 100px;
+}
+
+.container .card .face.face1 .content h3{
+    margin: 10px 0 0;
+    padding: 0;
+    
+    text-align: center;
+    font-size: 1.5em;
+}
+
+.container .card .face.face2{
+    position: relative;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+    transform: translateY(-100px);
+}
+
+.container .card:hover .face.face2{
+    transform: translateY(0);
+}
+
+.container .card .face.face2 .content p{
+    margin: 0;
+    padding: 0;
+}
+
+.container .card .face.face2 .content a{
+    margin: 15px 0 0;
+    display:  inline-block;
+    text-decoration: none;
+    font-weight: 900;
+    color: #333;
+    padding: 5px;
+    border: 1px solid #333;
+}
+
+.container .card .face.face2 .content a:hover{
+    background: #333;
+    color: #fff;
+}
+
+
+</style>
+
+
+
 
 
     

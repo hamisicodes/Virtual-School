@@ -20,56 +20,33 @@
     <button class="openbtn" onclick="openNav()" style="background-color: transparent;color: #111; "></button>
 </div>
 
-   <div class="wow" style="margin-left: 50px; text-align: center;" >
-    <h3>{% trans 'Add new content' %}:</h3>
-    <img src="{% trans 'Image' %}" alt="" srcset="">
+   <div class="wow" style="margin-left: 180px; text-align: center; float: right;" >
+   
+   
     
-    <ul class="content-types">
-        <li><a href="{% url 'module_content_create' module.id 'file'%}" class="link"  ><i class="far fa-file-alt"></i></li>
-        <li><a href="{% url 'module_content_create' module.id 'image'%}" class="link"  ><i class="far fa-images"></i></a></li>
-        <li><a href="{% url 'module_content_create' module.id 'video' %}" class="link" ><i class="fas fa-video"></i></a></li>
-        <li><a href="{% url 'module_content_create' module.id 'text' %}" class="link" ><i class="fas fa-remove-format"></i></a></li>
+    <ul class="content-types" style="background-color: transparent;">
+       
+        <li style="background-color: transparent;"><a href="{% url 'module_content_create' module.id 'file'%}" class="link"  ><i class="far fa-file-alt"></i></li>
+        <li style="background-color: transparent;"><a href="{% url 'module_content_create' module.id 'image'%}" class="link"  ><i class="far fa-images"></i></a></li>
+        <li style="background-color: transparent;"><a href="{% url 'module_content_create' module.id 'video' %}" class="link" ><i class="fas fa-video"></i></a></li>
+        <li style="background-color: transparent;"><a href="{% url 'module_content_create' module.id 'text' %}" class="link" ><i class="fas fa-remove-format"></i></a></li>
     </ul>
     <br><br>
     </div>
 
-
+     <div class="row" style="margin-left: 180px;">
     {% with course=module.course %}
-    <h1 style="margin-left: 60px;">{{ course.course_name }}</h1><br><br><br><br>
-    <div class="contents">
-    <!-- <h1>{{ course.course_name }}</h1> -->
-   
-    <!-- <div style="margin-left: 10%; "> -->
-        <h3 >All modules</h3>
-        <ul id="modules" >
-            {% for m in course.modules.all %}
-            <li data-id="{{ m.id }}" {% if m == module %}
-            class="selected"{% endif %}>
-            <a href="{% url 'module_content_list' m.id %}">
-                <span>
-                    Module <span class="order">{{ m.order }}</span>
-                </span>
-                
-                {{ m.title }}
-                <br>
-            </a> </li>
-            {% empty %}
-            <li>No modules yet.</li>
-            {% endfor %}
-        </ul>
-        <p><a href="{% url 'course_module_update' course.id %}"><button type="button" class="btn btn-sm btn-primary">Edit modules</button></a></p>
-        <!-- </div> -->
-
-    </div>
+    
+    
    
     <div class="module" style="margin-left: auto;" >
-        <h2> {{ module.title }}</h2>
+        <h2> {{ module.title }} <span><a href="{% url 'course_module_update' course.id %}"> <i class="fas fa-edit" style="color: purple;"></i> </a></span></h2> 
         <h3>Module contents:</h3>
         <div id="module-contents">
             {% for content in module.contents.all %}
-            <div data-id="{{ content.id }}">
+            <div data-id="{{ content.id }}" style="margin-bottom: 20px;"> 
                 {% with item=content.item %}
-                <p>{{ item }} ({{ item|model_name}})</p>
+                <p style="margin-bottom: 10px;">{{ item }}</p> <br>
                 {{ item.render }}
                 <a href="{% url 'module_content_update' module.id item|model_name item.id %}" class="btn btn-sm btn-success">{% trans 'Edit' %}</a>
                 <form action="{% url 'module_content_delete' content.id %}" method="post">

@@ -17,7 +17,6 @@ class CourseAdmin(admin.ModelAdmin):
     list_display = ['course_name', 'subject', 'created']
     list_filter = ['created', 'subject']
     search_fields = ['title', 'overview']
-    prepopulated_fields = {'slug': ('course_name',)}
     inlines = [ModuleInline]
 
 @admin.register(Subject)

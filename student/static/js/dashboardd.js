@@ -12,6 +12,7 @@ $(document).ready(function(){
  })
 
  })
+ console.log('working')
 
 const sub1 = document.getElementById('sub_1')
 sub1.className += " btn-primary";
