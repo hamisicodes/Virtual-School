@@ -5,7 +5,7 @@ body{
   
   /* The sidebar menu */
   .sidebar {
-      height: 98%; /* 100% Full-height */
+      height: 100%; /* 100% Full-height */
       width: 200px; /* 0 width - change this with JavaScript */
       position: fixed; /* Stay in place */
       z-index: 1; /* Stay on top */
@@ -29,7 +29,7 @@ body{
       color: #818181;
       display: block;
       transition: 0.3s;
-      padding-top: 50px;
+      padding-top: 20px;
     }
   
     /* When you mouse over the navigation links, change their color */

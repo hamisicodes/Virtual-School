@@ -19,6 +19,6 @@ class Enrollment(models.Model):
     course = models.ForeignKey(Course,on_delete=models.CASCADE)
 
     def __str__(self):
-        return f'{self.user.username}'
+        return f'{self.user.username} Enrollment'
 
 
