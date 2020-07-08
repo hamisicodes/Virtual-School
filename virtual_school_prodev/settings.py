@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 from django.urls import reverse_lazy
 import os
 from decouple import config
+import cloudinary
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -44,8 +45,8 @@ INSTALLED_APPS = [
     'embed_video',
     'online_test',
     'bootstrap4',
-    # 'social_django',
-    # 'django_extensions',
+    'cloudinary',
+
 ]
 
 MIDDLEWARE = [
@@ -159,6 +160,12 @@ EMAIL_HOST_USER ='virtualschoolpro@gmail.com'
 EMAIL_HOST_PASSWORD = 'virtual2020'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
+
+cloudinary.config( 
+  cloud_name = os.environ.get('CLOUDINARY_NAME'),
+  api_key = os.environ.get('CLOUDINARY_API_KEY'), 
+  api_secret = os.environ.get('CLOUDINARY_API_SECRET'), 
+)
 
 
 LOGIN_REDIRECT_URL = reverse_lazy('student_course_list')
